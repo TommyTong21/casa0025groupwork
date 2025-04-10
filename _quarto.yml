@@ -40,13 +40,6 @@ format:
     code-overflow: wrap # 代码溢出处理
     highlight-style: monokai.theme # 代码高亮风格
     linkcolor: "#34a832" # 链接颜色
-
-  pdf: # PDF 输出格式设置
-    documentclass: scrreprt # 文档类
-    header-includes:
-      - \makeatletter # 额外的 LaTeX 包含
-      - \@addtoreset{chapter}{part} # 重置章节
-      - \makeatother
-
+  
   epub: # EPUB 输出格式设置
     cover-image: cover.png # 封面图像
