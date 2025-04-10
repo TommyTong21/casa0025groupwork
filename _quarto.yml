@@ -33,13 +33,7 @@ bibliography: references.bib # 参考文献文件
 
 format:
   html: # HTML 输出格式设置
-    theme: # 主题设置
-      dark: darkly # 暗色主题
-      light: cosmo # 明亮主题
-    code-copy: true # 允许代码复制功能
-    code-overflow: wrap # 代码溢出处理
-    highlight-style: monokai.theme # 代码高亮风格
-    linkcolor: "#34a832" # 链接颜色
+    css: styles.css # 自定义 CSS 文件
   
   epub: # EPUB 输出格式设置
     cover-image: cover.png # 封面图像
