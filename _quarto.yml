@@ -8,14 +8,14 @@ book:
   date: "10/04/2025" # 发布日期
   chapters: # 主题文件
     - index.qmd # 主页
-    - part: "introduction"
+    - part: "A. introduction"
       chapters:
         - intro.qmd # 介绍
         - Test1.qmd # 测试文件
-    - part: "services"
+    - part: "B. services"
       chapters:
         - services.qmd # 服务
-    - part: "conclusion"
+    - part: "C. conclusion"
       chapters:
         - conclusion.qmd # 结论
     - Test1.qmd # 这里暂时是测试文件
