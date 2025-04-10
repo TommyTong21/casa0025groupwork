@@ -30,7 +30,7 @@ Despite only being released in 2015, the number of geospatial journal articles u
 A) **SQL**
     * Five initial weeks exporing spatial database systems including PostgreSQL and DuckDB.
         * [Introduction](intro.qmd)
-        * [Test](test.qmd)
+        * [Test](Test1.qmd)
 B) **Google Earth Engine**
     * Five weeks on Google Earth Engine, a cloud-based platform for geospatial analysis.
         * [services](services.qmd)
