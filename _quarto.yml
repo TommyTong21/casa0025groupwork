@@ -1,59 +1,52 @@
 project:
-  type: book
-  output-dir: docs
-book:
-  title: "CASA0025: \n Building Spatial Applications with Big Data"
-  author: "[Dr. Ollie Ballinger](https://oballinger.github.io)"
-  date: "01/10/2024"
-  chapters:
-    - index.qmd
-    - part: "A. SQL"
-      chapters:
-        - W01_intro.qmd
-        - W02_SQL.qmd
-        - W03_postgis1.qmd
-        - W04_postgis2.qmd
-        - W05_quiz.qmd
-    - part: "B. Google Earth Engine"
-      chapters:
-        - W06_RS.qmd
-        - W07_refineries.qmd
-        - W08_ISM.qmd
-        - W09_blast.qmd
-        - W10_ships.qmd
-    - part: "GEE Textbook"
-      chapters:
-        - F1.qmd
-        - F2.qmd
-        - F4.qmd
-        - F5.qmd
-  repo-url: https://github.com/oballinger/CASA0025/
-  google-analytics: G-RK9ZLZQ6GL
-  repo-actions: [edit]
-  downloads: [pdf, epub]
-  sharing: [twitter, facebook]
-  favicon: favicon.ico
-  sidebar:
-    logo: logo_white.png
-    collapse-level: 2
+  type: book # 项目类型，这里是指南
+  output-dir: docs # 输出目录
 
-bibliography: references.bib
+book:
+  title: "Mount Everest Climber Services" # 书籍标题
+  author: "[Jiahao Tong](https://tommytong21.github.io/casa0025groupwork/)" # 作者与链接
+  date: "10/04/2025" # 发布日期
+  chapters: # 主题文件
+    - index.qmd # 主页
+    - part: "introduction"
+      chapters:
+        - intro.qmd # 介绍
+        - Test1.qmd # 测试文件
+    - part: "services"
+      chapters:
+        - services.qmd # 服务
+    - part: "conclusion"
+      chapters:
+        - conclusion.qmd # 结论
+    - Test1.qmd # 这里暂时是测试文件
+  repo-url: https://github.com/TommyTong21/casa0025groupwork/tree/main
+  # google-analytics: YOUR_TRACKING_ID
+  repo-actions: [edit] # 在仓库中提供编辑链接
+  downloads: [pdf, epub] # 可下载格式
+  sharing: [twitter, facebook] # 社交媒体分享平台
+  favicon: mount.ico # 网站图标
+  sidebar:
+    logo: logo_white.png # 侧边栏 logo，暂时保留为 logo.png
+    collapse-level: 2 # 控制侧边栏的折叠层级
+
+bibliography: references.bib # 参考文献文件
 
 format:
-  html:
-    theme:
-      dark: darkly
-      light: cosmo
-    code-copy: true
-    code-overflow: wrap
-    highlight-style: monokai.theme
-    linkcolor: "#34a832"        
+  html: # HTML 输出格式设置
+    theme: # 主题设置
+      dark: darkly # 暗色主题
+      light: cosmo # 明亮主题
+    code-copy: true # 允许代码复制功能
+    code-overflow: wrap # 代码溢出处理
+    highlight-style: monokai.theme # 代码高亮风格
+    linkcolor: "#34a832" # 链接颜色
 
-  pdf:
-    documentclass: scrreprt
+  pdf: # PDF 输出格式设置
+    documentclass: scrreprt # 文档类
     header-includes:
-      - \makeatletter
-      - \@addtoreset{chapter}{part}
-      - \makeatother         
-  epub:
-    cover-image: cover.png
+      - \makeatletter # 额外的 LaTeX 包含
+      - \@addtoreset{chapter}{part} # 重置章节
+      - \makeatother
+
+  epub: # EPUB 输出格式设置
+    cover-image: cover.png # 封面图像
