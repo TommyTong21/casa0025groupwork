@@ -5,8 +5,19 @@ output: html_document
 ---
 
 ## 这里展示数据预处理
+
 ## 分析公式和图表
+
 ## 核心算法
+
 ## 可视化部分
+
 ## 结果展示
+
+:::{.column-page}
+
+<iframe src='https://ollielballinger.users.earthengine.app/view/rojavaoil' width='100%' height='700px'></iframe>
+
+:::
+
 ## 参考文献

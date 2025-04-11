@@ -16,6 +16,12 @@
 
 整体结果内嵌网页展示
 
+:::{.column-page}
+
+<iframe src='https://ollielballinger.users.earthengine.app/view/rojavaoil' width='100%' height='700px'></iframe>
+
+:::
+
 ## Table of Contents
 
 A) **珠穆朗玛峰雪线变化**
