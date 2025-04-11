@@ -6,7 +6,43 @@ output: html_document
 
 ## 这里展示数据预处理
 
+*这里是关键词*
+
+这里是文本内容（qmd文本超链接嵌入）
+
+（qmd图片嵌入）
+
+（GEE页面嵌入->）
+
+:::{.column-page}
+
+<iframe src='https://ollielballinger.users.earthengine.app/view/rojavaoil' width='100%' height='700px'></iframe>
+
+:::
+
 ## 分析公式和图表
+
+(js代码嵌入)
+
+```js
+var start='2020-04-01'
+var end='2021-07-01'
+
+var bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']
+
+var sentinel = ee.ImageCollection('COPERNICUS/S2_SR')
+                  .filter(ee.Filter.date(start, end))
+                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))
+                  .mean()
+                  .select(bands)
+
+var s_rgb = {
+  min: 0.0,
+  max: 3000,
+  bands:['B4', 'B3', 'B2'],
+  opacity:1
+};
+```
 
 ## 核心算法
 

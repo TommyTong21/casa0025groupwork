@@ -143,7 +143,7 @@
     "href": "weather.html",
     "title": "3  Weather",
     "section": "",
-    "text": "3.1 这里展示数据预处理",
+    "text": "3.1 这里展示数据预处理\n这里是关键词\n这里是文本内容（qmd文本超链接嵌入）\n（qmd图片嵌入）\n（GEE页面嵌入-&gt;）",
     "crumbs": [
       "B. weather",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Weather</span>"
@@ -154,7 +154,7 @@
     "href": "weather.html#分析公式和图表",
     "title": "3  Weather",
     "section": "3.2 分析公式和图表",
-    "text": "3.2 分析公式和图表",
+    "text": "3.2 分析公式和图表\n(js代码嵌入)\nvar start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
     "crumbs": [
       "B. weather",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Weather</span>"

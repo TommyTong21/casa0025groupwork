@@ -1,0 +1,113 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: Weather\n",
+        "author: yourname\n",
+        "output: html_document\n",
+        "---\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "## 这里展示数据预处理\n",
+        "\n",
+        "*这里是关键词*\n",
+        "\n",
+        "这里是文本内容（qmd文本超链接嵌入）\n",
+        "\n",
+        "（qmd图片嵌入）\n",
+        "\n",
+        "（卫星图片嵌入->）\n"
+      ],
+      "id": "377952ef"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: false\n",
+        "\n",
+        "from ipyleaflet import Map, Marker, basemaps, basemap_to_tiles\n",
+        "m = Map(\n",
+        "  basemap=basemap_to_tiles(\n",
+        "    basemaps.Esri.WorldImagery\n",
+        "  ),\n",
+        "  center=(86.9252, 27.98833),\n",
+        "  zoom=14\n",
+        ")\n",
+        "m"
+      ],
+      "id": "c446ae54",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "（GEE页面嵌入->）\n",
+        "\n",
+        ":::{.column-page}\n",
+        "\n",
+        "<iframe src='https://ollielballinger.users.earthengine.app/view/rojavaoil' width='100%' height='700px'></iframe>\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "## 分析公式和图表\n",
+        "\n",
+        "(js代码嵌入)\n",
+        "\n",
+        "```js\n",
+        "var start='2020-04-01'\n",
+        "var end='2021-07-01'\n",
+        "\n",
+        "var bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n",
+        "\n",
+        "var sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n",
+        "                  .filter(ee.Filter.date(start, end))\n",
+        "                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n",
+        "                  .mean()\n",
+        "                  .select(bands)\n",
+        "\n",
+        "var s_rgb = {\n",
+        "  min: 0.0,\n",
+        "  max: 3000,\n",
+        "  bands:['B4', 'B3', 'B2'],\n",
+        "  opacity:1\n",
+        "};\n",
+        "```\n",
+        "\n",
+        "## 核心算法\n",
+        "\n",
+        "## 可视化部分\n",
+        "\n",
+        "## 结果展示\n",
+        "\n",
+        ":::{.column-page}\n",
+        "\n",
+        "<iframe src='https://ollielballinger.users.earthengine.app/view/rojavaoil' width='100%' height='700px'></iframe>\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "## 参考文献"
+      ],
+      "id": "bf51c5d2"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "urbsim",
+      "language": "python",
+      "display_name": "Python (urbsim)",
+      "path": "/Users/tongjiahao/Library/Jupyter/kernels/urbsim"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
