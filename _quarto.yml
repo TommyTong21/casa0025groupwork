@@ -11,14 +11,13 @@ book:
     - part: "A. introduction"
       chapters:
         - intro.qmd # 介绍
-        - Test1.qmd # 测试文件
-    - part: "B. services"
+        - snowcover.qmd # 测试文件
+    - part: "B. weather"
       chapters:
-        - services.qmd # 服务
+        - weather.qmd # 服务
     - part: "C. conclusion"
       chapters:
         - conclusion.qmd # 结论
-    - Test1.qmd # 这里暂时是测试文件
   repo-url: https://github.com/TommyTong21/casa0025groupwork/tree/main
   # google-analytics: YOUR_TRACKING_ID
   repo-actions: [edit] # 在仓库中提供编辑链接
@@ -40,6 +39,6 @@ format:
     code-overflow: wrap # 代码溢出处理
     highlight-style: monokai.theme # 代码高亮风格
     linkcolor: "#34a832" # 链接颜色
-  
+
   epub: # EPUB 输出格式设置
     cover-image: cover.png # 封面图像
