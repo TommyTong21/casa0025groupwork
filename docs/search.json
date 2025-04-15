@@ -143,29 +143,29 @@
     "href": "weather.html",
     "title": "3  Weather",
     "section": "",
-    "text": "3.1 这里展示数据预处理\n这里是关键词\n这里是文本内容（qmd文本超链接嵌入）\n（qmd图片嵌入）\n（GEE页面嵌入-&gt;）",
+    "text": "3.1 地形和天气 Setup\n这里是关键词：地形，海拔，坡度，坡向，气温，降水，风向，风强\n这里介绍登山者关心的因素有哪些，然后我们是如何展示这部分的内容的\n这个组件的面板和功能对应哪些方面的调节，如何发挥作用\n采集准备哪些数据源的内容，如何整理他们，配备统一端口",
     "crumbs": [
       "B. weather",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Weather</span>"
     ]
   },
   {
-    "objectID": "weather.html#分析公式和图表",
-    "href": "weather.html#分析公式和图表",
+    "objectID": "weather.html#地形和天气-setup",
+    "href": "weather.html#地形和天气-setup",
     "title": "3  Weather",
-    "section": "3.2 分析公式和图表",
-    "text": "3.2 分析公式和图表\n(js代码嵌入)\nvar start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
+    "section": "",
+    "text": "var start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
     "crumbs": [
       "B. weather",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Weather</span>"
     ]
   },
   {
-    "objectID": "weather.html#核心算法",
-    "href": "weather.html#核心算法",
+    "objectID": "weather.html#分析公式和图表-回归分析",
+    "href": "weather.html#分析公式和图表-回归分析",
     "title": "3  Weather",
-    "section": "3.3 核心算法",
-    "text": "3.3 核心算法",
+    "section": "3.2 分析公式和图表 回归分析",
+    "text": "3.2 分析公式和图表 回归分析\n天气相比于地形更可变也更重要，这里采用回归分析（或者某种天气预测方法，机器学习等），将历史天气数据预测这一段登山季节可能的天气概率，以及不同路段的气温，风等情况\n这里嵌入分析公式\n这里解释分析的方法过程\nvar start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
     "crumbs": [
       "B. weather",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Weather</span>"
@@ -175,19 +175,8 @@
     "objectID": "weather.html#可视化部分",
     "href": "weather.html#可视化部分",
     "title": "3  Weather",
-    "section": "3.4 可视化部分",
-    "text": "3.4 可视化部分",
-    "crumbs": [
-      "B. weather",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Weather</span>"
-    ]
-  },
-  {
-    "objectID": "weather.html#结果展示",
-    "href": "weather.html#结果展示",
-    "title": "3  Weather",
-    "section": "3.5 结果展示",
-    "text": "3.5 结果展示",
+    "section": "3.3 可视化部分",
+    "text": "3.3 可视化部分\n如何可视化的做法\nvar start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
     "crumbs": [
       "B. weather",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Weather</span>"
@@ -197,8 +186,8 @@
     "objectID": "weather.html#参考文献",
     "href": "weather.html#参考文献",
     "title": "3  Weather",
-    "section": "3.6 参考文献",
-    "text": "3.6 参考文献",
+    "section": "3.4 参考文献",
+    "text": "3.4 参考文献",
     "crumbs": [
       "B. weather",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Weather</span>"

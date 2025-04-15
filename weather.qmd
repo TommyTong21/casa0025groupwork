@@ -1,28 +1,24 @@
 ---
 title: Weather
-author: yourname
+author: Jiahao Tong
 output: html_document
 ---
 
-## 这里展示数据预处理
+*这里是关键词：地形，海拔，坡度，坡向，气温，降水，风向，风强*
 
-*这里是关键词*
-
-这里是文本内容（qmd文本超链接嵌入）
-
-（qmd图片嵌入）
-
-（GEE页面嵌入->）
+这里介绍登山者关心的因素有哪些，然后我们是如何展示这部分的内容的
 
 :::{.column-page}
 
-<iframe src='https://ollielballinger.users.earthengine.app/view/rojavaoil' width='100%' height='700px'></iframe>
+<iframe src='https://ollielballinger.users.earthengine.app/view/shipdetection' width='100%' height='700px'></iframe>
 
 :::
 
-## 分析公式和图表
+这个组件的面板和功能对应哪些方面的调节，如何发挥作用
 
-(js代码嵌入)
+## 地形和天气 Setup
+
+采集准备哪些数据源的内容，如何整理他们，配备统一端口
 
 ```js
 var start='2020-04-01'
@@ -44,16 +40,56 @@ var s_rgb = {
 };
 ```
 
-## 核心算法
+## 分析公式和图表 回归分析
+
+天气相比于地形更可变也更重要，这里采用回归分析（或者某种天气预测方法，机器学习等），将历史天气数据预测这一段登山季节可能的天气概率，以及不同路段的气温，风等情况
+
+这里嵌入分析公式
+
+这里解释分析的方法过程
+
+```js
+var start='2020-04-01'
+var end='2021-07-01'
+
+var bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']
+
+var sentinel = ee.ImageCollection('COPERNICUS/S2_SR')
+                  .filter(ee.Filter.date(start, end))
+                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))
+                  .mean()
+                  .select(bands)
+
+var s_rgb = {
+  min: 0.0,
+  max: 3000,
+  bands:['B4', 'B3', 'B2'],
+  opacity:1
+};
+```
 
 ## 可视化部分
 
-## 结果展示
+如何可视化的做法
 
-:::{.column-page}
+```js
+var start='2020-04-01'
+var end='2021-07-01'
 
-<iframe src='https://ollielballinger.users.earthengine.app/view/rojavaoil' width='100%' height='700px'></iframe>
+var bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']
 
-:::
+var sentinel = ee.ImageCollection('COPERNICUS/S2_SR')
+                  .filter(ee.Filter.date(start, end))
+                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))
+                  .mean()
+                  .select(bands)
+
+var s_rgb = {
+  min: 0.0,
+  max: 3000,
+  bands:['B4', 'B3', 'B2'],
+  opacity:1
+};
+```
 
 ## 参考文献

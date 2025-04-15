@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="yourname">
+<meta name="author" content="Jiahao Tong">
 
 <title>3&nbsp; Weather – Mount Everest Climber Services</title>
 <style>
@@ -256,12 +256,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#这里展示数据预处理" id="toc-这里展示数据预处理" class="nav-link active" data-scroll-target="#这里展示数据预处理"><span class="header-section-number">3.1</span> 这里展示数据预处理</a></li>
-  <li><a href="#分析公式和图表" id="toc-分析公式和图表" class="nav-link" data-scroll-target="#分析公式和图表"><span class="header-section-number">3.2</span> 分析公式和图表</a></li>
-  <li><a href="#核心算法" id="toc-核心算法" class="nav-link" data-scroll-target="#核心算法"><span class="header-section-number">3.3</span> 核心算法</a></li>
-  <li><a href="#可视化部分" id="toc-可视化部分" class="nav-link" data-scroll-target="#可视化部分"><span class="header-section-number">3.4</span> 可视化部分</a></li>
-  <li><a href="#结果展示" id="toc-结果展示" class="nav-link" data-scroll-target="#结果展示"><span class="header-section-number">3.5</span> 结果展示</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">3.6</span> 参考文献</a></li>
+  <li><a href="#地形和天气-setup" id="toc-地形和天气-setup" class="nav-link active" data-scroll-target="#地形和天气-setup"><span class="header-section-number">3.1</span> 地形和天气 Setup</a></li>
+  <li><a href="#分析公式和图表-回归分析" id="toc-分析公式和图表-回归分析" class="nav-link" data-scroll-target="#分析公式和图表-回归分析"><span class="header-section-number">3.2</span> 分析公式和图表 回归分析</a></li>
+  <li><a href="#可视化部分" id="toc-可视化部分" class="nav-link" data-scroll-target="#可视化部分"><span class="header-section-number">3.3</span> 可视化部分</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">3.4</span> 参考文献</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/TommyTong21/casa0025groupwork/tree/main/edit/main/weather.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -280,7 +278,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>yourname </p>
+             <p>Jiahao Tong </p>
           </div>
   </div>
     
@@ -293,20 +291,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="这里展示数据预处理" class="level2 page-columns page-full" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="这里展示数据预处理"><span class="header-section-number">3.1</span> 这里展示数据预处理</h2>
-<p><em>这里是关键词</em></p>
-<p>这里是文本内容（qmd文本超链接嵌入）</p>
-<p>（qmd图片嵌入）</p>
-<p>（GEE页面嵌入-&gt;）</p>
+<p><em>这里是关键词：地形，海拔，坡度，坡向，气温，降水，风向，风强</em></p>
+<p>这里介绍登山者关心的因素有哪些，然后我们是如何展示这部分的内容的</p>
 <div class="column-page">
-<iframe src="https://ollielballinger.users.earthengine.app/view/rojavaoil" width="100%" height="700px">
+<iframe src="https://ollielballinger.users.earthengine.app/view/shipdetection" width="100%" height="700px">
 </iframe>
 </div>
-</section>
-<section id="分析公式和图表" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="分析公式和图表"><span class="header-section-number">3.2</span> 分析公式和图表</h2>
-<p>(js代码嵌入)</p>
+<p>这个组件的面板和功能对应哪些方面的调节，如何发挥作用</p>
+<section id="地形和天气-setup" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="地形和天气-setup"><span class="header-section-number">3.1</span> 地形和天气 Setup</h2>
+<p>采集准备哪些数据源的内容，如何整理他们，配备统一端口</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> start<span class="op">=</span><span class="st">'2020-04-01'</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> end<span class="op">=</span><span class="st">'2021-07-01'</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -325,21 +319,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">opacity</span><span class="op">:</span><span class="dv">1</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="核心算法" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="核心算法"><span class="header-section-number">3.3</span> 核心算法</h2>
+<section id="分析公式和图表-回归分析" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="分析公式和图表-回归分析"><span class="header-section-number">3.2</span> 分析公式和图表 回归分析</h2>
+<p>天气相比于地形更可变也更重要，这里采用回归分析（或者某种天气预测方法，机器学习等），将历史天气数据预测这一段登山季节可能的天气概率，以及不同路段的气温，风等情况</p>
+<p>这里嵌入分析公式</p>
+<p>这里解释分析的方法过程</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> start<span class="op">=</span><span class="st">'2020-04-01'</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> end<span class="op">=</span><span class="st">'2021-07-01'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> bands <span class="op">=</span> [<span class="st">'B2'</span><span class="op">,</span> <span class="st">'B3'</span><span class="op">,</span> <span class="st">'B4'</span><span class="op">,</span><span class="st">'B5'</span><span class="op">,</span><span class="st">'B6'</span><span class="op">,</span><span class="st">'B7'</span><span class="op">,</span><span class="st">'B8'</span><span class="op">,</span> <span class="st">'B8A'</span><span class="op">,</span><span class="st">'B11'</span><span class="op">,</span><span class="st">'B12'</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sentinel <span class="op">=</span> ee<span class="op">.</span><span class="fu">ImageCollection</span>(<span class="st">'COPERNICUS/S2_SR'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">date</span>(start<span class="op">,</span> end))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">lt</span>(<span class="st">'CLOUDY_PIXEL_PERCENTAGE'</span><span class="op">,</span> <span class="dv">10</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">mean</span>()</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">select</span>(bands)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> s_rgb <span class="op">=</span> {</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">min</span><span class="op">:</span> <span class="fl">0.0</span><span class="op">,</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">max</span><span class="op">:</span> <span class="dv">3000</span><span class="op">,</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">bands</span><span class="op">:</span>[<span class="st">'B4'</span><span class="op">,</span> <span class="st">'B3'</span><span class="op">,</span> <span class="st">'B2'</span>]<span class="op">,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">opacity</span><span class="op">:</span><span class="dv">1</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="可视化部分" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="可视化部分"><span class="header-section-number">3.4</span> 可视化部分</h2>
+<section id="可视化部分" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="可视化部分"><span class="header-section-number">3.3</span> 可视化部分</h2>
+<p>如何可视化的做法</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> start<span class="op">=</span><span class="st">'2020-04-01'</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> end<span class="op">=</span><span class="st">'2021-07-01'</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> bands <span class="op">=</span> [<span class="st">'B2'</span><span class="op">,</span> <span class="st">'B3'</span><span class="op">,</span> <span class="st">'B4'</span><span class="op">,</span><span class="st">'B5'</span><span class="op">,</span><span class="st">'B6'</span><span class="op">,</span><span class="st">'B7'</span><span class="op">,</span><span class="st">'B8'</span><span class="op">,</span> <span class="st">'B8A'</span><span class="op">,</span><span class="st">'B11'</span><span class="op">,</span><span class="st">'B12'</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sentinel <span class="op">=</span> ee<span class="op">.</span><span class="fu">ImageCollection</span>(<span class="st">'COPERNICUS/S2_SR'</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">date</span>(start<span class="op">,</span> end))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">lt</span>(<span class="st">'CLOUDY_PIXEL_PERCENTAGE'</span><span class="op">,</span> <span class="dv">10</span>))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">mean</span>()</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">select</span>(bands)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> s_rgb <span class="op">=</span> {</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">min</span><span class="op">:</span> <span class="fl">0.0</span><span class="op">,</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">max</span><span class="op">:</span> <span class="dv">3000</span><span class="op">,</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">bands</span><span class="op">:</span>[<span class="st">'B4'</span><span class="op">,</span> <span class="st">'B3'</span><span class="op">,</span> <span class="st">'B2'</span>]<span class="op">,</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">opacity</span><span class="op">:</span><span class="dv">1</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="结果展示" class="level2 page-columns page-full" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="结果展示"><span class="header-section-number">3.5</span> 结果展示</h2>
-<div class="column-page">
-<iframe src="https://ollielballinger.users.earthengine.app/view/rojavaoil" width="100%" height="700px">
-</iframe>
-</div>
-</section>
-<section id="参考文献" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">3.6</span> 参考文献</h2>
+<section id="参考文献" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">3.4</span> 参考文献</h2>
 
 
 </section>
