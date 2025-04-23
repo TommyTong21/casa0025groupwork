@@ -1,5 +1,5 @@
 ---
-title: snowcover
+title: Application
 author: yourname
 output: html_document
 ---

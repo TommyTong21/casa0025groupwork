@@ -24,13 +24,18 @@
 
 ## Table of Contents
 
-A) **珠穆朗玛峰雪线变化**
-    * 珠穆朗玛峰的冰雪覆盖相对几年前产生了较大的变化
-        * [Introduction](intro.qmd)
-        * [SnowCover](snowcover.qmd)
-B) **影响攀登的天气因素变化**
-    * 回溯历史中攀登/非攀登月份风向强度，气温寒潮，降雨冻雨登天气在不同海拔段的变化
-        * [Weather](weather.qmd)
-C) **可视化的综合结果呈现**
-    * 综合呈现叠加几种分析，呈现一种结果，这种结果的展示，补充说明项目的不足之处和改进之处
-        * [conclusion](conclusion.qmd)
+**Project Introduction**  
+- Everest project review.  
+     [Project Summary](Project Summary.qmd)  
+     [Problem Statement](Problem Statement.qmd)  
+     [End User](End User.qmd)  
+
+**Project Data and Methodology**  
+- Data and Method exploring in the project  
+     [Data](Data.qmd)  
+     [Methodology](Methodology.qmd)  
+
+**Project Visualization**  
+- Comprehensive presentation  
+     [Interface](Interface.qmd)  
+     [Application](Application.qmd)  

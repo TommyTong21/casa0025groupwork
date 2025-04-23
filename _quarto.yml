@@ -8,16 +8,13 @@ book:
   date: "10/04/2025" # 发布日期
   chapters: # 主题文件
     - index.qmd # 主页
-    - part: "A. introduction"
-      chapters:
-        - intro.qmd # 介绍
-        - snowcover.qmd # 测试文件
-    - part: "B. weather"
-      chapters:
-        - weather.qmd # 服务
-    - part: "C. conclusion"
-      chapters:
-        - conclusion.qmd # 结论
+    - Project Summary.qmd # Fill in the sections below to provide a brief summary of your project. Each section should have no more than 100 words. Do not edit any of the headings.
+    - Problem Statement.qmd # What is the problem you’re trying to address using this application? 
+    - End User.qmd # Who are you building this application for? How does it address a need this community has?
+    - Data.qmd # What data are you using?
+    - Methodology.qmd # What data are you using?
+    - Interface.qmd # What data are you using?
+    - Application.qmd # What data are you using?
   repo-url: https://github.com/TommyTong21/casa0025groupwork/tree/main
   # google-analytics: YOUR_TRACKING_ID
   repo-actions: [edit] # 在仓库中提供编辑链接

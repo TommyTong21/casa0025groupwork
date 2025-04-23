@@ -1,0 +1,9 @@
+---
+title: Problem Statement
+author: yourname
+output: html_document
+---
+
+## 这里介绍了珠穆朗玛峰基本的攀登路线
+## 还有周围的基础设施分布和营地
+## （图中标注出各个要素）
