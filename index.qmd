@@ -24,18 +24,16 @@
 
 ## Table of Contents
 
-**Project Introduction**  
-- Everest project review.  
-     [Project Summary](Project Summary.qmd)  
-     [Problem Statement](Problem Statement.qmd)  
-     [End User](End User.qmd)  
-
-**Project Data and Methodology**  
-- Data and Method exploring in the project  
-     [Data](Data.qmd)  
-     [Methodology](Methodology.qmd)  
-
-**Project Visualization**  
-- Comprehensive presentation  
-     [Interface](Interface.qmd)  
-     [Application](Application.qmd)  
+A) **Project Summary**
+    * A brief summary of your project.
+        * [Problem Statement](Problem Statement.qmd)
+        * [End User](End User.qmd)
+        * [Data](Data.qmd)
+        * [Methodology](Methodology.qmd)
+        * [Interface](Interface.qmd)
+B) **The Application**
+    * Link to the application.
+        * [The Application](The Application.qmd)
+C) **How it Works**
+    * How the application works.
+        * [How it Works](How it Works.qmd)

@@ -8,13 +8,19 @@ book:
   date: "10/04/2025" # 发布日期
   chapters: # 主题文件
     - index.qmd # 主页
-    - Project Summary.qmd # Fill in the sections below to provide a brief summary of your project. Each section should have no more than 100 words. Do not edit any of the headings.
-    - Problem Statement.qmd # What is the problem you’re trying to address using this application? 
-    - End User.qmd # Who are you building this application for? How does it address a need this community has?
-    - Data.qmd # What data are you using?
-    - Methodology.qmd # What data are you using?
-    - Interface.qmd # What data are you using?
-    - Application.qmd # What data are you using?
+    - part: "A. Project Summary" #  Fill in the sections below to provide a brief summary of your project. Each section should have no more than 100 words. Do not edit any of the headings.
+      chapters: 
+        - Problem Statement.qmd # What is the problem you’re trying to address using this application? 
+        - End User.qmd # Who are you building this application for? How does it address a need this community has?
+        - Data.qmd # What data are you using?
+        - Methodology.qmd # How are you using this data to address the problem?
+        - Interface.qmd # How does your application's interface work to address the needs of your end user?
+    - part: "B. The Application" # Replace the link below with the link to your application.
+      chapters:
+        - The Application.qmd # Replace the link below with the link to your application.
+    - part: "C. How it Works" # Use this section to explain how your application works using code blocks and text explanations (no more than 500 words excluding code):
+      chapters:
+       - How it Works.qmd # How your application works using code blocks and text explanations
   repo-url: https://github.com/TommyTong21/casa0025groupwork/tree/main
   # google-analytics: YOUR_TRACKING_ID
   repo-actions: [edit] # 在仓库中提供编辑链接

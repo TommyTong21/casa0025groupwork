@@ -34,329 +34,394 @@
     "href": "index.html#table-of-contents",
     "title": "Mount Everest Climber Services",
     "section": "Table of Contents",
-    "text": "Table of Contents\nProject Introduction\n- Everest project review.\nProject Summary\nProblem Statement\nEnd User\nProject Data and Methodology\n- Data and Method exploring in the project\nData\nMethodology\nProject Visualization\n- Comprehensive presentation\nInterface\nApplication",
+    "text": "Table of Contents\n\nProject Summary\n\nA brief summary of your project.\n\nProblem Statement\nEnd User\nData\nMethodology\nInterface\n\n\nThe Application\n\nLink to the application.\n\nThe Application\n\n\nHow it Works\n\nHow the application works.\n\nHow it Works",
     "crumbs": [
       "项目简介"
     ]
   },
   {
-    "objectID": "Project Summary.html",
-    "href": "Project Summary.html",
-    "title": "1  Project Summary",
+    "objectID": "Problem Statement.html",
+    "href": "Problem Statement.html",
+    "title": "1  Problem Statement",
     "section": "",
     "text": "1.1 这里介绍了珠穆朗玛峰基本的攀登路线",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Project Summary</span>"
-    ]
-  },
-  {
-    "objectID": "Project Summary.html#还有周围的基础设施分布和营地",
-    "href": "Project Summary.html#还有周围的基础设施分布和营地",
-    "title": "1  Project Summary",
-    "section": "1.2 还有周围的基础设施分布和营地",
-    "text": "1.2 还有周围的基础设施分布和营地",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Project Summary</span>"
-    ]
-  },
-  {
-    "objectID": "Project Summary.html#图中标注出各个要素",
-    "href": "Project Summary.html#图中标注出各个要素",
-    "title": "1  Project Summary",
-    "section": "1.3 （图中标注出各个要素）",
-    "text": "1.3 （图中标注出各个要素）",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Project Summary</span>"
-    ]
-  },
-  {
-    "objectID": "Problem Statement.html",
-    "href": "Problem Statement.html",
-    "title": "2  Problem Statement",
-    "section": "",
-    "text": "2.1 这里介绍了珠穆朗玛峰基本的攀登路线",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Problem Statement</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Problem Statement</span>"
     ]
   },
   {
     "objectID": "Problem Statement.html#还有周围的基础设施分布和营地",
     "href": "Problem Statement.html#还有周围的基础设施分布和营地",
-    "title": "2  Problem Statement",
-    "section": "2.2 还有周围的基础设施分布和营地",
-    "text": "2.2 还有周围的基础设施分布和营地",
+    "title": "1  Problem Statement",
+    "section": "1.2 还有周围的基础设施分布和营地",
+    "text": "1.2 还有周围的基础设施分布和营地",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Problem Statement</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Problem Statement</span>"
     ]
   },
   {
     "objectID": "Problem Statement.html#图中标注出各个要素",
     "href": "Problem Statement.html#图中标注出各个要素",
-    "title": "2  Problem Statement",
-    "section": "2.3 （图中标注出各个要素）",
-    "text": "2.3 （图中标注出各个要素）",
+    "title": "1  Problem Statement",
+    "section": "1.3 （图中标注出各个要素）",
+    "text": "1.3 （图中标注出各个要素）",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Problem Statement</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Problem Statement</span>"
     ]
   },
   {
     "objectID": "End User.html",
     "href": "End User.html",
-    "title": "3  End User",
+    "title": "2  End User",
     "section": "",
-    "text": "3.1 这里介绍了珠穆朗玛峰基本的攀登路线",
+    "text": "2.1 这里介绍了珠穆朗玛峰基本的攀登路线",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>End User</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>End User</span>"
     ]
   },
   {
     "objectID": "End User.html#还有周围的基础设施分布和营地",
     "href": "End User.html#还有周围的基础设施分布和营地",
-    "title": "3  End User",
-    "section": "3.2 还有周围的基础设施分布和营地",
-    "text": "3.2 还有周围的基础设施分布和营地",
+    "title": "2  End User",
+    "section": "2.2 还有周围的基础设施分布和营地",
+    "text": "2.2 还有周围的基础设施分布和营地",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>End User</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>End User</span>"
     ]
   },
   {
     "objectID": "End User.html#图中标注出各个要素",
     "href": "End User.html#图中标注出各个要素",
-    "title": "3  End User",
-    "section": "3.3 （图中标注出各个要素）",
-    "text": "3.3 （图中标注出各个要素）",
+    "title": "2  End User",
+    "section": "2.3 （图中标注出各个要素）",
+    "text": "2.3 （图中标注出各个要素）",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>End User</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>End User</span>"
     ]
   },
   {
     "objectID": "Data.html",
     "href": "Data.html",
-    "title": "4  Data",
+    "title": "3  Data",
     "section": "",
-    "text": "4.1 这里展示数据预处理",
+    "text": "3.1 这里展示数据预处理",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
     ]
   },
   {
     "objectID": "Data.html#分析公式和图表",
     "href": "Data.html#分析公式和图表",
-    "title": "4  Data",
-    "section": "4.2 分析公式和图表",
-    "text": "4.2 分析公式和图表",
+    "title": "3  Data",
+    "section": "3.2 分析公式和图表",
+    "text": "3.2 分析公式和图表",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
     ]
   },
   {
     "objectID": "Data.html#核心算法",
     "href": "Data.html#核心算法",
-    "title": "4  Data",
-    "section": "4.3 核心算法",
-    "text": "4.3 核心算法",
+    "title": "3  Data",
+    "section": "3.3 核心算法",
+    "text": "3.3 核心算法",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
     ]
   },
   {
     "objectID": "Data.html#可视化部分",
     "href": "Data.html#可视化部分",
-    "title": "4  Data",
-    "section": "4.4 可视化部分",
-    "text": "4.4 可视化部分",
+    "title": "3  Data",
+    "section": "3.4 可视化部分",
+    "text": "3.4 可视化部分",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
     ]
   },
   {
     "objectID": "Data.html#结果展示",
     "href": "Data.html#结果展示",
-    "title": "4  Data",
-    "section": "4.5 结果展示",
-    "text": "4.5 结果展示",
+    "title": "3  Data",
+    "section": "3.5 结果展示",
+    "text": "3.5 结果展示",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
     ]
   },
   {
     "objectID": "Data.html#参考文献",
     "href": "Data.html#参考文献",
-    "title": "4  Data",
-    "section": "4.6 参考文献",
-    "text": "4.6 参考文献",
+    "title": "3  Data",
+    "section": "3.6 参考文献",
+    "text": "3.6 参考文献",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
     ]
   },
   {
     "objectID": "Methodology.html",
     "href": "Methodology.html",
-    "title": "5  Methodology",
+    "title": "4  Methodology",
     "section": "",
-    "text": "5.1 地形和天气 Setup\n这里是关键词：地形，海拔，坡度，坡向，气温，降水，风向，风强\n这里介绍登山者关心的因素有哪些，然后我们是如何展示这部分的内容的\n这个组件的面板和功能对应哪些方面的调节，如何发挥作用\n采集准备哪些数据源的内容，如何整理他们，配备统一端口",
+    "text": "4.1 地形和天气 Setup\n这里是关键词：地形，海拔，坡度，坡向，气温，降水，风向，风强\n这里介绍登山者关心的因素有哪些，然后我们是如何展示这部分的内容的\n这个组件的面板和功能对应哪些方面的调节，如何发挥作用\n采集准备哪些数据源的内容，如何整理他们，配备统一端口",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Methodology</span>"
     ]
   },
   {
     "objectID": "Methodology.html#地形和天气-setup",
     "href": "Methodology.html#地形和天气-setup",
-    "title": "5  Methodology",
+    "title": "4  Methodology",
     "section": "",
     "text": "var start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Methodology</span>"
     ]
   },
   {
     "objectID": "Methodology.html#分析公式和图表-回归分析",
     "href": "Methodology.html#分析公式和图表-回归分析",
-    "title": "5  Methodology",
-    "section": "5.2 分析公式和图表 回归分析",
-    "text": "5.2 分析公式和图表 回归分析\n天气相比于地形更可变也更重要，这里采用回归分析（或者某种天气预测方法，机器学习等），将历史天气数据预测这一段登山季节可能的天气概率，以及不同路段的气温，风等情况\n这里嵌入分析公式\n这里解释分析的方法过程\nvar start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
+    "title": "4  Methodology",
+    "section": "4.2 分析公式和图表 回归分析",
+    "text": "4.2 分析公式和图表 回归分析\n天气相比于地形更可变也更重要，这里采用回归分析（或者某种天气预测方法，机器学习等），将历史天气数据预测这一段登山季节可能的天气概率，以及不同路段的气温，风等情况\n这里嵌入分析公式\n这里解释分析的方法过程\nvar start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Methodology</span>"
     ]
   },
   {
     "objectID": "Methodology.html#可视化部分",
     "href": "Methodology.html#可视化部分",
-    "title": "5  Methodology",
-    "section": "5.3 可视化部分",
-    "text": "5.3 可视化部分\n如何可视化的做法\nvar start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
+    "title": "4  Methodology",
+    "section": "4.3 可视化部分",
+    "text": "4.3 可视化部分\n如何可视化的做法\nvar start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Methodology</span>"
     ]
   },
   {
     "objectID": "Methodology.html#参考文献",
     "href": "Methodology.html#参考文献",
-    "title": "5  Methodology",
-    "section": "5.4 参考文献",
-    "text": "5.4 参考文献",
+    "title": "4  Methodology",
+    "section": "4.4 参考文献",
+    "text": "4.4 参考文献",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Methodology</span>"
     ]
   },
   {
     "objectID": "Interface.html",
     "href": "Interface.html",
-    "title": "6  Interface",
+    "title": "5  Interface",
     "section": "",
-    "text": "6.1 这里展示数据预处理",
+    "text": "5.1 这里展示数据预处理",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
     "objectID": "Interface.html#分析公式和图表",
     "href": "Interface.html#分析公式和图表",
-    "title": "6  Interface",
-    "section": "6.2 分析公式和图表",
-    "text": "6.2 分析公式和图表",
+    "title": "5  Interface",
+    "section": "5.2 分析公式和图表",
+    "text": "5.2 分析公式和图表",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
     "objectID": "Interface.html#核心算法",
     "href": "Interface.html#核心算法",
-    "title": "6  Interface",
-    "section": "6.3 核心算法",
-    "text": "6.3 核心算法",
+    "title": "5  Interface",
+    "section": "5.3 核心算法",
+    "text": "5.3 核心算法",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
     "objectID": "Interface.html#可视化部分",
     "href": "Interface.html#可视化部分",
-    "title": "6  Interface",
-    "section": "6.4 可视化部分",
-    "text": "6.4 可视化部分",
+    "title": "5  Interface",
+    "section": "5.4 可视化部分",
+    "text": "5.4 可视化部分",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
     "objectID": "Interface.html#结果展示",
     "href": "Interface.html#结果展示",
-    "title": "6  Interface",
-    "section": "6.5 结果展示",
-    "text": "6.5 结果展示",
+    "title": "5  Interface",
+    "section": "5.5 结果展示",
+    "text": "5.5 结果展示",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
     "objectID": "Interface.html#参考文献",
     "href": "Interface.html#参考文献",
-    "title": "6  Interface",
+    "title": "5  Interface",
+    "section": "5.6 参考文献",
+    "text": "5.6 参考文献",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Interface</span>"
+    ]
+  },
+  {
+    "objectID": "The Application.html",
+    "href": "The Application.html",
+    "title": "6  Application",
+    "section": "",
+    "text": "6.1 这里展示数据预处理",
+    "crumbs": [
+      "B. The Application",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Application</span>"
+    ]
+  },
+  {
+    "objectID": "The Application.html#分析公式和图表",
+    "href": "The Application.html#分析公式和图表",
+    "title": "6  Application",
+    "section": "6.2 分析公式和图表",
+    "text": "6.2 分析公式和图表",
+    "crumbs": [
+      "B. The Application",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Application</span>"
+    ]
+  },
+  {
+    "objectID": "The Application.html#核心算法",
+    "href": "The Application.html#核心算法",
+    "title": "6  Application",
+    "section": "6.3 核心算法",
+    "text": "6.3 核心算法",
+    "crumbs": [
+      "B. The Application",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Application</span>"
+    ]
+  },
+  {
+    "objectID": "The Application.html#可视化部分",
+    "href": "The Application.html#可视化部分",
+    "title": "6  Application",
+    "section": "6.4 可视化部分",
+    "text": "6.4 可视化部分",
+    "crumbs": [
+      "B. The Application",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Application</span>"
+    ]
+  },
+  {
+    "objectID": "The Application.html#结果展示",
+    "href": "The Application.html#结果展示",
+    "title": "6  Application",
+    "section": "6.5 结果展示",
+    "text": "6.5 结果展示",
+    "crumbs": [
+      "B. The Application",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Application</span>"
+    ]
+  },
+  {
+    "objectID": "The Application.html#参考文献",
+    "href": "The Application.html#参考文献",
+    "title": "6  Application",
     "section": "6.6 参考文献",
     "text": "6.6 参考文献",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
+      "B. The Application",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Application</span>"
     ]
   },
   {
-    "objectID": "Application.html",
-    "href": "Application.html",
-    "title": "7  Application",
+    "objectID": "How it Works.html",
+    "href": "How it Works.html",
+    "title": "7  How it Works",
     "section": "",
     "text": "7.1 这里展示数据预处理",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
+      "C. How it Works",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>How it Works</span>"
     ]
   },
   {
-    "objectID": "Application.html#分析公式和图表",
-    "href": "Application.html#分析公式和图表",
-    "title": "7  Application",
+    "objectID": "How it Works.html#分析公式和图表",
+    "href": "How it Works.html#分析公式和图表",
+    "title": "7  How it Works",
     "section": "7.2 分析公式和图表",
     "text": "7.2 分析公式和图表",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
+      "C. How it Works",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>How it Works</span>"
     ]
   },
   {
-    "objectID": "Application.html#核心算法",
-    "href": "Application.html#核心算法",
-    "title": "7  Application",
+    "objectID": "How it Works.html#核心算法",
+    "href": "How it Works.html#核心算法",
+    "title": "7  How it Works",
     "section": "7.3 核心算法",
     "text": "7.3 核心算法",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
+      "C. How it Works",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>How it Works</span>"
     ]
   },
   {
-    "objectID": "Application.html#可视化部分",
-    "href": "Application.html#可视化部分",
-    "title": "7  Application",
+    "objectID": "How it Works.html#可视化部分",
+    "href": "How it Works.html#可视化部分",
+    "title": "7  How it Works",
     "section": "7.4 可视化部分",
     "text": "7.4 可视化部分",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
+      "C. How it Works",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>How it Works</span>"
     ]
   },
   {
-    "objectID": "Application.html#结果展示",
-    "href": "Application.html#结果展示",
-    "title": "7  Application",
+    "objectID": "How it Works.html#结果展示",
+    "href": "How it Works.html#结果展示",
+    "title": "7  How it Works",
     "section": "7.5 结果展示",
     "text": "7.5 结果展示",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
+      "C. How it Works",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>How it Works</span>"
     ]
   },
   {
-    "objectID": "Application.html#参考文献",
-    "href": "Application.html#参考文献",
-    "title": "7  Application",
+    "objectID": "How it Works.html#参考文献",
+    "href": "How it Works.html#参考文献",
+    "title": "7  How it Works",
     "section": "7.6 参考文献",
     "text": "7.6 参考文献",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
+      "C. How it Works",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>How it Works</span>"
     ]
   }
 ]
