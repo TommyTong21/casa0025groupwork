@@ -1,20 +1,21 @@
-# 项目简介 {.unnumbered}
+---
+title: Project Summary
+author: Hanbing Xuan
+output: html_document
+---
+# Project Summary
 
-这里是项目简介，介绍我们的工作内容
-珠穆朗玛峰气候多变，攀登难度大
+The Everest Climbing Planner currently displays around 10 unique climbing routes radiating from a central base camp location.
 
-## 这个项目帮助了谁
+The green route is identified as the safest, likely due to minimal overlap with high-snow areas.
 
-我们注意到攀登珠穆朗玛峰的主要为商业团队（藏族人比较多，网页藏语版本），为商业团队提供数据支撑，同时为计划攀登或感兴趣的登山客提供数据简介
+The yellow route, currently selected, appears moderately safe but still crosses several medium-snow zones.
 
+Red routes indicate other viable but potentially riskier paths, some of which traverse high-snow regions (>75% coverage).
 
-## 我们为什么想到要做这个项目
+These visual insights help climbers and planners assess not just route direction and distance, but also the seasonal safety based on snow cover severity.
 
-做这个项目的原因
-
-![](./images/mountain.jpg)
-
-整体结果内嵌网页展示
+![](https://raw.githubusercontent.com/TommyTong21/casa0025groupwork/main/images/route.png){width=80%}
 
 :::{.column-page}
 
@@ -26,8 +27,8 @@
 
 A) **Project Summary**
     * A brief summary of your project.
-        * [Problem Statement](Problem Statement.qmd)
-        * [End User](End User.qmd)
+        * [Problem Statement](Problem-Statement.qmd)
+        * [End User](End-User.qmd)
         * [Data](Data.qmd)
         * [Methodology](Methodology.qmd)
         * [Interface](Interface.qmd)

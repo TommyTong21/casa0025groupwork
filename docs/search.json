@@ -4,380 +4,360 @@
     "href": "index.html",
     "title": "Mount Everest Climber Services",
     "section": "",
-    "text": "项目简介\n这里是项目简介，介绍我们的工作内容 珠穆朗玛峰气候多变，攀登难度大",
+    "text": "1 Project Summary\nThe Everest Climbing Planner currently displays around 10 unique climbing routes radiating from a central base camp location.\nThe green route is identified as the safest, likely due to minimal overlap with high-snow areas.\nThe yellow route, currently selected, appears moderately safe but still crosses several medium-snow zones.\nRed routes indicate other viable but potentially riskier paths, some of which traverse high-snow regions (&gt;75% coverage).\nThese visual insights help climbers and planners assess not just route direction and distance, but also the seasonal safety based on snow cover severity.",
     "crumbs": [
-      "项目简介"
-    ]
-  },
-  {
-    "objectID": "index.html#这个项目帮助了谁",
-    "href": "index.html#这个项目帮助了谁",
-    "title": "Mount Everest Climber Services",
-    "section": "这个项目帮助了谁",
-    "text": "这个项目帮助了谁\n我们注意到攀登珠穆朗玛峰的主要为商业团队（藏族人比较多，网页藏语版本），为商业团队提供数据支撑，同时为计划攀登或感兴趣的登山客提供数据简介",
-    "crumbs": [
-      "项目简介"
-    ]
-  },
-  {
-    "objectID": "index.html#我们为什么想到要做这个项目",
-    "href": "index.html#我们为什么想到要做这个项目",
-    "title": "Mount Everest Climber Services",
-    "section": "我们为什么想到要做这个项目",
-    "text": "我们为什么想到要做这个项目\n做这个项目的原因\n\n整体结果内嵌网页展示",
-    "crumbs": [
-      "项目简介"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Project Summary</span>"
     ]
   },
   {
     "objectID": "index.html#table-of-contents",
     "href": "index.html#table-of-contents",
     "title": "Mount Everest Climber Services",
-    "section": "Table of Contents",
-    "text": "Table of Contents\n\nProject Summary\n\nA brief summary of your project.\n\nProblem Statement\nEnd User\nData\nMethodology\nInterface\n\n\nThe Application\n\nLink to the application.\n\nThe Application\n\n\nHow it Works\n\nHow the application works.\n\nHow it Works",
+    "section": "1.1 Table of Contents",
+    "text": "1.1 Table of Contents\n\nProject Summary\n\nA brief summary of your project.\n\nProblem Statement\nEnd User\nData\nMethodology\nInterface\n\n\nThe Application\n\nLink to the application.\n\nThe Application\n\n\nHow it Works\n\nHow the application works.\n\nHow it Works",
     "crumbs": [
-      "项目简介"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Project Summary</span>"
     ]
   },
   {
     "objectID": "Problem Statement.html",
     "href": "Problem Statement.html",
-    "title": "1  Problem Statement",
+    "title": "2  Problem Statement",
     "section": "",
-    "text": "2 Problem Statement\nRecent years have seen more erratic snow and glacial patterns in the Himalayas, particularly near Mount Everest. Seasonal shifts are disrupting climbing timelines and increasing route uncertainty.\nStudies have observed rising snowlines, fragile snowpacks, and heightened avalanche activity during spring melt periods, posing serious risks to climbers (Matthews & Perry, 2021; Bajracharya et al., 2022).\nClimbers often rely on outdated maps or generalized forecasts. These lack the spatial and temporal precision needed to assess rapidly changing snow conditions on specific routes.\nDespite technological advances, few tools provide live, route-level insights into snow accumulation or avalanche risk, especially in high-altitude expedition contexts.\nAddressing this gap begins with understanding the terrain-specific effects of climate variability. A reliable foundation of risk awareness is essential for any safety-oriented planning tool.\n Mountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.",
+    "text": "3 Problem Statement\nRecent years have seen more erratic snow and glacial patterns in the Himalayas, particularly near Mount Everest. Seasonal shifts are disrupting climbing timelines and increasing route uncertainty.\nStudies have observed rising snowlines, fragile snowpacks, and heightened avalanche activity during spring melt periods, posing serious risks to climbers (Matthews & Perry, 2021; Bajracharya et al., 2022).\nClimbers often rely on outdated maps or generalized forecasts. These lack the spatial and temporal precision needed to assess rapidly changing snow conditions on specific routes.\nDespite technological advances, few tools provide live, route-level insights into snow accumulation or avalanche risk, especially in high-altitude expedition contexts.\nAddressing this gap begins with understanding the terrain-specific effects of climate variability. A reliable foundation of risk awareness is essential for any safety-oriented planning tool.\n Mountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Problem Statement</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Problem Statement</span>"
     ]
   },
   {
     "objectID": "End User.html",
     "href": "End User.html",
-    "title": "2  End User",
+    "title": "3  End User",
     "section": "",
-    "text": "3 End User\n🧗 Mountaineers & Planners: Use route risk data for planning safe ascents.\n🚶 Outdoor Tour Operators: Design trekking experiences aligned with real-time conditions.\n🌍 Geographers & Researchers: Study snow dynamics and monitor climate change effects.\nThe tool especially assists commercial teams in preparing expeditions for the peak climbing season (April–May), enabling route and equipment selection based on predicted terrain risks.\n Mountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.",
+    "text": "4 End User\n🧗 Mountaineers & Planners: Use route risk data for planning safe ascents.\n🚶 Outdoor Tour Operators: Design trekking experiences aligned with real-time conditions.\n🌍 Geographers & Researchers: Study snow dynamics and monitor climate change effects.\nThe tool especially assists commercial teams in preparing expeditions for the peak climbing season (April–May), enabling route and equipment selection based on predicted terrain risks.\n Mountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>End User</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>End User</span>"
     ]
   },
   {
     "objectID": "Data.html",
     "href": "Data.html",
-    "title": "3  Data",
+    "title": "4  Data",
     "section": "",
-    "text": "3.1 这里展示数据预处理",
+    "text": "4.1 这里展示数据预处理",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
     ]
   },
   {
     "objectID": "Data.html#分析公式和图表",
     "href": "Data.html#分析公式和图表",
-    "title": "3  Data",
-    "section": "3.2 分析公式和图表",
-    "text": "3.2 分析公式和图表",
+    "title": "4  Data",
+    "section": "4.2 分析公式和图表",
+    "text": "4.2 分析公式和图表",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
     ]
   },
   {
     "objectID": "Data.html#核心算法",
     "href": "Data.html#核心算法",
-    "title": "3  Data",
-    "section": "3.3 核心算法",
-    "text": "3.3 核心算法",
+    "title": "4  Data",
+    "section": "4.3 核心算法",
+    "text": "4.3 核心算法",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
     ]
   },
   {
     "objectID": "Data.html#可视化部分",
     "href": "Data.html#可视化部分",
-    "title": "3  Data",
-    "section": "3.4 可视化部分",
-    "text": "3.4 可视化部分",
+    "title": "4  Data",
+    "section": "4.4 可视化部分",
+    "text": "4.4 可视化部分",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
     ]
   },
   {
     "objectID": "Data.html#结果展示",
     "href": "Data.html#结果展示",
-    "title": "3  Data",
-    "section": "3.5 结果展示",
-    "text": "3.5 结果展示",
+    "title": "4  Data",
+    "section": "4.5 结果展示",
+    "text": "4.5 结果展示",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
     ]
   },
   {
     "objectID": "Data.html#参考文献",
     "href": "Data.html#参考文献",
-    "title": "3  Data",
-    "section": "3.6 参考文献",
-    "text": "3.6 参考文献",
+    "title": "4  Data",
+    "section": "4.6 参考文献",
+    "text": "4.6 参考文献",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
     ]
   },
   {
     "objectID": "Methodology.html",
     "href": "Methodology.html",
-    "title": "4  Methodology",
+    "title": "5  Methodology",
     "section": "",
-    "text": "4.1 地形和天气 Setup\n这里是关键词：地形，海拔，坡度，坡向，气温，降水，风向，风强\n这里介绍登山者关心的因素有哪些，然后我们是如何展示这部分的内容的\n这个组件的面板和功能对应哪些方面的调节，如何发挥作用\n采集准备哪些数据源的内容，如何整理他们，配备统一端口",
+    "text": "5.1 地形和天气 Setup\n这里是关键词：地形，海拔，坡度，坡向，气温，降水，风向，风强\n这里介绍登山者关心的因素有哪些，然后我们是如何展示这部分的内容的\n这个组件的面板和功能对应哪些方面的调节，如何发挥作用\n采集准备哪些数据源的内容，如何整理他们，配备统一端口",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Methodology</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
     ]
   },
   {
     "objectID": "Methodology.html#地形和天气-setup",
     "href": "Methodology.html#地形和天气-setup",
-    "title": "4  Methodology",
+    "title": "5  Methodology",
     "section": "",
     "text": "var start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Methodology</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
     ]
   },
   {
     "objectID": "Methodology.html#分析公式和图表-回归分析",
     "href": "Methodology.html#分析公式和图表-回归分析",
-    "title": "4  Methodology",
-    "section": "4.2 分析公式和图表 回归分析",
-    "text": "4.2 分析公式和图表 回归分析\n天气相比于地形更可变也更重要，这里采用回归分析（或者某种天气预测方法，机器学习等），将历史天气数据预测这一段登山季节可能的天气概率，以及不同路段的气温，风等情况\n这里嵌入分析公式\n这里解释分析的方法过程\nvar start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
+    "title": "5  Methodology",
+    "section": "5.2 分析公式和图表 回归分析",
+    "text": "5.2 分析公式和图表 回归分析\n天气相比于地形更可变也更重要，这里采用回归分析（或者某种天气预测方法，机器学习等），将历史天气数据预测这一段登山季节可能的天气概率，以及不同路段的气温，风等情况\n这里嵌入分析公式\n这里解释分析的方法过程\nvar start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Methodology</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
     ]
   },
   {
     "objectID": "Methodology.html#可视化部分",
     "href": "Methodology.html#可视化部分",
-    "title": "4  Methodology",
-    "section": "4.3 可视化部分",
-    "text": "4.3 可视化部分\n如何可视化的做法\nvar start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
+    "title": "5  Methodology",
+    "section": "5.3 可视化部分",
+    "text": "5.3 可视化部分\n如何可视化的做法\nvar start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Methodology</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
     ]
   },
   {
     "objectID": "Methodology.html#参考文献",
     "href": "Methodology.html#参考文献",
-    "title": "4  Methodology",
-    "section": "4.4 参考文献",
-    "text": "4.4 参考文献",
+    "title": "5  Methodology",
+    "section": "5.4 参考文献",
+    "text": "5.4 参考文献",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Methodology</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
     ]
   },
   {
     "objectID": "Interface.html",
     "href": "Interface.html",
-    "title": "5  Interface",
+    "title": "6  Interface",
     "section": "",
-    "text": "5.1 这里展示数据预处理",
+    "text": "6.1 这里展示数据预处理",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Interface</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
     "objectID": "Interface.html#分析公式和图表",
     "href": "Interface.html#分析公式和图表",
-    "title": "5  Interface",
-    "section": "5.2 分析公式和图表",
-    "text": "5.2 分析公式和图表",
+    "title": "6  Interface",
+    "section": "6.2 分析公式和图表",
+    "text": "6.2 分析公式和图表",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Interface</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
     "objectID": "Interface.html#核心算法",
     "href": "Interface.html#核心算法",
-    "title": "5  Interface",
-    "section": "5.3 核心算法",
-    "text": "5.3 核心算法",
+    "title": "6  Interface",
+    "section": "6.3 核心算法",
+    "text": "6.3 核心算法",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Interface</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
     "objectID": "Interface.html#可视化部分",
     "href": "Interface.html#可视化部分",
-    "title": "5  Interface",
-    "section": "5.4 可视化部分",
-    "text": "5.4 可视化部分",
+    "title": "6  Interface",
+    "section": "6.4 可视化部分",
+    "text": "6.4 可视化部分",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Interface</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
     "objectID": "Interface.html#结果展示",
     "href": "Interface.html#结果展示",
-    "title": "5  Interface",
-    "section": "5.5 结果展示",
-    "text": "5.5 结果展示",
+    "title": "6  Interface",
+    "section": "6.5 结果展示",
+    "text": "6.5 结果展示",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Interface</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
     "objectID": "Interface.html#参考文献",
     "href": "Interface.html#参考文献",
-    "title": "5  Interface",
-    "section": "5.6 参考文献",
-    "text": "5.6 参考文献",
+    "title": "6  Interface",
+    "section": "6.6 参考文献",
+    "text": "6.6 参考文献",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Interface</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
     "objectID": "The Application.html",
     "href": "The Application.html",
-    "title": "6  Application",
+    "title": "7  Application",
     "section": "",
-    "text": "6.1 这里展示数据预处理",
+    "text": "7.1 这里展示数据预处理",
     "crumbs": [
       "B. The Application",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Application</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
     ]
   },
   {
     "objectID": "The Application.html#分析公式和图表",
     "href": "The Application.html#分析公式和图表",
-    "title": "6  Application",
-    "section": "6.2 分析公式和图表",
-    "text": "6.2 分析公式和图表",
+    "title": "7  Application",
+    "section": "7.2 分析公式和图表",
+    "text": "7.2 分析公式和图表",
     "crumbs": [
       "B. The Application",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Application</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
     ]
   },
   {
     "objectID": "The Application.html#核心算法",
     "href": "The Application.html#核心算法",
-    "title": "6  Application",
-    "section": "6.3 核心算法",
-    "text": "6.3 核心算法",
+    "title": "7  Application",
+    "section": "7.3 核心算法",
+    "text": "7.3 核心算法",
     "crumbs": [
       "B. The Application",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Application</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
     ]
   },
   {
     "objectID": "The Application.html#可视化部分",
     "href": "The Application.html#可视化部分",
-    "title": "6  Application",
-    "section": "6.4 可视化部分",
-    "text": "6.4 可视化部分",
+    "title": "7  Application",
+    "section": "7.4 可视化部分",
+    "text": "7.4 可视化部分",
     "crumbs": [
       "B. The Application",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Application</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
     ]
   },
   {
     "objectID": "The Application.html#结果展示",
     "href": "The Application.html#结果展示",
-    "title": "6  Application",
-    "section": "6.5 结果展示",
-    "text": "6.5 结果展示",
+    "title": "7  Application",
+    "section": "7.5 结果展示",
+    "text": "7.5 结果展示",
     "crumbs": [
       "B. The Application",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Application</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
     ]
   },
   {
     "objectID": "The Application.html#参考文献",
     "href": "The Application.html#参考文献",
-    "title": "6  Application",
-    "section": "6.6 参考文献",
-    "text": "6.6 参考文献",
+    "title": "7  Application",
+    "section": "7.6 参考文献",
+    "text": "7.6 参考文献",
     "crumbs": [
       "B. The Application",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Application</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
     ]
   },
   {
     "objectID": "How it Works.html",
     "href": "How it Works.html",
-    "title": "7  How it Works",
+    "title": "8  How it Works",
     "section": "",
-    "text": "7.1 这里展示数据预处理",
+    "text": "8.1 这里展示数据预处理",
     "crumbs": [
       "C. How it Works",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>How it Works</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>How it Works</span>"
     ]
   },
   {
     "objectID": "How it Works.html#分析公式和图表",
     "href": "How it Works.html#分析公式和图表",
-    "title": "7  How it Works",
-    "section": "7.2 分析公式和图表",
-    "text": "7.2 分析公式和图表",
+    "title": "8  How it Works",
+    "section": "8.2 分析公式和图表",
+    "text": "8.2 分析公式和图表",
     "crumbs": [
       "C. How it Works",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>How it Works</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>How it Works</span>"
     ]
   },
   {
     "objectID": "How it Works.html#核心算法",
     "href": "How it Works.html#核心算法",
-    "title": "7  How it Works",
-    "section": "7.3 核心算法",
-    "text": "7.3 核心算法",
+    "title": "8  How it Works",
+    "section": "8.3 核心算法",
+    "text": "8.3 核心算法",
     "crumbs": [
       "C. How it Works",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>How it Works</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>How it Works</span>"
     ]
   },
   {
     "objectID": "How it Works.html#可视化部分",
     "href": "How it Works.html#可视化部分",
-    "title": "7  How it Works",
-    "section": "7.4 可视化部分",
-    "text": "7.4 可视化部分",
+    "title": "8  How it Works",
+    "section": "8.4 可视化部分",
+    "text": "8.4 可视化部分",
     "crumbs": [
       "C. How it Works",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>How it Works</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>How it Works</span>"
     ]
   },
   {
     "objectID": "How it Works.html#结果展示",
     "href": "How it Works.html#结果展示",
-    "title": "7  How it Works",
-    "section": "7.5 结果展示",
-    "text": "7.5 结果展示",
+    "title": "8  How it Works",
+    "section": "8.5 结果展示",
+    "text": "8.5 结果展示",
     "crumbs": [
       "C. How it Works",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>How it Works</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>How it Works</span>"
     ]
   },
   {
     "objectID": "How it Works.html#参考文献",
     "href": "How it Works.html#参考文献",
-    "title": "7  How it Works",
-    "section": "7.6 参考文献",
-    "text": "7.6 参考文献",
+    "title": "8  How it Works",
+    "section": "8.6 参考文献",
+    "text": "8.6 参考文献",
     "crumbs": [
       "C. How it Works",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>How it Works</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>How it Works</span>"
     ]
   }
 ]
