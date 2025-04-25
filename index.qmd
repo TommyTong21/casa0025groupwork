@@ -17,7 +17,7 @@ These visual insights help climbers and planners assess not just route direction
 ![](https://raw.githubusercontent.com/TommyTong21/casa0025groupwork/main/images/route.png){width=80%}
 
 
-## Table of Contents
+**Table of Contents**
 
 A) **Project Summary**
     * A brief summary of your project.
