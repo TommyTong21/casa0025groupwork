@@ -46,7 +46,7 @@
     "href": "Data.html",
     "title": "4  Data",
     "section": "",
-    "text": "4.1 1. Study Area\nThe analysis utilizes three main types of satellite data from Google Earth Engine and one self uploaded shapefile:",
+    "text": "4.1 Study Area\nThe analysis utilizes three main types of satellite data from Google Earth Engine and one self uploaded shapefile:",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
@@ -67,8 +67,8 @@
     "objectID": "Data.html#temperature-data",
     "href": "Data.html#temperature-data",
     "title": "4  Data",
-    "section": "4.2 2. Temperature Data",
-    "text": "4.2 2. Temperature Data\n\nSource:\n\nMODIS MOD11A2 dataset\n\nTemporal resolution: 8-day composite\nSpatial resolution: 1km\nTime period: February 18, 2011 - March 30, 2025\nVariables:\n\nDaytime Land Surface Temperature (LST_Day_1km)\nNighttime Land Surface Temperature (LST_Night_1km)\n\nData processing: Raw values are converted to Celsius by multiplying by 0.02 and subtracting 273.15",
+    "section": "4.2 Temperature Data",
+    "text": "4.2 Temperature Data\n\nSource:\n\nMODIS MOD11A2 dataset\n\nTemporal resolution: 8-day composite\nSpatial resolution: 1km\nTime period: February 18, 2011 - March 30, 2025\nVariables:\n\nDaytime Land Surface Temperature (LST_Day_1km)\nNighttime Land Surface Temperature (LST_Night_1km)\n\nData processing: Raw values are converted to Celsius by multiplying by 0.02 and subtracting 273.15",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
@@ -78,8 +78,8 @@
     "objectID": "Data.html#terrain-data",
     "href": "Data.html#terrain-data",
     "title": "4  Data",
-    "section": "4.3 3. Terrain Data",
-    "text": "4.3 3. Terrain Data\n\nSource:\n\nUSGS/SRTMGL1_003 dataset\nNASA/NASADEM_HGT/001 dataset\n\nSpatial resolution: 30m\nVariables:\n\nSlope (identifying steep areas &gt;20 degrees)\nAspect (terrain orientation)\nElevation profiles for climbing routes",
+    "section": "4.3 Terrain Data",
+    "text": "4.3 Terrain Data\n\nSource:\n\nUSGS/SRTMGL1_003 dataset\nNASA/NASADEM_HGT/001 dataset\n\nSpatial resolution: 30m\nVariables:\n\nSlope (identifying steep areas &gt;20 degrees)\nAspect (terrain orientation)\nElevation profiles for climbing routes",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
@@ -89,8 +89,8 @@
     "objectID": "Data.html#snow-cover-data",
     "href": "Data.html#snow-cover-data",
     "title": "4  Data",
-    "section": "4.4 4. Snow Cover Data",
-    "text": "4.4 4. Snow Cover Data\n\nSource:\n\nSentinel-2 imagery\n\nTemporal resolution: 5-10 days (depending on satellite overpasses)\nSpatial resolution: 10m (Bands 3, 4, 8) and 20m (Band 11)\nTime period: January 2015 - Present\nVariables:\n\nBand 3 (Green): Used in NDSI calculation to detect snow\nBand 11 (SWIR): Used in NDSI calculation to detect snow\nSnow Class: Derived from the NDSI and snow fraction (classified into 4 categories: &lt; 25%, 25–50%, 50–75%, &gt; 75% snow cover)\n\nData processing:\n\nNDSI is calculated using the formula: \\[ \\text{NDSI} = \\frac{\\text{Band 3} - \\text{Band 11}}{\\text{Band 3} + \\text{Band 11}} \\]\nSnow fraction is calculated using a neighborhood mean reducer over a 10-pixel radius\nSnow cover classes are derived by categorizing the snow percentage into four classes",
+    "section": "4.4 Snow Cover Data",
+    "text": "4.4 Snow Cover Data\n\nSource:\n\nSentinel-2 imagery\n\nTemporal resolution: 5-10 days (depending on satellite overpasses)\nSpatial resolution: 10m (Bands 3, 4, 8) and 20m (Band 11)\nTime period: January 2015 - Present\nVariables:\n\nBand 3 (Green): Used in NDSI calculation to detect snow\nBand 11 (SWIR): Used in NDSI calculation to detect snow\nSnow Class: Derived from the NDSI and snow fraction (classified into 4 categories: &lt; 25%, 25–50%, 50–75%, &gt; 75% snow cover)\n\nData processing:\n\nNDSI is calculated using the formula: \\[ \\text{NDSI} = \\frac{\\text{Band 3} - \\text{Band 11}}{\\text{Band 3} + \\text{Band 11}} \\]\nSnow fraction is calculated using a neighborhood mean reducer over a 10-pixel radius\nSnow cover classes are derived by categorizing the snow percentage into four classes",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
@@ -112,7 +112,7 @@
     "href": "Interface.html",
     "title": "6  Interface",
     "section": "",
-    "text": "6.1 🧭 1. Browse the Map",
+    "text": "6.1 🧭 Browse the Map",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
@@ -133,8 +133,8 @@
     "objectID": "Interface.html#select-time-range",
     "href": "Interface.html#select-time-range",
     "title": "6  Interface",
-    "section": "6.2 📅 2. Select Time Range",
-    "text": "6.2 📅 2. Select Time Range\n\nIn the white panel at the top center:\nFind the “Select time range” section.\nDrag the timeline (Date Slider) to choose the date range you’re interested in.\nhe map and charts will automatically update to show the snow coverage during that period.",
+    "section": "6.2 📅 Select Time Range",
+    "text": "6.2 📅 Select Time Range\n\nIn the white panel at the top center:\nFind the “Select time range” section.\nDrag the timeline (Date Slider) to choose the date range you’re interested in.\nhe map and charts will automatically update to show the snow coverage during that period.",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
@@ -144,8 +144,8 @@
     "objectID": "Interface.html#select-climbing-route",
     "href": "Interface.html#select-climbing-route",
     "title": "6  Interface",
-    "section": "6.3 🧭 3. Select Climbing Route",
-    "text": "6.3 🧭 3. Select Climbing Route\n\nIn the “Select route” section, open the dropdown menu.\nChoose the route you’re interested in.\nThe map will automatically highlight that route and display:\n📊 The snow danger index chart for the selected route over the last 6 months.\n🧗 The elevation profile of the route.",
+    "section": "6.3 🧭 Select Climbing Route",
+    "text": "6.3 🧭 Select Climbing Route\n\nIn the “Select route” section, open the dropdown menu.\nChoose the route you’re interested in.\nThe map will automatically highlight that route and display:\n\n📊 The snow danger index chart for the selected route over the last 6 months.\n🧗 The elevation profile of the route.",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
@@ -155,8 +155,8 @@
     "objectID": "Interface.html#switch-layers",
     "href": "Interface.html#switch-layers",
     "title": "6  Interface",
-    "section": "6.4 ✅ 4. Switch Layers",
-    "text": "6.4 ✅ 4. Switch Layers\n\nYou can toggle the following layers to help assess climbing risks:\n☑️ Mean Temperature Layers: Shows the daytime/nighttime average temperatures from 2011–2024.\n☑️ Slope &gt; 20°: Displays areas with steep slopes.\n☑️ Aspect (Slope &gt; 20°): Displays the orientation (aspect) of steep slopes.\n☑️ Slope ≤ 20°: Displays areas with gentle slopes (potential safer paths).\nCheck or uncheck the boxes to control the visibility of these layers.",
+    "section": "6.4 ✅ Switch Layers",
+    "text": "6.4 ✅ Switch Layers\n\nYou can toggle the following layers to help assess climbing risks:\n\n☑️ Mean Temperature Layers: Shows the daytime/nighttime average temperatures from 2011–2024.\n☑️ Slope &gt; 20°: Displays areas with steep slopes.\n☑️ Aspect (Slope &gt; 20°): Displays the orientation (aspect) of steep slopes.\n☑️ Slope ≤ 20°: Displays areas with gentle slopes (potential safer paths).\n\nCheck or uncheck the boxes to control the visibility of these layers.",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
@@ -166,8 +166,8 @@
     "objectID": "Interface.html#click-on-the-map-for-details",
     "href": "Interface.html#click-on-the-map-for-details",
     "title": "6  Interface",
-    "section": "6.5 🖱 5. Click on the Map for Details",
-    "text": "6.5 🖱 5. Click on the Map for Details\n\nYou can click on any location on the map:\n🔸 If you click on a route: - A pop-up window will appear on the left displaying:\nThe route name and the danger index for the selected time range.\n🔹 If you click on another location on the map: - Two charts will appear: - The daytime land surface temperature (LST) time series. - The nighttime land surface temperature time series.",
+    "section": "6.5 🖱 Click on the Map for Details",
+    "text": "6.5 🖱 Click on the Map for Details\n\nYou can click on any location on the map:\n\n🔸 If you click on a route:\n\nA pop-up window will appear on the left displaying:\n\n\nThe route name and the danger index for the selected time range.\n\n🔹 If you click on another location on the map:\n\nTwo charts will appear:\nThe daytime land surface temperature (LST) time series.\nThe nighttime land surface temperature time series.",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
@@ -177,8 +177,8 @@
     "objectID": "Interface.html#legend-bottom-right",
     "href": "Interface.html#legend-bottom-right",
     "title": "6  Interface",
-    "section": "6.6 🧊 6. Legend (Bottom Right)",
-    "text": "6.6 🧊 6. Legend (Bottom Right)\n\nDifferent colors represent different levels of snow cover:\nGray: &lt;25%\nLight Blue: 25–50%\nDark Blue: 50–75%\nCyan: &gt;75%\nRoute color legend:\n🟢 Safest route\n🟡 Selected route\n🔴 Other routes",
+    "section": "6.6 🧊 Legend (Bottom Right)",
+    "text": "6.6 🧊 Legend (Bottom Right)\n\nDifferent colors represent different levels of snow cover:\n\nGray: &lt;25%\nLight Blue: 25–50%\nDark Blue: 50–75%\nCyan: &gt;75%\n\nRoute color legend:\n\n🟢 Safest route\n🟡 Selected route\n🔴 Other routes",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
