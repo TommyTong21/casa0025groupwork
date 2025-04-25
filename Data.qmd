@@ -11,7 +11,7 @@ The analysis utilizes three main types of satellite data from Google Earth Engin
    - Analysis buffer: 10-15km radius
    - Includes multiple climbing routes (shapefile import from private asset)
    
-   ```{js}
+   ```js
    var routes = ee.FeatureCollection("projects/ee-wbwhaha/assets/Everest");
    ```
 
