@@ -3,8 +3,8 @@ project:
   output-dir: docs 
 
 book:
-  title: "Mount Everest Climber Services" 
-  author: "[Jiahao Tong](https://tommytong21.github.io/casa0025groupwork/)" 
+  title: "CASA0025 Final Assessment -- Mount Everest Climber Services" 
+  author: "Data Undercover Squad"
   date: "10/04/2025" 
   chapters: 
     - index.qmd 
@@ -26,7 +26,7 @@ book:
   repo-actions: [edit] 
   downloads: [pdf, epub] 
   sharing: [twitter, facebook] 
-  favicon: mount.ico 
+  favicon: mount.ico
   sidebar:
     logo: logo_white.png 
     collapse-level: 2 
@@ -40,7 +40,7 @@ format:
       light: cosmo 
     code-copy: true 
     code-overflow: wrap 
-    highlight-style: monokai.theme 
+    highlight-style: monokai.theme
     linkcolor: "#34a832" 
 
   epub: 
