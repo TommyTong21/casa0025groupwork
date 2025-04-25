@@ -242,7 +242,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#reference" id="toc-reference" class="nav-link active" data-scroll-target="#reference"><span class="header-section-number">5.1</span> Reference</a></li>
+  <li><a href="#temperature-analysis" id="toc-temperature-analysis" class="nav-link active" data-scroll-target="#temperature-analysis"><span class="header-section-number">5.1</span> <strong>Temperature Analysis</strong></a></li>
+  <li><a href="#terrain-analysis" id="toc-terrain-analysis" class="nav-link" data-scroll-target="#terrain-analysis"><span class="header-section-number">5.2</span> <strong>Terrain Analysis</strong></a></li>
+  <li><a href="#interactive-analysis" id="toc-interactive-analysis" class="nav-link" data-scroll-target="#interactive-analysis"><span class="header-section-number">5.3</span> <strong>Interactive Analysis</strong></a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">5.4</span> Reference</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/TommyTong21/casa0025groupwork/tree/main/edit/main/Methodology.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -274,8 +277,87 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="reference" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="reference"><span class="header-section-number">5.1</span> Reference</h2>
+<p>The analysis combines temperature and terrain data to understand the environmental conditions around Mount Everest. The methodology consists of three main components:</p>
+<section id="temperature-analysis" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="temperature-analysis"><span class="header-section-number">5.1</span> <strong>Temperature Analysis</strong></h2>
+<ul>
+<li>Temperature Unit Conversion:
+<ul>
+<li>Raw MODIS LST data is in Kelvin (K)</li>
+<li>Conversion formula: Celsius = (Kelvin × 0.02) - 273.15</li>
+<li>Scale factor (0.02) accounts for MODIS data scaling</li>
+<li>273.15 converts from Kelvin to Celsius</li>
+</ul></li>
+<li>Time Series Analysis:
+<ul>
+<li>Utilizes ee.Reducer.mean() for spatial aggregation</li>
+<li>Reducer computes mean temperature within specified region</li>
+<li>Handles missing data through reducer’s null handling</li>
+<li>Preserves temporal information using system:time_start</li>
+</ul></li>
+<li>Statistical Analysis:
+<ul>
+<li>Temporal aggregation using imageCollection.mean()</li>
+<li>Spatial statistics using ee.Reducer statistics</li>
+<li>Point-based analysis for specific locations</li>
+</ul></li>
+</ul>
+</section>
+<section id="terrain-analysis" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="terrain-analysis"><span class="header-section-number">5.2</span> <strong>Terrain Analysis</strong></h2>
+<ul>
+<li>Elevation Processing:
+<ul>
+<li>Digital Elevation Model (DEM) processing using ee.Terrain products</li>
+<li>Slope calculation using ee.Terrain.slope()</li>
+<li>Aspect calculation using ee.Terrain.aspect()</li>
+</ul></li>
+<li>Route Analysis:
+<ul>
+<li>Feature collection processing using ee.FeatureCollection</li>
+<li>Route geometry intersection using geometry.intersection()</li>
+<li>Elevation Profile Generation:
+<ul>
+<li>100-point sampling along route geometry</li>
+<li>Uniform point distribution using numPixels parameter</li>
+<li>30-meter resolution sampling (scale parameter)</li>
+<li>Profile data stored as feature properties</li>
+<li>Interactive visualization of elevation changes</li>
+</ul></li>
+</ul></li>
+<li>Terrain Classification:
+<ul>
+<li>Slope masking using updateMask() for steep areas (&gt;20 degrees)</li>
+<li>Aspect classification using 8-direction color coding</li>
+<li>Terrain product generation using ee.Terrain.products()</li>
+</ul></li>
+</ul>
+</section>
+<section id="interactive-analysis" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="interactive-analysis"><span class="header-section-number">5.3</span> <strong>Interactive Analysis</strong></h2>
+<ul>
+<li>User Interface:
+<ul>
+<li>Custom UI panel implementation using ui.Panel</li>
+<li>Interactive point selection using Map.onClick()</li>
+<li>Route selection using ui.Select dropdown</li>
+</ul></li>
+<li>Dynamic Visualization:
+<ul>
+<li>Real-time chart updates using ui.Chart</li>
+<li>Layer management using Map.addLayer() and Map.remove()</li>
+<li>Legend updates using custom ui.Panel</li>
+</ul></li>
+<li>Data Interaction:
+<ul>
+<li>Point-based temperature analysis</li>
+<li>Route-based elevation profiling</li>
+<li>Dynamic layer toggling</li>
+</ul></li>
+</ul>
+</section>
+<section id="reference" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="reference"><span class="header-section-number">5.4</span> Reference</h2>
 
 
 </section>

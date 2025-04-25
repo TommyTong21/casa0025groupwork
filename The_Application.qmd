@@ -3,3 +3,8 @@ title: Application
 output: html_document
 ---
 
+:::{.column-page}
+
+<iframe src='https://ee-wbwhaha.projects.earthengine.app/view/mount-everest-climber-services' width='100%' height='700px'></iframe>
+
+:::

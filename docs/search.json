@@ -14,7 +14,7 @@
     "href": "Problem_Statement.html",
     "title": "2  Problem Statement",
     "section": "",
-    "text": "Recent years have seen more erratic snow and glacial patterns in the Himalayas, particularly near Mount Everest. Seasonal shifts are disrupting climbing timelines and increasing route uncertainty.\nStudies have observed rising snowlines, fragile snowpacks, and heightened avalanche activity during spring melt periods, posing serious risks to climbers (Matthews & Perry, 2021; Bajracharya et al., 2022).\nClimbers often rely on outdated maps or generalized forecasts. These lack the spatial and temporal precision needed to assess rapidly changing snow conditions on specific routes.\nDespite technological advances, few tools provide live, route-level insights into snow accumulation or avalanche risk, especially in high-altitude expedition contexts.\nAddressing this gap begins with understanding the terrain-specific effects of climate variability. A reliable foundation of risk awareness is essential for any safety-oriented planning tool.\n\nMountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.",
+    "text": "Recent years have seen more erratic snow and glacial patterns in the Himalayas, particularly near Mount Everest. Seasonal shifts are disrupting climbing timelines and increasing route uncertainty.\nStudies have observed rising snowlines, fragile snowpacks, and heightened avalanche activity during spring melt periods, posing serious risks to climbers (Matthews & Perry, 2021; Bajracharya et al., 2022).\nClimbers often rely on outdated maps or generalized forecasts. These lack the spatial and temporal precision needed to assess rapidly changing snow conditions on specific routes.\nDespite technological advances, few tools provide live, route-level insights into snow accumulation or avalanche risk, especially in high-altitude expedition contexts.\nAddressing this gap begins with understanding the terrain-specific effects of climate variability. A reliable foundation of risk awareness is essential for any safety-oriented planning tool.\n\nThe Everest. Source: Daniel Prudek/Getty.",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Problem Statement</span>"
@@ -25,7 +25,7 @@
     "href": "End_User.html",
     "title": "3  End User",
     "section": "",
-    "text": "🧗 Mountaineers & Planners: Use route risk data for planning safe ascents.\n🚶 Outdoor Tour Operators: Design trekking experiences aligned with real-time conditions.\n🌍 Geographers & Researchers: Study snow dynamics and monitor climate change effects.\nThe tool especially assists commercial teams in preparing expeditions for the peak climbing season (April–May), enabling route and equipment selection based on predicted terrain risks.\n\nMountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.",
+    "text": "🧗 Mountaineers & Planners: Use route risk data for planning safe ascents.\n🚶 Outdoor Tour Operators: Design trekking experiences aligned with real-time conditions.\n🌍 Geographers & Researchers: Study snow dynamics and monitor climate change effects.\nThe tool especially assists commercial teams in preparing expeditions for the peak climbing season (April–May), enabling route and equipment selection based on predicted terrain risks.\n\nThe Everest. Source: Daniel Prudek/Getty.",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>End User</span>"
@@ -91,7 +91,51 @@
     "href": "Methodology.html",
     "title": "5  Methodology",
     "section": "",
-    "text": "5.1 Reference",
+    "text": "5.1 Temperature Analysis\nThe analysis combines temperature and terrain data to understand the environmental conditions around Mount Everest. The methodology consists of three main components:",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+    ]
+  },
+  {
+    "objectID": "Methodology.html#temperature-analysis",
+    "href": "Methodology.html#temperature-analysis",
+    "title": "5  Methodology",
+    "section": "",
+    "text": "Temperature Unit Conversion:\n\nRaw MODIS LST data is in Kelvin (K)\nConversion formula: Celsius = (Kelvin × 0.02) - 273.15\nScale factor (0.02) accounts for MODIS data scaling\n273.15 converts from Kelvin to Celsius\n\nTime Series Analysis:\n\nUtilizes ee.Reducer.mean() for spatial aggregation\nReducer computes mean temperature within specified region\nHandles missing data through reducer’s null handling\nPreserves temporal information using system:time_start\n\nStatistical Analysis:\n\nTemporal aggregation using imageCollection.mean()\nSpatial statistics using ee.Reducer statistics\nPoint-based analysis for specific locations",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+    ]
+  },
+  {
+    "objectID": "Methodology.html#terrain-analysis",
+    "href": "Methodology.html#terrain-analysis",
+    "title": "5  Methodology",
+    "section": "5.2 Terrain Analysis",
+    "text": "5.2 Terrain Analysis\n\nElevation Processing:\n\nDigital Elevation Model (DEM) processing using ee.Terrain products\nSlope calculation using ee.Terrain.slope()\nAspect calculation using ee.Terrain.aspect()\n\nRoute Analysis:\n\nFeature collection processing using ee.FeatureCollection\nRoute geometry intersection using geometry.intersection()\nElevation Profile Generation:\n\n100-point sampling along route geometry\nUniform point distribution using numPixels parameter\n30-meter resolution sampling (scale parameter)\nProfile data stored as feature properties\nInteractive visualization of elevation changes\n\n\nTerrain Classification:\n\nSlope masking using updateMask() for steep areas (&gt;20 degrees)\nAspect classification using 8-direction color coding\nTerrain product generation using ee.Terrain.products()",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+    ]
+  },
+  {
+    "objectID": "Methodology.html#interactive-analysis",
+    "href": "Methodology.html#interactive-analysis",
+    "title": "5  Methodology",
+    "section": "5.3 Interactive Analysis",
+    "text": "5.3 Interactive Analysis\n\nUser Interface:\n\nCustom UI panel implementation using ui.Panel\nInteractive point selection using Map.onClick()\nRoute selection using ui.Select dropdown\n\nDynamic Visualization:\n\nReal-time chart updates using ui.Chart\nLayer management using Map.addLayer() and Map.remove()\nLegend updates using custom ui.Panel\n\nData Interaction:\n\nPoint-based temperature analysis\nRoute-based elevation profiling\nDynamic layer toggling",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+    ]
+  },
+  {
+    "objectID": "Methodology.html#reference",
+    "href": "Methodology.html#reference",
+    "title": "5  Methodology",
+    "section": "5.4 Reference",
+    "text": "5.4 Reference",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"

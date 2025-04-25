@@ -4,6 +4,64 @@ author: Bowen Wu, Jiahao Tong
 output: html_document
 ---
 
+The analysis combines temperature and terrain data to understand the environmental conditions around Mount Everest. The methodology consists of three main components:
 
+## **Temperature Analysis**  
+  
+   - Temperature Unit Conversion:
+     - Raw MODIS LST data is in Kelvin (K)
+     - Conversion formula: Celsius = (Kelvin × 0.02) - 273.15
+     - Scale factor (0.02) accounts for MODIS data scaling
+     - 273.15 converts from Kelvin to Celsius  
+       
+   - Time Series Analysis:
+     - Utilizes ee.Reducer.mean() for spatial aggregation
+     - Reducer computes mean temperature within specified region
+     - Handles missing data through reducer's null handling
+     - Preserves temporal information using system:time_start  
+       
+   - Statistical Analysis:
+     - Temporal aggregation using imageCollection.mean()
+     - Spatial statistics using ee.Reducer statistics
+     - Point-based analysis for specific locations
+
+## **Terrain Analysis**  
+  
+   - Elevation Processing:
+     - Digital Elevation Model (DEM) processing using ee.Terrain products
+     - Slope calculation using ee.Terrain.slope()
+     - Aspect calculation using ee.Terrain.aspect()  
+       
+   - Route Analysis:
+     - Feature collection processing using ee.FeatureCollection
+     - Route geometry intersection using geometry.intersection()
+     - Elevation Profile Generation:
+       - 100-point sampling along route geometry
+       - Uniform point distribution using numPixels parameter
+       - 30-meter resolution sampling (scale parameter)
+       - Profile data stored as feature properties
+       - Interactive visualization of elevation changes  
+         
+   - Terrain Classification:
+     - Slope masking using updateMask() for steep areas (>20 degrees)
+     - Aspect classification using 8-direction color coding
+     - Terrain product generation using ee.Terrain.products()
+
+## **Interactive Analysis**  
+  
+   - User Interface:
+     - Custom UI panel implementation using ui.Panel
+     - Interactive point selection using Map.onClick()
+     - Route selection using ui.Select dropdown  
+       
+   - Dynamic Visualization:
+     - Real-time chart updates using ui.Chart
+     - Layer management using Map.addLayer() and Map.remove()
+     - Legend updates using custom ui.Panel  
+       
+   - Data Interaction:
+     - Point-based temperature analysis
+     - Route-based elevation profiling
+     - Dynamic layer toggling
 
 ## Reference

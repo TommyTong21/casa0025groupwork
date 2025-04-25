@@ -344,40 +344,40 @@ window.Quarto = {
 <section id="study-area" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="study-area"><span class="header-section-number">4.1</span> <strong>Study Area</strong></h2>
 <ul>
-<li>Center point: Mount Everest (86.9252°E, 27.98833°N)</li>
-<li>Analysis buffer: 10-15km radius</li>
-<li>Includes multiple climbing routes (shapefile import from private asset)</li>
+<li><p>Center point: Mount Everest (86.9252°E, 27.98833°N)</p></li>
+<li><p>Analysis buffer: 10-15km radius</p></li>
+<li><p>Includes multiple climbing routes (shapefile import from private asset)</p></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> routes <span class="op">=</span> ee<span class="op">.</span><span class="fu">FeatureCollection</span>(<span class="st">"projects/ee-wbwhaha/assets/Everest"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="temperature-data" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="temperature-data"><span class="header-section-number">4.2</span> <strong>Temperature Data</strong></h2>
 <ul>
-<li>Source:
+<li><p>Source:</p>
 <ul>
 <li>MODIS MOD11A2 dataset</li>
 </ul></li>
-<li>Temporal resolution: 8-day composite</li>
-<li>Spatial resolution: 1km</li>
-<li>Time period: February 18, 2011 - March 30, 2025</li>
-<li>Variables:
+<li><p>Temporal resolution: 8-day composite</p></li>
+<li><p>Spatial resolution: 1km</p></li>
+<li><p>Time period: February 18, 2011 - March 30, 2025</p></li>
+<li><p>Variables:</p>
 <ul>
 <li>Daytime Land Surface Temperature (LST_Day_1km)</li>
 <li>Nighttime Land Surface Temperature (LST_Night_1km)</li>
 </ul></li>
-<li>Data processing: Raw values are converted to Celsius by multiplying by 0.02 and subtracting 273.15</li>
+<li><p>Data processing: Raw values are converted to Celsius by multiplying by 0.02 and subtracting 273.15</p></li>
 </ul>
 </section>
 <section id="terrain-data" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="terrain-data"><span class="header-section-number">4.3</span> <strong>Terrain Data</strong></h2>
 <ul>
-<li>Source:
+<li><p>Source:</p>
 <ul>
 <li>USGS/SRTMGL1_003 dataset</li>
 <li>NASA/NASADEM_HGT/001 dataset</li>
 </ul></li>
-<li>Spatial resolution: 30m</li>
-<li>Variables:
+<li><p>Spatial resolution: 30m</p></li>
+<li><p>Variables:</p>
 <ul>
 <li>Slope (identifying steep areas &gt;20 degrees)</li>
 <li>Aspect (terrain orientation)</li>
@@ -388,20 +388,20 @@ window.Quarto = {
 <section id="snow-cover-data" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="snow-cover-data"><span class="header-section-number">4.4</span> <strong>Snow Cover Data</strong></h2>
 <ul>
-<li>Source:
+<li><p>Source:</p>
 <ul>
 <li>Sentinel-2 imagery</li>
 </ul></li>
-<li>Temporal resolution: 5-10 days (depending on satellite overpasses)</li>
-<li>Spatial resolution: 10m (Bands 3, 4, 8) and 20m (Band 11)</li>
-<li>Time period: January 2015 - Present</li>
-<li>Variables:
+<li><p>Temporal resolution: 5-10 days (depending on satellite overpasses)</p></li>
+<li><p>Spatial resolution: 10m (Bands 3, 4, 8) and 20m (Band 11)</p></li>
+<li><p>Time period: January 2015 - Present</p></li>
+<li><p>Variables:</p>
 <ul>
 <li>Band 3 (Green): Used in NDSI calculation to detect snow</li>
 <li>Band 11 (SWIR): Used in NDSI calculation to detect snow</li>
 <li>Snow Class: Derived from the NDSI and snow fraction (classified into 4 categories: &lt; 25%, 25–50%, 50–75%, &gt; 75% snow cover)</li>
 </ul></li>
-<li>Data processing:
+<li><p>Data processing:</p>
 <ul>
 <li><p>NDSI is calculated using the formula: <span class="math display">\[ \text{NDSI} = \frac{\text{Band 3} - \text{Band 11}}{\text{Band 3} + \text{Band 11}} \]</span></p></li>
 <li><p>Snow fraction is calculated using a neighborhood mean reducer over a 10-pixel radius</p></li>
