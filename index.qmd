@@ -17,11 +17,6 @@ These visual insights help climbers and planners assess not just route direction
 
 ![](https://raw.githubusercontent.com/TommyTong21/casa0025groupwork/main/images/route.png){width=80%}
 
-:::{.column-page}
-
-<iframe src='https://ollielballinger.users.earthengine.app/view/rojavaoil' width='100%' height='700px'></iframe>
-
-:::
 
 ## Table of Contents
 

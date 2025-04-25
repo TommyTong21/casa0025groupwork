@@ -24,7 +24,7 @@
     "href": "Problem_Statement.html",
     "title": "2  Problem Statement",
     "section": "",
-    "text": "3 Problem Statement\nRecent years have seen more erratic snow and glacial patterns in the Himalayas, particularly near Mount Everest. Seasonal shifts are disrupting climbing timelines and increasing route uncertainty.\nStudies have observed rising snowlines, fragile snowpacks, and heightened avalanche activity during spring melt periods, posing serious risks to climbers (Matthews & Perry, 2021; Bajracharya et al., 2022).\nClimbers often rely on outdated maps or generalized forecasts. These lack the spatial and temporal precision needed to assess rapidly changing snow conditions on specific routes.\nDespite technological advances, few tools provide live, route-level insights into snow accumulation or avalanche risk, especially in high-altitude expedition contexts.\nAddressing this gap begins with understanding the terrain-specific effects of climate variability. A reliable foundation of risk awareness is essential for any safety-oriented planning tool.\n Mountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.",
+    "text": "3 Problem Statement\nRecent years have seen more erratic snow and glacial patterns in the Himalayas, particularly near Mount Everest. Seasonal shifts are disrupting climbing timelines and increasing route uncertainty.\nStudies have observed rising snowlines, fragile snowpacks, and heightened avalanche activity during spring melt periods, posing serious risks to climbers (Matthews & Perry, 2021; Bajracharya et al., 2022).\nClimbers often rely on outdated maps or generalized forecasts. These lack the spatial and temporal precision needed to assess rapidly changing snow conditions on specific routes.\nDespite technological advances, few tools provide live, route-level insights into snow accumulation or avalanche risk, especially in high-altitude expedition contexts.\nAddressing this gap begins with understanding the terrain-specific effects of climate variability. A reliable foundation of risk awareness is essential for any safety-oriented planning tool.\n\nMountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Problem Statement</span>"
@@ -35,7 +35,7 @@
     "href": "End_User.html",
     "title": "3  End User",
     "section": "",
-    "text": "4 End User\n🧗 Mountaineers & Planners: Use route risk data for planning safe ascents.\n🚶 Outdoor Tour Operators: Design trekking experiences aligned with real-time conditions.\n🌍 Geographers & Researchers: Study snow dynamics and monitor climate change effects.\nThe tool especially assists commercial teams in preparing expeditions for the peak climbing season (April–May), enabling route and equipment selection based on predicted terrain risks.\n Mountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.",
+    "text": "4 End User\n🧗 Mountaineers & Planners: Use route risk data for planning safe ascents.\n🚶 Outdoor Tour Operators: Design trekking experiences aligned with real-time conditions.\n🌍 Geographers & Researchers: Study snow dynamics and monitor climate change effects.\nThe tool especially assists commercial teams in preparing expeditions for the peak climbing season (April–May), enabling route and equipment selection based on predicted terrain risks.\n\nMountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>End User</span>"
@@ -46,62 +46,7 @@
     "href": "Data.html",
     "title": "4  Data",
     "section": "",
-    "text": "4.1 这里展示数据预处理",
-    "crumbs": [
-      "A. Project Summary",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
-    ]
-  },
-  {
-    "objectID": "Data.html#分析公式和图表",
-    "href": "Data.html#分析公式和图表",
-    "title": "4  Data",
-    "section": "4.2 分析公式和图表",
-    "text": "4.2 分析公式和图表",
-    "crumbs": [
-      "A. Project Summary",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
-    ]
-  },
-  {
-    "objectID": "Data.html#核心算法",
-    "href": "Data.html#核心算法",
-    "title": "4  Data",
-    "section": "4.3 核心算法",
-    "text": "4.3 核心算法",
-    "crumbs": [
-      "A. Project Summary",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
-    ]
-  },
-  {
-    "objectID": "Data.html#可视化部分",
-    "href": "Data.html#可视化部分",
-    "title": "4  Data",
-    "section": "4.4 可视化部分",
-    "text": "4.4 可视化部分",
-    "crumbs": [
-      "A. Project Summary",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
-    ]
-  },
-  {
-    "objectID": "Data.html#结果展示",
-    "href": "Data.html#结果展示",
-    "title": "4  Data",
-    "section": "4.5 结果展示",
-    "text": "4.5 结果展示",
-    "crumbs": [
-      "A. Project Summary",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
-    ]
-  },
-  {
-    "objectID": "Data.html#参考文献",
-    "href": "Data.html#参考文献",
-    "title": "4  Data",
-    "section": "4.6 参考文献",
-    "text": "4.6 参考文献",
+    "text": "The analysis utilizes three main types of satellite data from Google Earth Engine and one self uploaded shapefile:\n\nStudy Area\n\nCenter point: Mount Everest (86.9252°E, 27.98833°N)\nAnalysis buffer: 10-15km radius\nIncludes multiple climbing routes (shapefile import from private asset)\n\nvar routes = ee.FeatureCollection(\"projects/ee-wbwhaha/assets/Everest\");\nTemperature Data\n\nSource:\n\nMODIS MOD11A2 dataset\n\nTemporal resolution: 8-day composite\nSpatial resolution: 1km\nTime period: February 18, 2011 - March 30, 2025\nVariables:\n\nDaytime Land Surface Temperature (LST_Day_1km)\nNighttime Land Surface Temperature (LST_Night_1km)\n\nData processing: Raw values are converted to Celsius by multiplying by 0.02 and subtracting 273.15\n\nTerrain Data\n\nSource:\n\nUSGS/SRTMGL1_003 dataset\nNASA/NASADEM_HGT/001 dataset\n\nSpatial resolution: 30m\nVariables:\n\nSlope (identifying steep areas &gt;20 degrees)\nAspect (terrain orientation)\nElevation profiles for climbing routes\n\n\nSnow Cover Data\n\nSource:\n\nSentinel-2 imagery\n\nTemporal resolution: 5-10 days (depending on satellite overpasses)\nSpatial resolution: 10m (Bands 3, 4, 8) and 20m (Band 11)\nTime period: January 2015 - Present\nVariables:\n\nBand 3 (Green): Used in NDSI calculation to detect snow\nBand 11 (SWIR): Used in NDSI calculation to detect snow\nSnow Class: Derived from the NDSI and snow fraction (classified into 4 categories: &lt; 25%, 25–50%, 50–75%, &gt; 75% snow cover)\n\nData processing:\n\nNDSI is calculated using the formula: \\[ \\text{NDSI} = \\frac{\\text{Band 3} - \\text{Band 11}}{\\text{Band 3} + \\text{Band 11}} \\]\nSnow fraction is calculated using a neighborhood mean reducer over a 10-pixel radius\nSnow cover classes are derived by categorizing the snow percentage into four classes",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
@@ -226,72 +171,6 @@
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
-    ]
-  },
-  {
-    "objectID": "The_Application.html",
-    "href": "The_Application.html",
-    "title": "7  Application",
-    "section": "",
-    "text": "7.1 这里展示数据预处理",
-    "crumbs": [
-      "B. The Application",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
-    ]
-  },
-  {
-    "objectID": "The_Application.html#分析公式和图表",
-    "href": "The_Application.html#分析公式和图表",
-    "title": "7  Application",
-    "section": "7.2 分析公式和图表",
-    "text": "7.2 分析公式和图表",
-    "crumbs": [
-      "B. The Application",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
-    ]
-  },
-  {
-    "objectID": "The_Application.html#核心算法",
-    "href": "The_Application.html#核心算法",
-    "title": "7  Application",
-    "section": "7.3 核心算法",
-    "text": "7.3 核心算法",
-    "crumbs": [
-      "B. The Application",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
-    ]
-  },
-  {
-    "objectID": "The_Application.html#可视化部分",
-    "href": "The_Application.html#可视化部分",
-    "title": "7  Application",
-    "section": "7.4 可视化部分",
-    "text": "7.4 可视化部分",
-    "crumbs": [
-      "B. The Application",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
-    ]
-  },
-  {
-    "objectID": "The_Application.html#结果展示",
-    "href": "The_Application.html#结果展示",
-    "title": "7  Application",
-    "section": "7.5 结果展示",
-    "text": "7.5 结果展示",
-    "crumbs": [
-      "B. The Application",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
-    ]
-  },
-  {
-    "objectID": "The_Application.html#参考文献",
-    "href": "The_Application.html#参考文献",
-    "title": "7  Application",
-    "section": "7.6 参考文献",
-    "text": "7.6 参考文献",
-    "crumbs": [
-      "B. The Application",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
     ]
   },
   {

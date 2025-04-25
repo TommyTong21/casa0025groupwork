@@ -13,5 +13,6 @@ output: html_document
 
 *The tool especially assists commercial teams in preparing expeditions for the peak climbing season (April–May), enabling route and equipment selection based on predicted terrain risks.*
 
-![](https://tse4.mm.bing.net/th?id=OIP.X8VgxBHVpSmoEIWZOfifdAHaE7&pid=Api){width=80%}
+![](https://tse4.mm.bing.net/th?id=OIP.X8VgxBHVpSmoEIWZOfifdAHaE7&pid=Api){width=80%}  
+
 *Mountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.*

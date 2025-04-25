@@ -1,12 +1,55 @@
 ---
 title: Data
-author: yourname
+author: Bowen Wu, Jiahao Tong
 output: html_document
 ---
 
-## 这里展示数据预处理
-## 分析公式和图表
-## 核心算法
-## 可视化部分
-## 结果展示
-## 参考文献
+The analysis utilizes three main types of satellite data from Google Earth Engine and one self uploaded shapefile:
+
+1. **Study Area**
+   - Center point: Mount Everest (86.9252°E, 27.98833°N)
+   - Analysis buffer: 10-15km radius
+   - Includes multiple climbing routes (shapefile import from private asset)
+   
+   ```{js}
+   var routes = ee.FeatureCollection("projects/ee-wbwhaha/assets/Everest");
+   ```
+
+2. **Temperature Data**
+   - Source: 
+     - MODIS MOD11A2 dataset
+   - Temporal resolution: 8-day composite
+   - Spatial resolution: 1km
+   - Time period: February 18, 2011 - March 30, 2025
+   - Variables:
+     - Daytime Land Surface Temperature (LST_Day_1km)
+     - Nighttime Land Surface Temperature (LST_Night_1km)
+   - Data processing: Raw values are converted to Celsius by multiplying by 0.02 and subtracting 273.15
+
+3. **Terrain Data**
+   - Source:
+     - USGS/SRTMGL1_003 dataset
+     - NASA/NASADEM_HGT/001 dataset
+   - Spatial resolution: 30m
+   - Variables:
+     - Slope (identifying steep areas >20 degrees)
+     - Aspect (terrain orientation)
+     - Elevation profiles for climbing routes
+
+4. **Snow Cover Data**
+
+   - Source: 
+     - Sentinel-2 imagery
+   - Temporal resolution: 5-10 days (depending on satellite overpasses)
+   - Spatial resolution: 10m (Bands 3, 4, 8) and 20m (Band 11)
+   - Time period: January 2015 - Present
+   - Variables:
+     - Band 3 (Green): Used in NDSI calculation to detect snow
+     - Band 11 (SWIR): Used in NDSI calculation to detect snow
+     - Snow Class: Derived from the NDSI and snow fraction (classified into 4 categories: < 25%, 25–50%, 50–75%, > 75% snow cover)
+   - Data processing:  
+     - NDSI is calculated using the formula:
+    $$ \text{NDSI} = \frac{\text{Band 3} - \text{Band 11}}{\text{Band 3} + \text{Band 11}} $$
+    
+     - Snow fraction is calculated using a neighborhood mean reducer over a 10-pixel radius
+     - Snow cover classes are derived by categorizing the snow percentage into four classes

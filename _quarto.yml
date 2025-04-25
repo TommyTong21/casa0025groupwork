@@ -3,8 +3,8 @@ project:
   output-dir: docs 
 
 book:
-  title: "Mount Everest Climber Services" # 书籍标题
-  author: "[Jiahao Tong](https://tommytong21.github.io/casa0025groupwork/)" # 作者与链接
+  title: "Mount Everest Climber Services" 
+  author: "[Jiahao Tong](https://tommytong21.github.io/casa0025groupwork/)" 
   date: "10/04/2025" 
   chapters: 
     - index.qmd 
@@ -22,7 +22,7 @@ book:
       chapters:
        - How_it_Works.qmd # How your application works using code blocks and text explanations
   repo-url: https://github.com/TommyTong21/casa0025groupwork/tree/main
-  # google-analytics: YOUR_TRACKING_ID
+  
   repo-actions: [edit] 
   downloads: [pdf, epub] 
   sharing: [twitter, facebook] 
