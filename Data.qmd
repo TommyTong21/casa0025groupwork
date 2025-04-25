@@ -6,7 +6,7 @@ output: html_document
 
 The analysis utilizes three main types of satellite data from Google Earth Engine and one self uploaded shapefile:
 
-1. **Study Area**
+## 1. **Study Area**
    - Center point: Mount Everest (86.9252°E, 27.98833°N)
    - Analysis buffer: 10-15km radius
    - Includes multiple climbing routes (shapefile import from private asset)
@@ -15,7 +15,7 @@ The analysis utilizes three main types of satellite data from Google Earth Engin
    var routes = ee.FeatureCollection("projects/ee-wbwhaha/assets/Everest");
    ```
 
-2. **Temperature Data**
+## 2. **Temperature Data**
    - Source: 
      - MODIS MOD11A2 dataset
    - Temporal resolution: 8-day composite
@@ -26,7 +26,7 @@ The analysis utilizes three main types of satellite data from Google Earth Engin
      - Nighttime Land Surface Temperature (LST_Night_1km)
    - Data processing: Raw values are converted to Celsius by multiplying by 0.02 and subtracting 273.15
 
-3. **Terrain Data**
+## 3. **Terrain Data**
    - Source:
      - USGS/SRTMGL1_003 dataset
      - NASA/NASADEM_HGT/001 dataset
@@ -36,7 +36,7 @@ The analysis utilizes three main types of satellite data from Google Earth Engin
      - Aspect (terrain orientation)
      - Elevation profiles for climbing routes
 
-4. **Snow Cover Data**
+## 4. **Snow Cover Data**
 
    - Source: 
      - Sentinel-2 imagery

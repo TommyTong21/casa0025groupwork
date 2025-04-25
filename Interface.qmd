@@ -1,12 +1,68 @@
 ---
 title: Interface
-author: yourname
+author: Wei Lu
 output: html_document
 ---
 
-## 这里展示数据预处理
-## 分析公式和图表
-## 核心算法
-## 可视化部分
-## 结果展示
-## 参考文献
+## 🧭 1. **Browse the Map**
+
+  - The map displays an area around Mount Everest within a 15 km radius.
+
+  - You can drag the map and zoom in to view different areas.
+
+  - Routes are color-coded to indicate different levels of risk.
+
+## 📅 2. **Select Time Range**
+
+  - In the white panel at the top center:
+
+  - Find the “Select time range” section.
+
+  - Drag the timeline (Date Slider) to choose the date range you’re interested in.
+
+  - he map and charts will automatically update to show the snow coverage during that period.
+
+## 🧭 3. **Select Climbing Route**
+
+  - In the "Select route" section, open the dropdown menu.
+
+  - Choose the route you’re interested in.
+
+  - The map will automatically highlight that route and display:
+   - 📊 The snow danger index chart for the selected route over the last 6 months.
+   - 🧗 The elevation profile of the route.
+
+## ✅ 4. **Switch Layers**
+
+  - You can toggle the following layers to help assess climbing risks:
+   - ☑️ Mean Temperature Layers: Shows the daytime/nighttime average temperatures from 2011–2024.
+   - ☑️ Slope > 20°: Displays areas with steep slopes.
+   - ☑️ Aspect (Slope > 20°): Displays the orientation (aspect) of steep slopes.
+   - ☑️ Slope ≤ 20°: Displays areas with gentle slopes (potential safer paths).
+
+- Check or uncheck the boxes to control the visibility of these layers.
+
+## 🖱 5. **Click on the Map for Details**
+
+  - You can click on any location on the map:
+   - 🔸 If you click on a route:
+    - A pop-up window will appear on the left displaying:
+
+  - The route name and the danger index for the selected time range.
+   - 🔹 If you click on another location on the map:
+    - Two charts will appear:
+    - The daytime land surface temperature (LST) time series.
+    - The nighttime land surface temperature time series.
+
+## 🧊 6. **Legend (Bottom Right)**
+
+  - Different colors represent different levels of snow cover:
+   - Gray: <25%
+   - Light Blue: 25–50%
+   - Dark Blue: 50–75%
+   - Cyan: >75%
+
+  - Route color legend:
+   - 🟢 Safest route
+   - 🟡 Selected route
+   - 🔴 Other routes

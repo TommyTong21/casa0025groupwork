@@ -46,7 +46,51 @@
     "href": "Data.html",
     "title": "4  Data",
     "section": "",
-    "text": "The analysis utilizes three main types of satellite data from Google Earth Engine and one self uploaded shapefile:\n\nStudy Area\n\nCenter point: Mount Everest (86.9252°E, 27.98833°N)\nAnalysis buffer: 10-15km radius\nIncludes multiple climbing routes (shapefile import from private asset)\n\nvar routes = ee.FeatureCollection(\"projects/ee-wbwhaha/assets/Everest\");\nTemperature Data\n\nSource:\n\nMODIS MOD11A2 dataset\n\nTemporal resolution: 8-day composite\nSpatial resolution: 1km\nTime period: February 18, 2011 - March 30, 2025\nVariables:\n\nDaytime Land Surface Temperature (LST_Day_1km)\nNighttime Land Surface Temperature (LST_Night_1km)\n\nData processing: Raw values are converted to Celsius by multiplying by 0.02 and subtracting 273.15\n\nTerrain Data\n\nSource:\n\nUSGS/SRTMGL1_003 dataset\nNASA/NASADEM_HGT/001 dataset\n\nSpatial resolution: 30m\nVariables:\n\nSlope (identifying steep areas &gt;20 degrees)\nAspect (terrain orientation)\nElevation profiles for climbing routes\n\n\nSnow Cover Data\n\nSource:\n\nSentinel-2 imagery\n\nTemporal resolution: 5-10 days (depending on satellite overpasses)\nSpatial resolution: 10m (Bands 3, 4, 8) and 20m (Band 11)\nTime period: January 2015 - Present\nVariables:\n\nBand 3 (Green): Used in NDSI calculation to detect snow\nBand 11 (SWIR): Used in NDSI calculation to detect snow\nSnow Class: Derived from the NDSI and snow fraction (classified into 4 categories: &lt; 25%, 25–50%, 50–75%, &gt; 75% snow cover)\n\nData processing:\n\nNDSI is calculated using the formula: \\[ \\text{NDSI} = \\frac{\\text{Band 3} - \\text{Band 11}}{\\text{Band 3} + \\text{Band 11}} \\]\nSnow fraction is calculated using a neighborhood mean reducer over a 10-pixel radius\nSnow cover classes are derived by categorizing the snow percentage into four classes",
+    "text": "4.1 1. Study Area\nThe analysis utilizes three main types of satellite data from Google Earth Engine and one self uploaded shapefile:",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "Data.html#study-area",
+    "href": "Data.html#study-area",
+    "title": "4  Data",
+    "section": "",
+    "text": "Center point: Mount Everest (86.9252°E, 27.98833°N)\nAnalysis buffer: 10-15km radius\nIncludes multiple climbing routes (shapefile import from private asset)\n\nvar routes = ee.FeatureCollection(\"projects/ee-wbwhaha/assets/Everest\");",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "Data.html#temperature-data",
+    "href": "Data.html#temperature-data",
+    "title": "4  Data",
+    "section": "4.2 2. Temperature Data",
+    "text": "4.2 2. Temperature Data\n\nSource:\n\nMODIS MOD11A2 dataset\n\nTemporal resolution: 8-day composite\nSpatial resolution: 1km\nTime period: February 18, 2011 - March 30, 2025\nVariables:\n\nDaytime Land Surface Temperature (LST_Day_1km)\nNighttime Land Surface Temperature (LST_Night_1km)\n\nData processing: Raw values are converted to Celsius by multiplying by 0.02 and subtracting 273.15",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "Data.html#terrain-data",
+    "href": "Data.html#terrain-data",
+    "title": "4  Data",
+    "section": "4.3 3. Terrain Data",
+    "text": "4.3 3. Terrain Data\n\nSource:\n\nUSGS/SRTMGL1_003 dataset\nNASA/NASADEM_HGT/001 dataset\n\nSpatial resolution: 30m\nVariables:\n\nSlope (identifying steep areas &gt;20 degrees)\nAspect (terrain orientation)\nElevation profiles for climbing routes",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "Data.html#snow-cover-data",
+    "href": "Data.html#snow-cover-data",
+    "title": "4  Data",
+    "section": "4.4 4. Snow Cover Data",
+    "text": "4.4 4. Snow Cover Data\n\nSource:\n\nSentinel-2 imagery\n\nTemporal resolution: 5-10 days (depending on satellite overpasses)\nSpatial resolution: 10m (Bands 3, 4, 8) and 20m (Band 11)\nTime period: January 2015 - Present\nVariables:\n\nBand 3 (Green): Used in NDSI calculation to detect snow\nBand 11 (SWIR): Used in NDSI calculation to detect snow\nSnow Class: Derived from the NDSI and snow fraction (classified into 4 categories: &lt; 25%, 25–50%, 50–75%, &gt; 75% snow cover)\n\nData processing:\n\nNDSI is calculated using the formula: \\[ \\text{NDSI} = \\frac{\\text{Band 3} - \\text{Band 11}}{\\text{Band 3} + \\text{Band 11}} \\]\nSnow fraction is calculated using a neighborhood mean reducer over a 10-pixel radius\nSnow cover classes are derived by categorizing the snow percentage into four classes",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
@@ -57,51 +101,7 @@
     "href": "Methodology.html",
     "title": "5  Methodology",
     "section": "",
-    "text": "5.1 地形和天气 Setup\n这里是关键词：地形，海拔，坡度，坡向，气温，降水，风向，风强\n这里介绍登山者关心的因素有哪些，然后我们是如何展示这部分的内容的\n这个组件的面板和功能对应哪些方面的调节，如何发挥作用\n采集准备哪些数据源的内容，如何整理他们，配备统一端口",
-    "crumbs": [
-      "A. Project Summary",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
-    ]
-  },
-  {
-    "objectID": "Methodology.html#地形和天气-setup",
-    "href": "Methodology.html#地形和天气-setup",
-    "title": "5  Methodology",
-    "section": "",
-    "text": "var start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
-    "crumbs": [
-      "A. Project Summary",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
-    ]
-  },
-  {
-    "objectID": "Methodology.html#分析公式和图表-回归分析",
-    "href": "Methodology.html#分析公式和图表-回归分析",
-    "title": "5  Methodology",
-    "section": "5.2 分析公式和图表 回归分析",
-    "text": "5.2 分析公式和图表 回归分析\n天气相比于地形更可变也更重要，这里采用回归分析（或者某种天气预测方法，机器学习等），将历史天气数据预测这一段登山季节可能的天气概率，以及不同路段的气温，风等情况\n这里嵌入分析公式\n这里解释分析的方法过程\nvar start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
-    "crumbs": [
-      "A. Project Summary",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
-    ]
-  },
-  {
-    "objectID": "Methodology.html#可视化部分",
-    "href": "Methodology.html#可视化部分",
-    "title": "5  Methodology",
-    "section": "5.3 可视化部分",
-    "text": "5.3 可视化部分\n如何可视化的做法\nvar start='2020-04-01'\nvar end='2021-07-01'\n\nvar bands = ['B2', 'B3', 'B4','B5','B6','B7','B8', 'B8A','B11','B12']\n\nvar sentinel = ee.ImageCollection('COPERNICUS/S2_SR')\n                  .filter(ee.Filter.date(start, end))\n                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))\n                  .mean()\n                  .select(bands)\n\nvar s_rgb = {\n  min: 0.0,\n  max: 3000,\n  bands:['B4', 'B3', 'B2'],\n  opacity:1\n};",
-    "crumbs": [
-      "A. Project Summary",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
-    ]
-  },
-  {
-    "objectID": "Methodology.html#参考文献",
-    "href": "Methodology.html#参考文献",
-    "title": "5  Methodology",
-    "section": "5.4 参考文献",
-    "text": "5.4 参考文献",
+    "text": "5.1 Reference",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
@@ -112,62 +112,73 @@
     "href": "Interface.html",
     "title": "6  Interface",
     "section": "",
-    "text": "6.1 这里展示数据预处理",
+    "text": "6.1 🧭 1. Browse the Map",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
-    "objectID": "Interface.html#分析公式和图表",
-    "href": "Interface.html#分析公式和图表",
+    "objectID": "Interface.html#browse-the-map",
+    "href": "Interface.html#browse-the-map",
     "title": "6  Interface",
-    "section": "6.2 分析公式和图表",
-    "text": "6.2 分析公式和图表",
+    "section": "",
+    "text": "The map displays an area around Mount Everest within a 15 km radius.\nYou can drag the map and zoom in to view different areas.\nRoutes are color-coded to indicate different levels of risk.",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
-    "objectID": "Interface.html#核心算法",
-    "href": "Interface.html#核心算法",
+    "objectID": "Interface.html#select-time-range",
+    "href": "Interface.html#select-time-range",
     "title": "6  Interface",
-    "section": "6.3 核心算法",
-    "text": "6.3 核心算法",
+    "section": "6.2 📅 2. Select Time Range",
+    "text": "6.2 📅 2. Select Time Range\n\nIn the white panel at the top center:\nFind the “Select time range” section.\nDrag the timeline (Date Slider) to choose the date range you’re interested in.\nhe map and charts will automatically update to show the snow coverage during that period.",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
-    "objectID": "Interface.html#可视化部分",
-    "href": "Interface.html#可视化部分",
+    "objectID": "Interface.html#select-climbing-route",
+    "href": "Interface.html#select-climbing-route",
     "title": "6  Interface",
-    "section": "6.4 可视化部分",
-    "text": "6.4 可视化部分",
+    "section": "6.3 🧭 3. Select Climbing Route",
+    "text": "6.3 🧭 3. Select Climbing Route\n\nIn the “Select route” section, open the dropdown menu.\nChoose the route you’re interested in.\nThe map will automatically highlight that route and display:\n📊 The snow danger index chart for the selected route over the last 6 months.\n🧗 The elevation profile of the route.",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
-    "objectID": "Interface.html#结果展示",
-    "href": "Interface.html#结果展示",
+    "objectID": "Interface.html#switch-layers",
+    "href": "Interface.html#switch-layers",
     "title": "6  Interface",
-    "section": "6.5 结果展示",
-    "text": "6.5 结果展示",
+    "section": "6.4 ✅ 4. Switch Layers",
+    "text": "6.4 ✅ 4. Switch Layers\n\nYou can toggle the following layers to help assess climbing risks:\n☑️ Mean Temperature Layers: Shows the daytime/nighttime average temperatures from 2011–2024.\n☑️ Slope &gt; 20°: Displays areas with steep slopes.\n☑️ Aspect (Slope &gt; 20°): Displays the orientation (aspect) of steep slopes.\n☑️ Slope ≤ 20°: Displays areas with gentle slopes (potential safer paths).\nCheck or uncheck the boxes to control the visibility of these layers.",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
     ]
   },
   {
-    "objectID": "Interface.html#参考文献",
-    "href": "Interface.html#参考文献",
+    "objectID": "Interface.html#click-on-the-map-for-details",
+    "href": "Interface.html#click-on-the-map-for-details",
     "title": "6  Interface",
-    "section": "6.6 参考文献",
-    "text": "6.6 参考文献",
+    "section": "6.5 🖱 5. Click on the Map for Details",
+    "text": "6.5 🖱 5. Click on the Map for Details\n\nYou can click on any location on the map:\n🔸 If you click on a route: - A pop-up window will appear on the left displaying:\nThe route name and the danger index for the selected time range.\n🔹 If you click on another location on the map: - Two charts will appear: - The daytime land surface temperature (LST) time series. - The nighttime land surface temperature time series.",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
+    ]
+  },
+  {
+    "objectID": "Interface.html#legend-bottom-right",
+    "href": "Interface.html#legend-bottom-right",
+    "title": "6  Interface",
+    "section": "6.6 🧊 6. Legend (Bottom Right)",
+    "text": "6.6 🧊 6. Legend (Bottom Right)\n\nDifferent colors represent different levels of snow cover:\nGray: &lt;25%\nLight Blue: 25–50%\nDark Blue: 50–75%\nCyan: &gt;75%\nRoute color legend:\n🟢 Safest route\n🟡 Selected route\n🔴 Other routes",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"

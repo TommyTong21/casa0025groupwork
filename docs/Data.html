@@ -298,8 +298,17 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#study-area" id="toc-study-area" class="nav-link active" data-scroll-target="#study-area"><span class="header-section-number">4.1</span> 1. <strong>Study Area</strong></a></li>
+  <li><a href="#temperature-data" id="toc-temperature-data" class="nav-link" data-scroll-target="#temperature-data"><span class="header-section-number">4.2</span> 2. <strong>Temperature Data</strong></a></li>
+  <li><a href="#terrain-data" id="toc-terrain-data" class="nav-link" data-scroll-target="#terrain-data"><span class="header-section-number">4.3</span> 3. <strong>Terrain Data</strong></a></li>
+  <li><a href="#snow-cover-data" id="toc-snow-cover-data" class="nav-link" data-scroll-target="#snow-cover-data"><span class="header-section-number">4.4</span> 4. <strong>Snow Cover Data</strong></a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/TommyTong21/casa0025groupwork/tree/main/edit/main/Data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -330,15 +339,17 @@ window.Quarto = {
 
 
 <p>The analysis utilizes three main types of satellite data from Google Earth Engine and one self uploaded shapefile:</p>
-<ol type="1">
-<li><p><strong>Study Area</strong></p>
+<section id="study-area" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="study-area"><span class="header-section-number">4.1</span> 1. <strong>Study Area</strong></h2>
 <ul>
 <li>Center point: Mount Everest (86.9252°E, 27.98833°N)</li>
 <li>Analysis buffer: 10-15km radius</li>
 <li>Includes multiple climbing routes (shapefile import from private asset)</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> routes <span class="op">=</span> ee<span class="op">.</span><span class="fu">FeatureCollection</span>(<span class="st">"projects/ee-wbwhaha/assets/Everest"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Temperature Data</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> routes <span class="op">=</span> ee<span class="op">.</span><span class="fu">FeatureCollection</span>(<span class="st">"projects/ee-wbwhaha/assets/Everest"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="temperature-data" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="temperature-data"><span class="header-section-number">4.2</span> 2. <strong>Temperature Data</strong></h2>
 <ul>
 <li>Source:
 <ul>
@@ -353,8 +364,10 @@ window.Quarto = {
 <li>Nighttime Land Surface Temperature (LST_Night_1km)</li>
 </ul></li>
 <li>Data processing: Raw values are converted to Celsius by multiplying by 0.02 and subtracting 273.15</li>
-</ul></li>
-<li><p><strong>Terrain Data</strong></p>
+</ul>
+</section>
+<section id="terrain-data" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="terrain-data"><span class="header-section-number">4.3</span> 3. <strong>Terrain Data</strong></h2>
 <ul>
 <li>Source:
 <ul>
@@ -368,8 +381,10 @@ window.Quarto = {
 <li>Aspect (terrain orientation)</li>
 <li>Elevation profiles for climbing routes</li>
 </ul></li>
-</ul></li>
-<li><p><strong>Snow Cover Data</strong></p>
+</ul>
+</section>
+<section id="snow-cover-data" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="snow-cover-data"><span class="header-section-number">4.4</span> 4. <strong>Snow Cover Data</strong></h2>
 <ul>
 <li>Source:
 <ul>
@@ -390,10 +405,10 @@ window.Quarto = {
 <li><p>Snow fraction is calculated using a neighborhood mean reducer over a 10-pixel radius</p></li>
 <li><p>Snow cover classes are derived by categorizing the snow percentage into four classes</p></li>
 </ul></li>
-</ul></li>
-</ol>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -974,4 +989,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/TommyTong21/casa0025groupwork/tree/main/edit/main/Data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/TommyTong21/casa0025groupwork/tree/main/edit/main/Data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
