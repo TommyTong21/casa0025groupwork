@@ -1,9 +1,19 @@
 ---
 title: Problem Statement
-author: yourname
+author: Hanbing Xuan
 output: html_document
 ---
+# Problem Statement
 
-## 这里介绍了珠穆朗玛峰基本的攀登路线
-## 还有周围的基础设施分布和营地
-## （图中标注出各个要素）
+Recent years have seen more erratic snow and glacial patterns in the Himalayas, particularly near Mount Everest. Seasonal shifts are disrupting climbing timelines and increasing route uncertainty.
+
+Studies have observed rising snowlines, fragile snowpacks, and heightened avalanche activity during spring melt periods, posing serious risks to climbers (Matthews & Perry, 2021; Bajracharya et al., 2022).
+
+Climbers often rely on outdated maps or generalized forecasts. These lack the spatial and temporal precision needed to assess rapidly changing snow conditions on specific routes.
+
+Despite technological advances, few tools provide live, route-level insights into snow accumulation or avalanche risk, especially in high-altitude expedition contexts.
+
+Addressing this gap begins with understanding the terrain-specific effects of climate variability. A reliable foundation of risk awareness is essential for any safety-oriented planning tool.
+
+![](https://tse4.mm.bing.net/th?id=OIP.X8VgxBHVpSmoEIWZOfifdAHaE7&pid=Api){width=80%}
+*Mountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.*

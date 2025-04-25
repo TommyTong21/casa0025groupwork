@@ -1,9 +1,17 @@
 ---
 title: End User
-author: yourname
+author: Hanbing Xuan
 output: html_document
 ---
+# End User
 
-## 这里介绍了珠穆朗玛峰基本的攀登路线
-## 还有周围的基础设施分布和营地
-## （图中标注出各个要素）
+**🧗 Mountaineers & Planners:** Use route risk data for planning safe ascents.
+
+**🚶 Outdoor Tour Operators:** Design trekking experiences aligned with real-time conditions.
+
+**🌍 Geographers & Researchers:** Study snow dynamics and monitor climate change effects.
+
+*The tool especially assists commercial teams in preparing expeditions for the peak climbing season (April–May), enabling route and equipment selection based on predicted terrain risks.*
+
+![](https://tse4.mm.bing.net/th?id=OIP.X8VgxBHVpSmoEIWZOfifdAHaE7&pid=Api){width=80%}
+*Mountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.*

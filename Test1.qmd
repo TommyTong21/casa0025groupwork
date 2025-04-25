@@ -1,8 +1,0 @@
----
-title: 我的网页
-author: 您的名字
-output: html_document
----
-
-# This is a test script for the `Climber' project.
-

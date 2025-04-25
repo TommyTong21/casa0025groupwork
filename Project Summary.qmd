@@ -1,9 +1,18 @@
 ---
 title: Project Summary
-author: yourname
+author: Hanbing Xuan
 output: html_document
 ---
+# Project Summary
 
-## 这里介绍了珠穆朗玛峰基本的攀登路线
-## 还有周围的基础设施分布和营地
-## （图中标注出各个要素）
+The Everest Climbing Planner currently displays around 10 unique climbing routes radiating from a central base camp location.
+
+The green route is identified as the safest, likely due to minimal overlap with high-snow areas.
+
+The yellow route, currently selected, appears moderately safe but still crosses several medium-snow zones.
+
+Red routes indicate other viable but potentially riskier paths, some of which traverse high-snow regions (>75% coverage).
+
+These visual insights help climbers and planners assess not just route direction and distance, but also the seasonal safety based on snow cover severity.
+
+![](https://raw.githubusercontent.com/TommyTong21/casa0025groupwork/main/images/route.png){width=80%}

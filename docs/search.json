@@ -44,29 +44,7 @@
     "href": "Problem Statement.html",
     "title": "1  Problem Statement",
     "section": "",
-    "text": "1.1 这里介绍了珠穆朗玛峰基本的攀登路线",
-    "crumbs": [
-      "A. Project Summary",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Problem Statement</span>"
-    ]
-  },
-  {
-    "objectID": "Problem Statement.html#还有周围的基础设施分布和营地",
-    "href": "Problem Statement.html#还有周围的基础设施分布和营地",
-    "title": "1  Problem Statement",
-    "section": "1.2 还有周围的基础设施分布和营地",
-    "text": "1.2 还有周围的基础设施分布和营地",
-    "crumbs": [
-      "A. Project Summary",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Problem Statement</span>"
-    ]
-  },
-  {
-    "objectID": "Problem Statement.html#图中标注出各个要素",
-    "href": "Problem Statement.html#图中标注出各个要素",
-    "title": "1  Problem Statement",
-    "section": "1.3 （图中标注出各个要素）",
-    "text": "1.3 （图中标注出各个要素）",
+    "text": "2 Problem Statement\nRecent years have seen more erratic snow and glacial patterns in the Himalayas, particularly near Mount Everest. Seasonal shifts are disrupting climbing timelines and increasing route uncertainty.\nStudies have observed rising snowlines, fragile snowpacks, and heightened avalanche activity during spring melt periods, posing serious risks to climbers (Matthews & Perry, 2021; Bajracharya et al., 2022).\nClimbers often rely on outdated maps or generalized forecasts. These lack the spatial and temporal precision needed to assess rapidly changing snow conditions on specific routes.\nDespite technological advances, few tools provide live, route-level insights into snow accumulation or avalanche risk, especially in high-altitude expedition contexts.\nAddressing this gap begins with understanding the terrain-specific effects of climate variability. A reliable foundation of risk awareness is essential for any safety-oriented planning tool.\n Mountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Problem Statement</span>"
@@ -77,29 +55,7 @@
     "href": "End User.html",
     "title": "2  End User",
     "section": "",
-    "text": "2.1 这里介绍了珠穆朗玛峰基本的攀登路线",
-    "crumbs": [
-      "A. Project Summary",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>End User</span>"
-    ]
-  },
-  {
-    "objectID": "End User.html#还有周围的基础设施分布和营地",
-    "href": "End User.html#还有周围的基础设施分布和营地",
-    "title": "2  End User",
-    "section": "2.2 还有周围的基础设施分布和营地",
-    "text": "2.2 还有周围的基础设施分布和营地",
-    "crumbs": [
-      "A. Project Summary",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>End User</span>"
-    ]
-  },
-  {
-    "objectID": "End User.html#图中标注出各个要素",
-    "href": "End User.html#图中标注出各个要素",
-    "title": "2  End User",
-    "section": "2.3 （图中标注出各个要素）",
-    "text": "2.3 （图中标注出各个要素）",
+    "text": "3 End User\n🧗 Mountaineers & Planners: Use route risk data for planning safe ascents.\n🚶 Outdoor Tour Operators: Design trekking experiences aligned with real-time conditions.\n🌍 Geographers & Researchers: Study snow dynamics and monitor climate change effects.\nThe tool especially assists commercial teams in preparing expeditions for the peak climbing season (April–May), enabling route and equipment selection based on predicted terrain risks.\n Mountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>End User</span>"
