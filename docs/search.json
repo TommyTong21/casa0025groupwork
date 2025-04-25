@@ -6,7 +6,7 @@
     "section": "",
     "text": "0.1 Table of Contents\nThe Everest Climbing Planner currently displays around 10 unique climbing routes radiating from a central base camp location.\nThe green route is identified as the safest, likely due to minimal overlap with high-snow areas.\nThe yellow route, currently selected, appears moderately safe but still crosses several medium-snow zones.\nRed routes indicate other viable but potentially riskier paths, some of which traverse high-snow regions (&gt;75% coverage).\nThese visual insights help climbers and planners assess not just route direction and distance, but also the seasonal safety based on snow cover severity.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Project Summary</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
     ]
   },
   {
@@ -16,18 +16,18 @@
     "section": "",
     "text": "Project Summary\n\nA brief summary of your project.\n\nProblem Statement\nEnd User\nData\nMethodology\nInterface\n\n\nThe Application\n\nLink to the application.\n\nThe Application\n\n\nHow it Works\n\nHow the application works.\n\nHow it Works",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Project Summary</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
     ]
   },
   {
     "objectID": "Problem_Statement.html",
     "href": "Problem_Statement.html",
-    "title": "Mount Everest Climber Services",
+    "title": "2  Problem Statement",
     "section": "",
     "text": "Recent years have seen more erratic snow and glacial patterns in the Himalayas, particularly near Mount Everest. Seasonal shifts are disrupting climbing timelines and increasing route uncertainty.\nStudies have observed rising snowlines, fragile snowpacks, and heightened avalanche activity during spring melt periods, posing serious risks to climbers (Matthews & Perry, 2021; Bajracharya et al., 2022).\nClimbers often rely on outdated maps or generalized forecasts. These lack the spatial and temporal precision needed to assess rapidly changing snow conditions on specific routes.\nDespite technological advances, few tools provide live, route-level insights into snow accumulation or avalanche risk, especially in high-altitude expedition contexts.\nAddressing this gap begins with understanding the terrain-specific effects of climate variability. A reliable foundation of risk awareness is essential for any safety-oriented planning tool.\n\nMountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.",
     "crumbs": [
       "A. Project Summary",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Problem_Statement.html</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Problem Statement</span>"
     ]
   },
   {
