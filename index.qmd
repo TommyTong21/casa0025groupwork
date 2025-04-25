@@ -27,14 +27,14 @@ These visual insights help climbers and planners assess not just route direction
 
 A) **Project Summary**
     * A brief summary of your project.
-        * [Problem Statement](Problem-Statement.qmd)
-        * [End User](End-User.qmd)
+        * [Problem Statement](Problem_Statement.qmd)
+        * [End User](End_User.qmd)
         * [Data](Data.qmd)
         * [Methodology](Methodology.qmd)
         * [Interface](Interface.qmd)
 B) **The Application**
     * Link to the application.
-        * [The Application](The Application.qmd)
+        * [The Application](The_Application.qmd)
 C) **How it Works**
     * How the application works.
-        * [How it Works](How it Works.qmd)
+        * [How it Works](How_it_Works.qmd)

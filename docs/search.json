@@ -20,8 +20,8 @@
     ]
   },
   {
-    "objectID": "Problem Statement.html",
-    "href": "Problem Statement.html",
+    "objectID": "Problem_Statement.html",
+    "href": "Problem_Statement.html",
     "title": "2  Problem Statement",
     "section": "",
     "text": "3 Problem Statement\nRecent years have seen more erratic snow and glacial patterns in the Himalayas, particularly near Mount Everest. Seasonal shifts are disrupting climbing timelines and increasing route uncertainty.\nStudies have observed rising snowlines, fragile snowpacks, and heightened avalanche activity during spring melt periods, posing serious risks to climbers (Matthews & Perry, 2021; Bajracharya et al., 2022).\nClimbers often rely on outdated maps or generalized forecasts. These lack the spatial and temporal precision needed to assess rapidly changing snow conditions on specific routes.\nDespite technological advances, few tools provide live, route-level insights into snow accumulation or avalanche risk, especially in high-altitude expedition contexts.\nAddressing this gap begins with understanding the terrain-specific effects of climate variability. A reliable foundation of risk awareness is essential for any safety-oriented planning tool.\n Mountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.",
@@ -31,8 +31,8 @@
     ]
   },
   {
-    "objectID": "End User.html",
-    "href": "End User.html",
+    "objectID": "End_User.html",
+    "href": "End_User.html",
     "title": "3  End User",
     "section": "",
     "text": "4 End User\n🧗 Mountaineers & Planners: Use route risk data for planning safe ascents.\n🚶 Outdoor Tour Operators: Design trekking experiences aligned with real-time conditions.\n🌍 Geographers & Researchers: Study snow dynamics and monitor climate change effects.\nThe tool especially assists commercial teams in preparing expeditions for the peak climbing season (April–May), enabling route and equipment selection based on predicted terrain risks.\n Mountaineers ascending a snowy peak in a team. Source: Unsplash / Bing Images.",
@@ -229,8 +229,8 @@
     ]
   },
   {
-    "objectID": "The Application.html",
-    "href": "The Application.html",
+    "objectID": "The_Application.html",
+    "href": "The_Application.html",
     "title": "7  Application",
     "section": "",
     "text": "7.1 这里展示数据预处理",
@@ -240,8 +240,8 @@
     ]
   },
   {
-    "objectID": "The Application.html#分析公式和图表",
-    "href": "The Application.html#分析公式和图表",
+    "objectID": "The_Application.html#分析公式和图表",
+    "href": "The_Application.html#分析公式和图表",
     "title": "7  Application",
     "section": "7.2 分析公式和图表",
     "text": "7.2 分析公式和图表",
@@ -251,8 +251,8 @@
     ]
   },
   {
-    "objectID": "The Application.html#核心算法",
-    "href": "The Application.html#核心算法",
+    "objectID": "The_Application.html#核心算法",
+    "href": "The_Application.html#核心算法",
     "title": "7  Application",
     "section": "7.3 核心算法",
     "text": "7.3 核心算法",
@@ -262,8 +262,8 @@
     ]
   },
   {
-    "objectID": "The Application.html#可视化部分",
-    "href": "The Application.html#可视化部分",
+    "objectID": "The_Application.html#可视化部分",
+    "href": "The_Application.html#可视化部分",
     "title": "7  Application",
     "section": "7.4 可视化部分",
     "text": "7.4 可视化部分",
@@ -273,8 +273,8 @@
     ]
   },
   {
-    "objectID": "The Application.html#结果展示",
-    "href": "The Application.html#结果展示",
+    "objectID": "The_Application.html#结果展示",
+    "href": "The_Application.html#结果展示",
     "title": "7  Application",
     "section": "7.5 结果展示",
     "text": "7.5 结果展示",
@@ -284,8 +284,8 @@
     ]
   },
   {
-    "objectID": "The Application.html#参考文献",
-    "href": "The Application.html#参考文献",
+    "objectID": "The_Application.html#参考文献",
+    "href": "The_Application.html#参考文献",
     "title": "7  Application",
     "section": "7.6 参考文献",
     "text": "7.6 参考文献",
@@ -295,8 +295,8 @@
     ]
   },
   {
-    "objectID": "How it Works.html",
-    "href": "How it Works.html",
+    "objectID": "How_it_Works.html",
+    "href": "How_it_Works.html",
     "title": "8  How it Works",
     "section": "",
     "text": "8.1 这里展示数据预处理",
@@ -306,8 +306,8 @@
     ]
   },
   {
-    "objectID": "How it Works.html#分析公式和图表",
-    "href": "How it Works.html#分析公式和图表",
+    "objectID": "How_it_Works.html#分析公式和图表",
+    "href": "How_it_Works.html#分析公式和图表",
     "title": "8  How it Works",
     "section": "8.2 分析公式和图表",
     "text": "8.2 分析公式和图表",
@@ -317,8 +317,8 @@
     ]
   },
   {
-    "objectID": "How it Works.html#核心算法",
-    "href": "How it Works.html#核心算法",
+    "objectID": "How_it_Works.html#核心算法",
+    "href": "How_it_Works.html#核心算法",
     "title": "8  How it Works",
     "section": "8.3 核心算法",
     "text": "8.3 核心算法",
@@ -328,8 +328,8 @@
     ]
   },
   {
-    "objectID": "How it Works.html#可视化部分",
-    "href": "How it Works.html#可视化部分",
+    "objectID": "How_it_Works.html#可视化部分",
+    "href": "How_it_Works.html#可视化部分",
     "title": "8  How it Works",
     "section": "8.4 可视化部分",
     "text": "8.4 可视化部分",
@@ -339,8 +339,8 @@
     ]
   },
   {
-    "objectID": "How it Works.html#结果展示",
-    "href": "How it Works.html#结果展示",
+    "objectID": "How_it_Works.html#结果展示",
+    "href": "How_it_Works.html#结果展示",
     "title": "8  How it Works",
     "section": "8.5 结果展示",
     "text": "8.5 结果展示",
@@ -350,8 +350,8 @@
     ]
   },
   {
-    "objectID": "How it Works.html#参考文献",
-    "href": "How it Works.html#参考文献",
+    "objectID": "How_it_Works.html#参考文献",
+    "href": "How_it_Works.html#参考文献",
     "title": "8  How it Works",
     "section": "8.6 参考文献",
     "text": "8.6 参考文献",
