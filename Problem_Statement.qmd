@@ -3,7 +3,6 @@ title: Problem Statement
 author: Hanbing Xuan
 output: html_document
 ---
-# Problem Statement
 
 Recent years have seen more erratic snow and glacial patterns in the Himalayas, particularly near Mount Everest. Seasonal shifts are disrupting climbing timelines and increasing route uncertainty.
 

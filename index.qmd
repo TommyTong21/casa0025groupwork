@@ -3,7 +3,6 @@ title: Project Summary
 author: Hanbing Xuan
 output: html_document
 ---
-# Project Summary
 
 The Everest Climbing Planner currently displays around 10 unique climbing routes radiating from a central base camp location.
 

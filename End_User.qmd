@@ -3,7 +3,6 @@ title: End User
 author: Hanbing Xuan
 output: html_document
 ---
-# End User
 
 **🧗 Mountaineers & Planners:** Use route risk data for planning safe ascents.
 
