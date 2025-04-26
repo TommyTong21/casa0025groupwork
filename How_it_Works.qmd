@@ -109,6 +109,8 @@ var routeSelect = ui.Select({
 ```
   
 ## **Snow Cover Analysis and Routes Danger Index Pipeline**
+This section handles the snow cover data processing and visualization.
+  
 - Filter out unwanted cloud-related artifacts in Sentinel-2 imagery using the Scene Classification Layer (SCL)
 ```js
 // Function to mask clouds in Sentinel-2 imagery based on the Scene Classification Layer (SCL)
