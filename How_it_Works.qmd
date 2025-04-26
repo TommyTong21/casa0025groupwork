@@ -1,6 +1,6 @@
 ---
 title: How it Works
-author: Bowen Wu, JiahaO Tong
+author: Bowen Wu, Jiahao Tong
 output: html_document
 ---
 

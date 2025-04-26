@@ -1,0 +1,320 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CASA0025 Final Assessment",
+    "section": "",
+    "text": "The Everest Climbing Planner currently displays around 10 unique climbing routes radiating from a central base camp location.\nThe green route is identified as the safest, likely due to minimal overlap with high-snow areas.\nThe yellow route, currently selected, appears moderately safe but still crosses several medium-snow zones.\nRed routes indicate other viable but potentially riskier paths, some of which traverse high-snow regions (&gt;75% coverage).\nThese visual insights help climbers and planners assess not just route direction and distance, but also the seasonal safety based on snow cover severity.\n\nTable of Contents\n\nProject Summary\n\nA brief summary of your project.\n\nProblem Statement\nEnd User\nData\nMethodology\nInterface\n\n\nThe Application\n\nLink to the application.\n\nThe Application\n\n\nHow it Works\n\nHow the application works.\n\nHow it Works",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "Problem_Statement.html",
+    "href": "Problem_Statement.html",
+    "title": "2  Problem Statement",
+    "section": "",
+    "text": "Recent years have seen more erratic snow and glacial patterns in the Himalayas, particularly near Mount Everest. Seasonal shifts are disrupting climbing timelines and increasing route uncertainty.\nStudies have observed rising snowlines, fragile snowpacks, and heightened avalanche activity during spring melt periods, posing serious risks to climbers (Matthews & Perry, 2021; Bajracharya et al., 2022).\nClimbers often rely on outdated maps or generalized forecasts. These lack the spatial and temporal precision needed to assess rapidly changing snow conditions on specific routes.\nDespite technological advances, few tools provide live, route-level insights into snow accumulation or avalanche risk, especially in high-altitude expedition contexts.\nAddressing this gap begins with understanding the terrain-specific effects of climate variability. A reliable foundation of risk awareness is essential for any safety-oriented planning tool.\n\nL’Everest, plus haut sommet du monde, fait partie de cette liste. Source: PRAKASH MATHEMA / AFP",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Problem Statement</span>"
+    ]
+  },
+  {
+    "objectID": "End_User.html",
+    "href": "End_User.html",
+    "title": "3  End User",
+    "section": "",
+    "text": "🧗 Mountaineers & Planners: Use route risk data for planning safe ascents.\n🚶 Outdoor Tour Operators: Design trekking experiences aligned with real-time conditions.\n🌍 Geographers & Researchers: Study snow dynamics and monitor climate change effects.\nThe tool especially assists commercial teams in preparing expeditions for the peak climbing season (April–May), enabling route and equipment selection based on predicted terrain risks.\n\nThe Everest. Source: Daniel Prudek/Getty.",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>End User</span>"
+    ]
+  },
+  {
+    "objectID": "Data.html",
+    "href": "Data.html",
+    "title": "4  Data",
+    "section": "",
+    "text": "4.1 Study Area\nThe analysis utilizes three main types of satellite data from Google Earth Engine and one self uploaded shapefile:",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "Data.html#study-area",
+    "href": "Data.html#study-area",
+    "title": "4  Data",
+    "section": "",
+    "text": "Center point: Mount Everest (86.9252°E, 27.98833°N)\nAnalysis buffer: 10-15km radius\nIncludes multiple climbing routes (shapefile import from private asset)\n\nvar routes = ee.FeatureCollection(\"projects/ee-wbwhaha/assets/Everest\");",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "Data.html#temperature-data",
+    "href": "Data.html#temperature-data",
+    "title": "4  Data",
+    "section": "4.2 Temperature Data",
+    "text": "4.2 Temperature Data\n\nSource:\n\nMODIS MOD11A2 dataset\n\nTemporal resolution: 8-day composite\nSpatial resolution: 1km\nTime period: February 18, 2011 - March 30, 2025\nVariables:\n\nDaytime Land Surface Temperature (LST_Day_1km)\nNighttime Land Surface Temperature (LST_Night_1km)\n\nData processing: Raw values are converted to Celsius by multiplying by 0.02 and subtracting 273.15",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "Data.html#terrain-data",
+    "href": "Data.html#terrain-data",
+    "title": "4  Data",
+    "section": "4.3 Terrain Data",
+    "text": "4.3 Terrain Data\n\nSource:\n\nUSGS/SRTMGL1_003 dataset\nNASA/NASADEM_HGT/001 dataset\n\nSpatial resolution: 30m\nVariables:\n\nSlope (identifying steep areas &gt;20 degrees)\nAspect (terrain orientation)\nElevation profiles for climbing routes",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "Data.html#snow-cover-data",
+    "href": "Data.html#snow-cover-data",
+    "title": "4  Data",
+    "section": "4.4 Snow Cover Data",
+    "text": "4.4 Snow Cover Data\n\nSource:\n\nSentinel-2 imagery\n\nTemporal resolution: 5-10 days (depending on satellite overpasses)\nSpatial resolution: 10m (Bands 3, 4, 8) and 20m (Band 11)\nTime period: January 2015 - Present\nVariables:\n\nBand 3 (Green): Used in NDSI calculation to detect snow\nBand 11 (SWIR): Used in NDSI calculation to detect snow\nSnow Class: Derived from the NDSI and snow fraction (classified into 4 categories: &lt; 25%, 25–50%, 50–75%, &gt; 75% snow cover)\n\nData processing:\n\nNDSI is calculated using the formula: \\[ \\text{NDSI} = \\frac{\\text{Band 3} - \\text{Band 11}}{\\text{Band 3} + \\text{Band 11}} \\]\nSnow fraction is calculated using a neighborhood mean reducer over a 10-pixel radius\nSnow cover classes are derived by categorizing the snow percentage into four classes",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "Methodology.html",
+    "href": "Methodology.html",
+    "title": "5  Methodology",
+    "section": "",
+    "text": "5.1 Temperature Analysis\nThe analysis combines temperature and terrain data to understand the environmental conditions around Mount Everest. The methodology consists of three main components:",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+    ]
+  },
+  {
+    "objectID": "Methodology.html#temperature-analysis",
+    "href": "Methodology.html#temperature-analysis",
+    "title": "5  Methodology",
+    "section": "",
+    "text": "Temperature Unit Conversion:\n\nRaw MODIS LST data is in Kelvin (K)\nConversion formula: Celsius = (Kelvin × 0.02) - 273.15\nScale factor (0.02) accounts for MODIS data scaling\n273.15 converts from Kelvin to Celsius\n\nTime Series Analysis:\n\nUtilizes ee.Reducer.mean() for spatial aggregation\nReducer computes mean temperature within specified region\nHandles missing data through reducer’s null handling\nPreserves temporal information using system:time_start\n\nStatistical Analysis:\n\nTemporal aggregation using imageCollection.mean()\nSpatial statistics using ee.Reducer statistics\nPoint-based analysis for specific locations",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+    ]
+  },
+  {
+    "objectID": "Methodology.html#terrain-analysis",
+    "href": "Methodology.html#terrain-analysis",
+    "title": "5  Methodology",
+    "section": "5.2 Terrain Analysis",
+    "text": "5.2 Terrain Analysis\n\nElevation Processing:\n\nDigital Elevation Model (DEM) processing using ee.Terrain products\nSlope calculation using ee.Terrain.slope()\nAspect calculation using ee.Terrain.aspect()\n\nRoute Analysis:\n\nFeature collection processing using ee.FeatureCollection\nRoute geometry intersection using geometry.intersection()\nElevation Profile Generation:\n\n100-point sampling along route geometry\nUniform point distribution using numPixels parameter\n30-meter resolution sampling (scale parameter)\nProfile data stored as feature properties\nInteractive visualization of elevation changes\n\n\nTerrain Classification:\n\nSlope masking using updateMask() for steep areas (&gt;20 degrees)\nAspect classification using 8-direction color coding\nTerrain product generation using ee.Terrain.products()",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+    ]
+  },
+  {
+    "objectID": "Methodology.html#snow-cover-analysis",
+    "href": "Methodology.html#snow-cover-analysis",
+    "title": "5  Methodology",
+    "section": "5.3 Snow Cover Analysis",
+    "text": "5.3 Snow Cover Analysis\n\nSnow Detection:\n\nNormalized Difference Snow Index (NDSI):\nNDSI is calculated using Sentinel-2 imagery, specifically using the green band (B3) and the shortwave infrared band (B11). Formula:\n\\[ \\text{NDSI} = \\frac{\\text{Band 3} - \\text{Band 11}}{\\text{Band 3} + \\text{Band 11}} \\] , where values greater than 0.45 indicate snow.\nSnow Masking: Areas with NDSI &gt; 0.45 are classified as snow-covered, and the snow mask is applied to create a binary mask (snow vs. non-snow).\n\nSnow Cover Classification:\n\nSnow Percentage: The percentage of snow cover in each region is calculated using a reduceNeighborhood function, which computes the mean snow coverage in a defined neighborhood (kernel size of 10x10 pixels).\nSnow Class Categories: The snow cover is classified into four categories:\n\n25% less snow (Class 1)\n25–50% snow (Class 2)\n50–75% snow (Class 3)\n75% more snow (Class 4)",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+    ]
+  },
+  {
+    "objectID": "Methodology.html#danger-index-analysis",
+    "href": "Methodology.html#danger-index-analysis",
+    "title": "5  Methodology",
+    "section": "5.4 Danger Index Analysis",
+    "text": "5.4 Danger Index Analysis\n\nThe danger index is computed based on the snow class distribution, where each snow class is assigned a weight:\n\nClass 1 (&lt;25% snow): Weight = 1\nClass 2 (25–50% snow): Weight = 2\nClass 3 (50–75% snow): Weight = 3\nClass 4 (&gt;75% snow): Weight = 4\nand the formula:\n\\[ \\text{Danger Index} = \\frac{f_1 \\times 1 + f_2 \\times 2 + f_3 \\times 3 + f_4 \\times 4}{f_1 + f_2 + f_3 + f_4} \\]\n\nThe danger index is calculated for each route based on the frequency of each snow class within the route’s surrounding area (buffered by 50 meters):\nThe frequency of each snow class is obtained by reducing the snow class image (produced from the NDSI calculation) using ee.Reducer.frequencyHistogram().\nThe weighted sum of snow class frequencies is divided by the total number of pixels to produce an average danger index.",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+    ]
+  },
+  {
+    "objectID": "Methodology.html#interactive-analysis",
+    "href": "Methodology.html#interactive-analysis",
+    "title": "5  Methodology",
+    "section": "5.5 Interactive Analysis",
+    "text": "5.5 Interactive Analysis\n\nUser Interface:\n\nCustom UI panel implementation using ui.Panel\nInteractive point selection using Map.onClick()\nRoute selection using ui.Select dropdown\n\nDynamic Visualization:\n\nReal-time chart updates using ui.Chart\nLayer management using Map.addLayer() and Map.remove()\nLegend updates using custom ui.Panel\n\nData Interaction:\n\nPoint-based temperature analysis\nRoute-based elevation profiling\nDynamic layer toggling",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+    ]
+  },
+  {
+    "objectID": "Methodology.html#reference",
+    "href": "Methodology.html#reference",
+    "title": "5  Methodology",
+    "section": "5.6 Reference",
+    "text": "5.6 Reference",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
+    ]
+  },
+  {
+    "objectID": "Interface.html",
+    "href": "Interface.html",
+    "title": "6  Interface",
+    "section": "",
+    "text": "6.1 🧭 Browse the Map",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
+    ]
+  },
+  {
+    "objectID": "Interface.html#browse-the-map",
+    "href": "Interface.html#browse-the-map",
+    "title": "6  Interface",
+    "section": "",
+    "text": "The map displays an area around Mount Everest within a 15 km radius.\nYou can drag the map and zoom in to view different areas.\nRoutes are color-coded to indicate different levels of risk.",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
+    ]
+  },
+  {
+    "objectID": "Interface.html#select-time-range",
+    "href": "Interface.html#select-time-range",
+    "title": "6  Interface",
+    "section": "6.2 📅 Select Time Range",
+    "text": "6.2 📅 Select Time Range\n\nIn the white panel at the top center:\nFind the “Select time range” section.\nDrag the timeline (Date Slider) to choose the date range you’re interested in.\nhe map and charts will automatically update to show the snow coverage during that period.",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
+    ]
+  },
+  {
+    "objectID": "Interface.html#select-climbing-route",
+    "href": "Interface.html#select-climbing-route",
+    "title": "6  Interface",
+    "section": "6.3 🧭 Select Climbing Route",
+    "text": "6.3 🧭 Select Climbing Route\n\nIn the “Select route” section, open the dropdown menu.\nChoose the route you’re interested in.\nThe map will automatically highlight that route and display:\n\n📊 The snow danger index chart for the selected route over the last 6 months.\n🧗 The elevation profile of the route.",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
+    ]
+  },
+  {
+    "objectID": "Interface.html#switch-layers",
+    "href": "Interface.html#switch-layers",
+    "title": "6  Interface",
+    "section": "6.4 ✅ Switch Layers",
+    "text": "6.4 ✅ Switch Layers\n\nYou can toggle the following layers to help assess climbing risks:\n\n☑️ Mean Temperature Layers: Shows the daytime/nighttime average temperatures from 2011–2024.\n☑️ Slope &gt; 20°: Displays areas with steep slopes.\n☑️ Aspect (Slope &gt; 20°): Displays the orientation (aspect) of steep slopes.\n☑️ Slope ≤ 20°: Displays areas with gentle slopes (potential safer paths).\n\nCheck or uncheck the boxes to control the visibility of these layers.",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
+    ]
+  },
+  {
+    "objectID": "Interface.html#click-on-the-map-for-details",
+    "href": "Interface.html#click-on-the-map-for-details",
+    "title": "6  Interface",
+    "section": "6.5 🖱 Click on the Map for Details",
+    "text": "6.5 🖱 Click on the Map for Details\n\nYou can click on any location on the map:\n\n🔸 If you click on a route:\n\nA pop-up window will appear on the left displaying:\nThe route name and the danger index for the selected time range.\n\n🔹 If you click on another location on the map:\n\nTwo charts will appear:\nThe daytime land surface temperature (LST) time series.\nThe nighttime land surface temperature time series.",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
+    ]
+  },
+  {
+    "objectID": "Interface.html#legend-bottom-right",
+    "href": "Interface.html#legend-bottom-right",
+    "title": "6  Interface",
+    "section": "6.6 🧊 Legend (Bottom Right)",
+    "text": "6.6 🧊 Legend (Bottom Right)\n\nDifferent colors represent different levels of snow cover:\n\nGray: &lt;25%\nLight Blue: 25–50%\nDark Blue: 50–75%\nCyan: &gt;75%\n\nRoute color legend:\n\n🟢 Safest route\n🟡 Selected route\n🔴 Other routes",
+    "crumbs": [
+      "A. Project Summary",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
+    ]
+  },
+  {
+    "objectID": "The_Application.html",
+    "href": "The_Application.html",
+    "title": "7  Application",
+    "section": "",
+    "text": "The full earth engine code is available here.",
+    "crumbs": [
+      "B. The Application",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
+    ]
+  },
+  {
+    "objectID": "How_it_Works.html",
+    "href": "How_it_Works.html",
+    "title": "8  How it Works",
+    "section": "",
+    "text": "8.1 Data Initialization and Setup\nThe application is built using Google Earth Engine’s JavaScript API. Here are the key components and their implementation:",
+    "crumbs": [
+      "C. How it Works",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>How it Works</span>"
+    ]
+  },
+  {
+    "objectID": "How_it_Works.html#data-initialization-and-setup",
+    "href": "How_it_Works.html#data-initialization-and-setup",
+    "title": "8  How it Works",
+    "section": "",
+    "text": "Firstly, define the area of interest (AOI) around Summit coordinates. A ui.Map() widget is created, switched to the satellite basemap, and zoomed to the AOI.\n\n// Mount Everest point & 15 km buffer\nvar everestPoint  = ee.Geometry.Point([86.9250, 27.9881]);\nvar everestBuffer = everestPoint.buffer(15000);\n\n// Map widget – satellite basemap, centred on the buffer\nvar customMap = ui.Map();\ncustomMap.setOptions(\"SATELLITE\");\ncustomMap.centerObject(everestBuffer, 11);\n\nInitialize the time range for analysis and Load the datasets.\n\n// Import a FeatureCollection that contains the routes (Everest expedition routes)\nvar routes = ee.FeatureCollection(\"projects/ee-wbwhaha/assets/Everest\");\n// Input source\nvar modis = ee.ImageCollection('MODIS/MOD11A2');\n\nvar start = ee.Date('2011-02-18');\nvar end = ee.Date('2025-03-30');\nvar dateRange = ee.DateRange(start, end);",
+    "crumbs": [
+      "C. How it Works",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>How it Works</span>"
+    ]
+  },
+  {
+    "objectID": "How_it_Works.html#temperature-analysis-pipeline",
+    "href": "How_it_Works.html#temperature-analysis-pipeline",
+    "title": "8  How it Works",
+    "section": "8.2 Temperature Analysis Pipeline",
+    "text": "8.2 Temperature Analysis Pipeline\nThis section handles the temperature data processing and visualization. The process involves:\n\nFiltering temperature data by date and region\n\nvar modLSTday = modis.filterDate(dateRange).select('LST_Day_1km');\nvar modLSTnight = modis.filterDate(dateRange).select('LST_Night_1km');\n\nConverting temperature values from Kelvin to Celsius\n\nvar modLSTday_c = modLSTday.map(function(img) {\n  return img.multiply(0.02).subtract(273.15);\n});\n\nCreating time series visualizations\n\nvar tsDay = ui.Chart.image.series({\n    imageCollection: modLSTday_c,\n    region: selectedPoint,\n    reducer: ee.Reducer.mean(),\n    scale: 1000,\n    xProperty: 'system:time_start'\n}).setOptions({\n    title: 'Average LST Day Time Series',\n    vAxis: {title: 'LST (°C)'}\n});\n\nImplementing interactive temperature analysis\n\nMap.addLayer(clippedLSTday_c, {\n    min: -30, max: 30,\n    palette: ['blue', 'limegreen', 'yellow', 'darkorange', 'red']\n}, 'Mean Day Temperature');",
+    "crumbs": [
+      "C. How it Works",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>How it Works</span>"
+    ]
+  },
+  {
+    "objectID": "How_it_Works.html#terrain-analysis-pipeline",
+    "href": "How_it_Works.html#terrain-analysis-pipeline",
+    "title": "8  How it Works",
+    "section": "8.3 Terrain Analysis Pipeline",
+    "text": "8.3 Terrain Analysis Pipeline\nThis section handles the terrain data processing and visualization. The process involves:\n\nGenerating terrain products (slope and aspect)\n\nvar slope = ee.Terrain.slope(dem);\nvar aspect = ee.Terrain.aspect(dem);\nvar slopeMask = slope.updateMask(slope.gt(20));\n\nProcessing route data and elevation profiles\n\nvar calculateElevationProfile = function(route) {\n    var geometry = route.geometry();\n    var elevationProfile = elevation.sample({\n        region: geometry,\n        numPixels: 100,  // Number of sampling points\n        scale: 30        // Resolution in meters\n    });\n    return route.set('elevationProfile', elevationProfile);\n};\n\nCreating terrain visualizations\n\nMap.addLayer(slopeMask, {\n    min: 20, max: 90,\n    palette: ['lightgreen', 'yellow', 'orange', 'red']\n}, 'Steep Slopes');\n\nImplementing route selection and analysis\n\nvar routeSelect = ui.Select({\n    items: routeNames,\n    onChange: function(name) {\n        var selectedRoute = routesWithElevation\n            .filter(ee.Filter.eq('NAME', name))\n            .first();\n        updateElevationChart(selectedRoute);\n    }\n});",
+    "crumbs": [
+      "C. How it Works",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>How it Works</span>"
+    ]
+  },
+  {
+    "objectID": "How_it_Works.html#snow-cover-analysis-and-routes-danger-index-pipeline",
+    "href": "How_it_Works.html#snow-cover-analysis-and-routes-danger-index-pipeline",
+    "title": "8  How it Works",
+    "section": "8.4 Snow Cover Analysis and Routes Danger Index Pipeline",
+    "text": "8.4 Snow Cover Analysis and Routes Danger Index Pipeline\nThis section handles the snow cover data processing and visualization. The process involves:\n\nFilter out unwanted cloud-related artifacts in Sentinel-2 imagery using the Scene Classification Layer (SCL)\n\n// Function to mask clouds in Sentinel-2 imagery based on the Scene Classification Layer (SCL)\nfunction maskS2clouds(image) {\n  var scl = image.select('SCL'); // Select the Scene Classification Layer (SCL)\n  var mask = scl.neq(3).and(scl.neq(8)).and(scl.neq(9)); // Mask clouds, cirrus, and cloud shadows\n  return image.updateMask(mask); // Apply the mask to the image\n}\n\nCreating a composite image by applying a median operation to the Sentinel-2 dataset (s2) and clipping it to the everestBuffer region. This ensures that the analysis focuses only on the area of interest. Next, it calculates the Normalized Difference Snow Index (NDSI), which is derived from Sentinel-2 bands B3 (Green) and B11 (Shortwave Infrared). The NDSI helps differentiate snow-covered regions from other surface types. Using the NDSI, the code defines a snow mask by applying a threshold of 0.45. Any pixel with an NDSI value greater than 0.45 is classified as snow, marking it as part of the snowMask layer.\nTo analyze the snow coverage in a localized manner, the script computes the snow fraction within a neighborhood using a mean reducer. It applies a square kernel of 10x10 pixels, which aggregates the fraction of snow pixels within this neighborhood. The snow fraction is then converted to a percentage (snowPercentage) by multiplying it by 100, making it easier to interpret the results. Finally, the script classifies snow coverage into four categories based on percentage ranges. The classified snow cover is clipped to the everestBuffer region to ensure the final output remains within the intended geographic boundary.\n\nvar composite = s2.median().clip(everestBuffer); // Create a composite image (median over time range)\nvar ndsi = composite.normalizedDifference(['B3', 'B11']).rename('NDSI'); // Calculate the Normalized Difference Snow Index (NDSI)\nvar snowMask = ndsi.gt(0.45).rename('snowMask'); // Define snow mask based on NDSI threshold (NDSI &gt; 0.45 indicates snow)\n\n// Calculate the snow fraction (percentage) within a neighborhood\nvar snowFraction = snowMask.reduceNeighborhood({\n      reducer: ee.Reducer.mean(), // Use the mean of pixels within the neighborhood\n      kernel: ee.Kernel.square(10) // Define a 10x10 pixel square kernel for the neighborhood\n    }).rename('snowFraction');\n\n// Convert snow fraction to percentage\nvar snowPercentage = snowFraction.multiply(100).rename('snowPercentage');\n\n    // Classify the snow cover based on the percentage\nvar classImage = snowPercentage.expression(\n      \"(b('snowPercentage') &lt; 25) ? 1\" +\n      \" : (b('snowPercentage') &lt; 50) ? 2\" +\n      \" : (b('snowPercentage') &lt; 75) ? 3\" +\n      \" : 4\"\n    ).rename('snowClass').clip(everestBuffer); // Classify into 4 categories based on the percentage\n\nThis function calculates a danger index for a given route based on snow coverage. It creates a buffer zone around the route and checks how much of it intersects with a predefined Everest buffer.\n\n// Function to calculate the danger index for a route based on snow cover\nfunction calculateDanger(route) {\n    var buffer = route.geometry().buffer(50).intersection(everestBuffer, ee.ErrorMargin(1));\n    var hist = classImage.reduceRegion({\n    reducer: ee.Reducer.frequencyHistogram(), // Calculate frequency of snow classes\n    geometry: buffer,\n    scale: 10,\n    maxPixels: 1e9\n    }).get('snowClass');\n\n    hist = ee.Dictionary(hist);\n    var f1 = ee.Number(hist.get('1', 0)); // Snow class 1 (&lt; 25% snow)\n    var f2 = ee.Number(hist.get('2', 0)); // Snow class 2 (25–50% snow)\n    var f3 = ee.Number(hist.get('3', 0)); // Snow class 3 (50–75% snow)\n    var f4 = ee.Number(hist.get('4', 0)); // Snow class 4 (&gt; 75% snow)\n    var total = f1.add(f2).add(f3).add(f4); // Total snow pixels\n\n    // Calculate danger index based on snow class frequency\n    var danger = ee.Algorithms.If(total.eq(0), 999,\n    f1.multiply(1).add(f2.multiply(2)).add(f3.multiply(3)).add(f4.multiply(4)).divide(total));\n\n    return route.set('dangerous_index', danger);\n}\n\nCalculate the danger index of each route and find the safest route.\n\n    // Calculate danger index for all routes and apply elevation profile\n    routesWithDanger = mergedRoutes.map(function(route) {\n      var withDanger = calculateDanger(route);\n      var withElevation = calculateElevationProfile(withDanger);\n      return withElevation;\n    });\n\n    // Get the minimum danger index across all routes\n    minDangerIndex = ee.Number(routesWithDanger.aggregate_min('dangerous_index'));\n\nDisplay the snow cover level of the buffered area and the danger level of all the routes.\n\n // Format selected route name and style routes based on danger index\nvar selectedName = routeSelect.getValue();\nvar selectedNameEE = ee.String(selectedName || '___');\n\nvar styledRoutes = routesWithDanger.map(function(f) {\n    var name = ee.String(f.get('NAME'));\n    var index = ee.Number(f.get('dangerous_index'));\n    var isSafest = index.subtract(minDangerIndex).abs().lt(tolerance);\n    var isSelected = name.equals(selectedNameEE);\n\n    var color = ee.Algorithms.If(isSelected, 'yellow',\n                ee.Algorithms.If(isSafest, 'green', 'red'));\n    var width = ee.Algorithms.If(isSelected, 5, 3);\n\n    return f.set({styleColor: {color: color, width: width, fillColor: '00000000'}}); // Set the style for the routes\n});\n\nvar vis = styledRoutes.style({styleProperty: 'styleColor'}); // Apply styling to routes\n\n// Clear existing map layers and add new layers\ncustomMap.layers().reset();\ncustomMap.addLayer(composite, {bands: ['B4', 'B3', 'B2'], min: 0, max: 3000}, 'Composite'); // Add the composite image layer\ncustomMap.addLayer(classImage, {min: 1, max: 4, opacity: 0.8, palette: ['#D3D3D3', '#CCCCFF', '#4169E1', '#E0FFFF']}, 'Snow Class'); // Add the snow class layer\ncustomMap.addLayer(vis, {}, 'Routes'); // Add the styled routes layer\n\nuniqueNames.evaluate(function(names) {\n    var formattedItems = names.map(function(name) {\n    return {\n        label: formatRouteName(name), // Format route name with emoji and year\n        value: name                   \n    };\n    });\n\n    routeSelect.items().reset(formattedItems); // Reset the route selector with formatted route names\n\n    if (!routeSelect.getValue() && formattedItems.length &gt; 0) {\n    routeSelect.setValue(formattedItems[0].value); // Set the first route as the default selection\n    }\n});\n\nDraw a line graph of snow cover rate over time (by month).\n\n// Create a time series of snow cover for the selected date range (last 3 months)\n    var snowTimeSeries = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')\n      .filterBounds(everestBuffer) // Only include images from the Everest buffer\n      .filterDate(start.advance(-3, 'month'), end) // Filter by last 3 months\n      .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20)) // Filter out cloudy images\n      .map(maskS2clouds) // Mask clouds in the images\n      .map(function(img) {\n        var snow = img.normalizedDifference(['B3', 'B11']).gt(0.45).rename('snow'); // Create snow mask\n        return snow.set('system:time_start', img.get('system:time_start')); // Add time information\n      });\n\n    // Generate a chart for snow cover over time (mean snow cover per month)\n    var chart = ui.Chart.image.series({\n      imageCollection: snowTimeSeries, // Image collection with snow data\n      region: everestBuffer, // Region to calculate mean snow cover\n      reducer: ee.Reducer.mean(), // Mean reducer to calculate snow cover percentage\n      scale: 30 // Scale in meters (for Sentinel-2 data)\n    }).setOptions({\n      title: 'Mean Snow Cover Rate Over Time', // Title of the chart\n      hAxis: {title: 'Date'}, // Label for the x-axis\n      vAxis: {title: 'Snow Cover'}, // Label for the y-axis\n      lineWidth: 2, // Line width for the chart\n      pointSize: 4 // Point size for the chart\n    });\n\n    // Update snow chart panel with the new chart\n    snowChartPanel.clear();\n    snowChartPanel.add(chart);",
+    "crumbs": [
+      "C. How it Works",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>How it Works</span>"
+    ]
+  },
+  {
+    "objectID": "How_it_Works.html#interface-building",
+    "href": "How_it_Works.html#interface-building",
+    "title": "8  How it Works",
+    "section": "8.5 Interface building",
+    "text": "8.5 Interface building\n\nThe code below first verifies whether the selected location corresponds to a known hazardous route or an arbitrary point. If a dangerous route is identified, it retrieves the route’s name and danger index, formats the name using a helper function, and presents the relevant details within an interactive UI panel. This panel enables users to swiftly assess the information and includes a close button for removing the displayed content when no longer required.\nIn cases where no hazardous route is detected, the code shifts its approach. It generates a temperature time-series chart for the clicked point by utilizing Earth Engine functions to extract daytime and nighttime Land Surface Temperature (LST) data. These values are visualized in two separate graphs, which apply an averaging method over time to assist users in analyzing historical temperature trends for the selected location. The temperature data is displayed within a panel featuring a semi-transparent background, a border, and a close button, maintaining a clean and user-friendly interface.\n\n// Function to handle map clicks and display information about the clicked area\ncustomMap.onClick(function(coords) {\n  var point = ee.Geometry.Point(coords.lon, coords.lat).buffer(300); // Create a buffer around the clicked point (300 meters)\n  print('🖱 Clicked coordinates:', point);\n\n  if (!routesWithDanger) {\n    print('⚠️ routesWithDanger is not loaded yet');\n    return;\n  }\n\n  // Filter the routes to find the one that intersects with the clicked point\n  var clicked = routesWithDanger.filterBounds(point).first();\n\n  clicked.evaluate(function(feature) {\n    infoPanel.clear(); // Clear the existing information from the info panel\n\n    if (feature) {\n      // If a route was clicked, display its information\n      print('✅ Clicked on route:', feature);\n      var rawName = feature.properties.NAME; // Get the route name\n      var danger = feature.properties.dangerous_index; // Get the danger index of the route\n      var formatted = formatRouteName(rawName); // Format the route name with emoji and expedition year\n\n      // Create a close button to remove the information panel\n      var closeButton = ui.Button({\n        label: '✖',\n        style: {\n          backgroundColor: 'white',\n          color: 'black',\n          padding: '2px 6px',\n          fontWeight: 'bold',\n          border: 'none',\n          borderRadius: '4px',\n          margin: '0 0 6px 0'\n        },\n        onClick: function() {\n          infoPanel.clear(); // Clear the info panel when the close button is clicked\n        }\n      });\n\n      // Create a panel to display the route information\n      var routeInfoPanel = ui.Panel({\n        layout: ui.Panel.Layout.flow('vertical'),\n        widgets: [\n          closeButton,\n          ui.Label({\n            value: formatted,\n            style: {\n              fontWeight: 'bold',\n              fontSize: '14px',\n              margin: '4px 0 4px 0'\n            }\n          }),\n          ui.Label({\n            value: '⚠️ Danger Index: ' + Number(danger).toFixed(2), // Display the danger index with two decimal places\n            style: {\n              margin: '0 0 4px 0'\n            }\n          })\n        ],\n        style: {\n          padding: '4px',\n          backgroundColor: 'rgba(255,255,255,0.95)', // Semi-transparent background\n          border: '1px solid #ccc', // Border around the panel\n          borderRadius: '6px'\n        }\n      });\n\n      infoPanel.add(routeInfoPanel); // Add the route info panel to the info panel on the map\n\n    } else {\n      // If no route was clicked, display temperature time series for the clicked point\n      print('🌡️ No route detected — showing temperature time series.');\n\n      var clickedPoint = ee.Geometry.Point(coords.lon, coords.lat);\n\n      // Create a time series chart for the daytime LST (Land Surface Temperature) data\n      var tsDay = ui.Chart.image.series({\n        imageCollection: modLSTday, // Daytime LST data\n        region: clickedPoint, // Region for the time series\n        reducer: ee.Reducer.mean(), // Mean temperature over time\n        scale: 1000, // Resolution of the data (1 km)\n        xProperty: 'system:time_start' // Use the time property for the x-axis\n      }).setOptions({\n        title: '📊 LST Day (°C) — Time Series',\n        vAxis: {title: 'Temperature (°C)'}, // Label for the y-axis\n        lineWidth: 2,\n        pointSize: 3\n      });\n\n      // Create a time series chart for the nighttime LST (Land Surface Temperature) data\n      var tsNight = ui.Chart.image.series({\n        imageCollection: modLSTnight, // Nighttime LST data\n        region: clickedPoint, // Region for the time series\n        reducer: ee.Reducer.mean(), // Mean temperature over time\n        scale: 1000, // Resolution of the data (1 km)\n        xProperty: 'system:time_start' // Use the time property for the x-axis\n      }).setOptions({\n        title: '🌙 LST Night (°C) — Time Series',\n        vAxis: {title: 'Temperature (°C)'}, // Label for the y-axis\n        lineWidth: 2,\n        pointSize: 3\n      });\n\n      // Create a close button to remove the temperature chart\n      var closeButton = ui.Button({\n        label: '✖',\n        style: {\n          backgroundColor: 'white', // Red background for the close button\n          color: 'black',\n          padding: '2px 6px',\n          fontWeight: 'bold',\n          border: 'none',\n          borderRadius: '4px',\n          margin: '0 0 6px 0'\n        },\n        onClick: function() {\n          infoPanel.clear(); // Clear the info panel when the close button is clicked\n        }\n      });\n\n      // Create a panel to display the temperature time series charts\n      var tempChartPanel = ui.Panel({\n        layout: ui.Panel.Layout.flow('vertical'),\n        widgets: [\n          closeButton,\n          tsDay, // Daytime temperature chart\n          tsNight // Nighttime temperature chart\n        ],\n        style: {\n          padding: '4px',\n          backgroundColor: 'rgba(255, 255, 255, 0.85)',\n          border: '1px solid #ccc',\n          borderRadius: '6px',\n          width: '300px',\n          height: 'auto',\n          position: 'top-left'\n        }\n      });\n\n      infoPanel.add(tempChartPanel); // Add the temperature chart panel to the info panel\n    }\n  });\n});\n\nSeting up an interactive UI for exploring snow cover and risk assessments in the Everest region. Including a status label is created to display messages about missing data, a date slider allows users to select a time range, automatically updating the map when changed, a dropdown selector enables route selection and triggers updates to both the map and danger chart and panels are initialized for displaying charts on snow cover and danger index trends.\n\n// Create a status label to display messages on the UI (e.g., when no data is available)\nvar statusLabel = ui.Label({value: '', style: {color: 'red', padding: '4px 0'}});\n\n// Create a date slider widget for selecting a date range (for visualizing data over time)\nvar dateSlider = ui.DateSlider({\n  start: '2023-01-01',\n  end: '2024-12-31',\n  period: 30,\n  style: {stretch: 'horizontal'},\n  onChange: function(range) {\n    updateMap(range); // Update the map when the date range is changed\n  }\n});\n\n// Create a dropdown selector for choosing a route\nvar routeSelect = ui.Select({\n  placeholder: 'Select a route',\n  onChange: function(name) {\n    var range = dateSlider.getValue();\n    if (!range || range.length !== 2) return; // Only update if a valid date range is selected\n    updateMap(range); // Update the map with the selected date range\n    updateDangerChart(name); // Update the danger chart based on the selected route\n  }\n});\n\n// Panels for displaying the charts for snow cover and danger index of selected routes\nvar snowChartPanel = ui.Panel();\nvar dangerChartPanel = ui.Panel();\n\nThe dedicated floating panel holds all UI widgets, including selectors, charts, and checkboxes.\nOptional Layers also being estabilshed, users can toggle various layers using checkboxes: Mean Temperature Layers, Slope &gt; 20° layers, aspect (on Slope &gt; 20°) layers, slope ≤ 20° layers.\n\n// Assemble the floating panel with all UI elements\nvar floatingPanel = ui.Panel({\n  widgets: [\n    makeTitle('🗻 Everest Snow Cover Explorer'),\n    makeTitle('Select time range'),\n    statusLabel,\n    dateSlider,\n\n    makeTitle('Select route'),\n    routeSelect,\n\n    makeTitle('Regional snow cover trend'),\n    snowChartPanel,\n\n    makeTitle('Monthly danger index of selected route'),\n    dangerChartPanel,\n\n    makeTitle('Optional Layers'),\n    tempCheckbox,\n    slopeCheckbox,\n    aspectCheckbox,\n    lowSlopeCheckbox\n  ],\n  style: {\n    position: 'top-center', // Position the floating panel in the center of the screen\n    width: '500px',\n    maxHeight: '100%',\n    padding: '10px',\n    backgroundColor: 'rgba(255, 255, 255, 0.9)', // Semi-transparent background\n    border: '1px solid #ccc',\n    borderRadius: '8px'\n  }\n});\n\nEach checkbox dynamically adds or removes layers based on user input.\n\n// Checkbox for toggling the visibility of temperature layers (day and night temperatures)\nvar tempCheckbox = ui.Checkbox({\n  label: 'Show Mean Temperature Layers',\n  value: false, // Initially, the checkbox is unchecked\n  onChange: function(show) {\n    if (show) {\n      // Add the mean temperature layers to the map if the checkbox is checked\n      customMap.addLayer(meanDayTemp, {\n        min: -30, max: 30, opacity: 0.5,\n        palette: ['blue', 'limegreen', 'yellow', 'darkorange', 'red'] // Color palette for temperature\n      }, 'Mean Day Temperature');\n\n      customMap.addLayer(meanNightTemp, {\n        min: -30, max: 30, opacity: 0.5,\n        palette: ['blue', 'limegreen', 'yellow', 'darkorange', 'red'] // Color palette for temperature\n      }, 'Mean Night Temperature');\n    } else {\n      // Remove temperature layers from the map if the checkbox is unchecked\n      var layers = customMap.layers();\n      for (var i = layers.length() - 1; i &gt;= 0; i--) {\n        var layer = layers.get(i);\n        var name = layer.getName();\n        var nameStr = (name && typeof name === 'string') ? name : '' + name;\n        if (nameStr.indexOf('Mean') === 0) {  // Remove layers starting with 'Mean'\n          customMap.remove(layer);\n        }\n      }\n    }\n  }\n});\n\n// Checkbox for toggling the visibility of slope layers greater than 20°\nvar slopeCheckbox = ui.Checkbox({\n  label: 'Slope &gt; 20°',\n  value: false,\n  onChange: function(show) {\n    if (show) {\n      customMap.addLayer(slopeMask, slopeVis, 'Slope &gt; 20 degrees'); // Add slope layer to map\n    } else {\n      removeLayerByName('Slope &gt; 20 degrees'); // Remove the slope layer from the map\n    }\n  }\n});\n\n// Checkbox for toggling the visibility of aspect layers on steep slopes (slope &gt; 20°)\nvar aspectCheckbox = ui.Checkbox({\n  label: 'Aspect (on Slope &gt; 20°)',\n  value: false,\n  onChange: function(show) {\n    if (show) {\n      customMap.addLayer(aspectMasked, aspectVis, 'Aspect (Slope &gt; 20 degrees)'); // Add aspect layer to map\n    } else {\n      removeLayerByName('Aspect (Slope &gt; 20 degrees)'); // Remove the aspect layer from the map\n    }\n  }\n});\n\n// Checkbox for toggling the visibility of low slope layers (slope ≤ 20°)\nvar lowSlopeCheckbox = ui.Checkbox({\n  label: 'Slope ≤ 20°',\n  value: false,\n  onChange: function(show) {\n    if (show) {\n      customMap.addLayer(lowSlopeMask, lowSlopeVis, 'Slope &lt;= 20 degrees'); // Add low slope layer to map\n    } else {\n      removeLayerByName('Slope &lt;= 20 degrees'); // Remove the low slope layer from the map\n    }\n  }\n});\n\nIn order to more clearly reflect the data in the figure, add a striking legend.\n\n// Function to add a legend to the map, showing snow cover categories and colors\nfunction addLegend() {\n  var legend = ui.Panel({\n    style: {\n      position: 'bottom-right', // Position the legend at the bottom-right corner\n      padding: '8px 15px',\n      backgroundColor: 'rgba(255,255,255,0.9)'\n    }\n  });\n\n  // Add a title for the snow cover legend\n  legend.add(ui.Label({\n    value: '🧊 Snow Class Legend',\n    style: {fontWeight: 'bold', margin: '0 0 6px 0'}\n  }));\n\n  // Define the snow cover categories with corresponding colors\n  var snowClasses = [\n    {label: '&lt; 25% snow', color: '#D3D3D3'},\n    {label: '25–50%', color: '#CCCCFF'},\n    {label: '50–75%', color: '#4169E1'},\n    {label: '&gt; 75%', color: '#E0FFFF'}\n  ];\n\n  // Add each snow class with its corresponding color to the legend\n  snowClasses.forEach(function(item) {\n    legend.add(ui.Panel([\n      ui.Label({\n        style: {\n          backgroundColor: item.color,\n          padding: '8px',\n          margin: '0 4px 0 0'\n        }\n      }),\n      ui.Label(item.label) // Label for the snow class\n    ], ui.Panel.Layout.Flow('horizontal')));\n  });\n\n  // Add a legend entry for the routes (safest, selected, and other routes)\n  legend.add(ui.Label('🟢 Safest Route\\n🟡 Selected Route\\n🔴 Other Routes', {\n    whiteSpace: 'pre',\n    margin: '8px 0 0 0',\n    fontSize: '12px'\n  }));\n\n  // Add the legend to the map\n  customMap.add(legend);\n}\naddLegend();",
+    "crumbs": [
+      "C. How it Works",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>How it Works</span>"
+    ]
+  }
+]
