@@ -8,3 +8,5 @@ output: html_document
 <iframe src='https://ee-wbwhaha.projects.earthengine.app/view/mount-everest-climber-services' width='100%' height='700px'></iframe>
 
 :::
+
+The full earth engine code is available [here](https://code.earthengine.google.com/08a6b48f7050ae7c1ae6384ecc0515bd).

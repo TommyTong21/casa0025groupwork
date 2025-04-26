@@ -1,48 +1,53 @@
 ---
 title: How it Works
-author: yourname
+author: Bowen Wu, JiahaO Tong
 output: html_document
 ---
 
 The application is built using Google Earth Engine's JavaScript API. Here are the key components and their implementation:
 
 ## **Data Initialization and Setup**
-This section establishes the foundation for the analysis by setting up the study area and loading the required datasets. It includes:
-- Setting the map center and zoom level
-- Defining the area of interest (AOI) with a buffer
-- Initializing the time range for analysis
-- Loading the MODIS temperature dataset
+- Firstly, define the area of interest (AOI) around Summit coordinates. A `ui.Map()` widget is created, switched to the satellite basemap, and zoomed to the AOI.
+```js
+// Mount Everest point & 15 km buffer
+var everestPoint  = ee.Geometry.Point([86.9250, 27.9881]);
+var everestBuffer = everestPoint.buffer(15000);
+
+// Map widget – satellite basemap, centred on the buffer
+var customMap = ui.Map();
+customMap.setOptions("SATELLITE");
+customMap.centerObject(everestBuffer, 11);
+```
+
+- Initialize the time range for analysis and Load the datasets.
 
 ```js
-// Basic settings
-Map.setCenter(86.9252, 27.98833, 11);
-var aoi = ee.Geometry.Point(86.9252, 27.98833).buffer(10000);
-
+// Import a FeatureCollection that contains the routes (Everest expedition routes)
+var routes = ee.FeatureCollection("projects/ee-wbwhaha/assets/Everest");
 // Input source
 var modis = ee.ImageCollection('MODIS/MOD11A2');
+
 var start = ee.Date('2011-02-18');
 var end = ee.Date('2025-03-30');
 var dateRange = ee.DateRange(start, end);
 ```
-
+  
 ## **Temperature Analysis Pipeline**
 This section handles the temperature data processing and visualization. The process involves:
+  
 - Filtering temperature data by date and region
-- Converting temperature values from Kelvin to Celsius
-- Creating time series visualizations
-- Implementing interactive temperature analysis
-
 ```js
-// Step 1: Temperature data filtering
 var modLSTday = modis.filterDate(dateRange).select('LST_Day_1km');
 var modLSTnight = modis.filterDate(dateRange).select('LST_Night_1km');
-
-// Step 2: Temperature conversion (Kelvin to Celsius)
+```
+- Converting temperature values from Kelvin to Celsius
+```js
 var modLSTday_c = modLSTday.map(function(img) {
   return img.multiply(0.02).subtract(273.15);
 });
-
-// Step 3: Temperature time series visualization
+```
+- Creating time series visualizations
+```js
 var tsDay = ui.Chart.image.series({
     imageCollection: modLSTday_c,
     region: selectedPoint,
@@ -53,28 +58,26 @@ var tsDay = ui.Chart.image.series({
     title: 'Average LST Day Time Series',
     vAxis: {title: 'LST (°C)'}
 });
-
-// Step 4: Add temperature visualization layer
+```
+- Implementing interactive temperature analysis
+```js
 Map.addLayer(clippedLSTday_c, {
     min: -30, max: 30,
     palette: ['blue', 'limegreen', 'yellow', 'darkorange', 'red']
 }, 'Mean Day Temperature');
 ```
-
+  
 ## **Terrain Analysis Pipeline**
 This section handles the terrain data processing and visualization. The process involves:
+  
 - Generating terrain products (slope and aspect)
-- Processing route data and elevation profiles
-- Creating terrain visualizations
-- Implementing route selection and analysis
-
 ```js
-// Step 1: Terrain analysis
 var slope = ee.Terrain.slope(dem);
 var aspect = ee.Terrain.aspect(dem);
 var slopeMask = slope.updateMask(slope.gt(20));
-
-// Step 2: Route elevation profiling
+```
+- Processing route data and elevation profiles
+```js
 var calculateElevationProfile = function(route) {
     var geometry = route.geometry();
     var elevationProfile = elevation.sample({
@@ -84,14 +87,16 @@ var calculateElevationProfile = function(route) {
     });
     return route.set('elevationProfile', elevationProfile);
 };
-
-// Step 3: Add terrain visualization layers
+```
+- Creating terrain visualizations
+```js
 Map.addLayer(slopeMask, {
     min: 20, max: 90,
     palette: ['lightgreen', 'yellow', 'orange', 'red']
 }, 'Steep Slopes');
-
-// Step 4: Implement route selection interface
+```
+- Implementing route selection and analysis
+```js
 var routeSelect = ui.Select({
     items: routeNames,
     onChange: function(name) {
@@ -100,5 +105,412 @@ var routeSelect = ui.Select({
             .first();
         updateElevationChart(selectedRoute);
     }
+});
+```
+  
+## **Snow Cover Analysis and Routes Danger Index Pipeline**
+- Filter out unwanted cloud-related artifacts in Sentinel-2 imagery using the Scene Classification Layer (SCL)
+```js
+// Function to mask clouds in Sentinel-2 imagery based on the Scene Classification Layer (SCL)
+function maskS2clouds(image) {
+  var scl = image.select('SCL'); // Select the Scene Classification Layer (SCL)
+  var mask = scl.neq(3).and(scl.neq(8)).and(scl.neq(9)); // Mask clouds, cirrus, and cloud shadows
+  return image.updateMask(mask); // Apply the mask to the image
+}
+```
+- Creating a composite image by applying a median operation to the **Sentinel-2 dataset (s2)** and clipping it to the everestBuffer region. This ensures that the analysis focuses only on the area of interest. Next, it calculates the Normalized Difference Snow Index (**NDSI**), which is derived from **Sentinel-2** bands **B3 (Green)** and **B11 (Shortwave Infrared)**. The NDSI helps differentiate snow-covered regions from other surface types. Using the NDSI, the code defines a snow mask by applying a threshold of 0.45. Any pixel with an NDSI value greater than 0.45 is classified as snow, marking it as part of the snowMask layer. To analyze the snow coverage in a localized manner, the script computes the snow fraction within a neighborhood using a mean reducer. It applies a square kernel of 10x10 pixels, which aggregates the fraction of snow pixels within this neighborhood. The snow fraction is then converted to a percentage (snowPercentage) by multiplying it by 100, making it easier to interpret the results. Finally, the script classifies snow coverage into four categories based on percentage ranges. The classified snow cover is clipped to the everestBuffer region to ensure the final output remains within the intended geographic boundary.
+```js
+var composite = s2.median().clip(everestBuffer); // Create a composite image (median over time range)
+var ndsi = composite.normalizedDifference(['B3', 'B11']).rename('NDSI'); // Calculate the Normalized Difference Snow Index (NDSI)
+var snowMask = ndsi.gt(0.45).rename('snowMask'); // Define snow mask based on NDSI threshold (NDSI > 0.45 indicates snow)
+
+// Calculate the snow fraction (percentage) within a neighborhood
+var snowFraction = snowMask.reduceNeighborhood({
+      reducer: ee.Reducer.mean(), // Use the mean of pixels within the neighborhood
+      kernel: ee.Kernel.square(10) // Define a 10x10 pixel square kernel for the neighborhood
+    }).rename('snowFraction');
+
+// Convert snow fraction to percentage
+var snowPercentage = snowFraction.multiply(100).rename('snowPercentage');
+
+    // Classify the snow cover based on the percentage
+var classImage = snowPercentage.expression(
+      "(b('snowPercentage') < 25) ? 1" +
+      " : (b('snowPercentage') < 50) ? 2" +
+      " : (b('snowPercentage') < 75) ? 3" +
+      " : 4"
+    ).rename('snowClass').clip(everestBuffer); // Classify into 4 categories based on the percentage
+```
+- This function calculates a danger index for a given route based on snow coverage. It creates a buffer zone around the route and checks how much of it intersects with a predefined Everest buffer.
+```js
+// Function to calculate the danger index for a route based on snow cover
+function calculateDanger(route) {
+    var buffer = route.geometry().buffer(50).intersection(everestBuffer, ee.ErrorMargin(1));
+    var hist = classImage.reduceRegion({
+    reducer: ee.Reducer.frequencyHistogram(), // Calculate frequency of snow classes
+    geometry: buffer,
+    scale: 10,
+    maxPixels: 1e9
+    }).get('snowClass');
+
+    hist = ee.Dictionary(hist);
+    var f1 = ee.Number(hist.get('1', 0)); // Snow class 1 (< 25% snow)
+    var f2 = ee.Number(hist.get('2', 0)); // Snow class 2 (25–50% snow)
+    var f3 = ee.Number(hist.get('3', 0)); // Snow class 3 (50–75% snow)
+    var f4 = ee.Number(hist.get('4', 0)); // Snow class 4 (> 75% snow)
+    var total = f1.add(f2).add(f3).add(f4); // Total snow pixels
+
+    // Calculate danger index based on snow class frequency
+    var danger = ee.Algorithms.If(total.eq(0), 999,
+    f1.multiply(1).add(f2.multiply(2)).add(f3.multiply(3)).add(f4.multiply(4)).divide(total));
+
+    return route.set('dangerous_index', danger);
+}
+```
+- Calculate the danger index of each route and find the safest route.
+```js
+    // Calculate danger index for all routes and apply elevation profile
+    routesWithDanger = mergedRoutes.map(function(route) {
+      var withDanger = calculateDanger(route);
+      var withElevation = calculateElevationProfile(withDanger);
+      return withElevation;
+    });
+
+    // Get the minimum danger index across all routes
+    minDangerIndex = ee.Number(routesWithDanger.aggregate_min('dangerous_index'));
+```
+Display the snow cover level of the buffered area and the danger level of all the routes.
+```js
+ // Format selected route name and style routes based on danger index
+var selectedName = routeSelect.getValue();
+var selectedNameEE = ee.String(selectedName || '___');
+
+var styledRoutes = routesWithDanger.map(function(f) {
+    var name = ee.String(f.get('NAME'));
+    var index = ee.Number(f.get('dangerous_index'));
+    var isSafest = index.subtract(minDangerIndex).abs().lt(tolerance);
+    var isSelected = name.equals(selectedNameEE);
+
+    var color = ee.Algorithms.If(isSelected, 'yellow',
+                ee.Algorithms.If(isSafest, 'green', 'red'));
+    var width = ee.Algorithms.If(isSelected, 5, 3);
+
+    return f.set({styleColor: {color: color, width: width, fillColor: '00000000'}}); // Set the style for the routes
+});
+
+var vis = styledRoutes.style({styleProperty: 'styleColor'}); // Apply styling to routes
+
+// Clear existing map layers and add new layers
+customMap.layers().reset();
+customMap.addLayer(composite, {bands: ['B4', 'B3', 'B2'], min: 0, max: 3000}, 'Composite'); // Add the composite image layer
+customMap.addLayer(classImage, {min: 1, max: 4, opacity: 0.8, palette: ['#D3D3D3', '#CCCCFF', '#4169E1', '#E0FFFF']}, 'Snow Class'); // Add the snow class layer
+customMap.addLayer(vis, {}, 'Routes'); // Add the styled routes layer
+
+uniqueNames.evaluate(function(names) {
+    var formattedItems = names.map(function(name) {
+    return {
+        label: formatRouteName(name), // Format route name with emoji and year
+        value: name                   
+    };
+    });
+
+    routeSelect.items().reset(formattedItems); // Reset the route selector with formatted route names
+
+    if (!routeSelect.getValue() && formattedItems.length > 0) {
+    routeSelect.setValue(formattedItems[0].value); // Set the first route as the default selection
+    }
+});
+```
+  
+## **Interface building**
+
+- The code below first verifies whether the selected location corresponds to a known hazardous route or an arbitrary point. If a dangerous route is identified, it retrieves the route’s name and danger index, formats the name using a helper function, and presents the relevant details within an interactive UI panel. This panel enables users to swiftly assess the information and includes a close button for removing the displayed content when no longer required.
+  
+- In cases where no hazardous route is detected, the code shifts its approach. It generates a temperature time-series chart for the clicked point by utilizing Earth Engine functions to extract daytime and nighttime Land Surface Temperature (LST) data. These values are visualized in two separate graphs, which apply an averaging method over time to assist users in analyzing historical temperature trends for the selected location. The temperature data is displayed within a panel featuring a semi-transparent background, a border, and a close button, maintaining a clean and user-friendly interface.
+```js
+// Function to handle map clicks and display information about the clicked area
+customMap.onClick(function(coords) {
+  var point = ee.Geometry.Point(coords.lon, coords.lat).buffer(300); // Create a buffer around the clicked point (300 meters)
+  print('🖱 Clicked coordinates:', point);
+
+  if (!routesWithDanger) {
+    print('⚠️ routesWithDanger is not loaded yet');
+    return;
+  }
+
+  // Filter the routes to find the one that intersects with the clicked point
+  var clicked = routesWithDanger.filterBounds(point).first();
+
+  clicked.evaluate(function(feature) {
+    infoPanel.clear(); // Clear the existing information from the info panel
+
+    if (feature) {
+      // If a route was clicked, display its information
+      print('✅ Clicked on route:', feature);
+      var rawName = feature.properties.NAME; // Get the route name
+      var danger = feature.properties.dangerous_index; // Get the danger index of the route
+      var formatted = formatRouteName(rawName); // Format the route name with emoji and expedition year
+
+      // Create a close button to remove the information panel
+      var closeButton = ui.Button({
+        label: '✖',
+        style: {
+          backgroundColor: 'white',
+          color: 'black',
+          padding: '2px 6px',
+          fontWeight: 'bold',
+          border: 'none',
+          borderRadius: '4px',
+          margin: '0 0 6px 0'
+        },
+        onClick: function() {
+          infoPanel.clear(); // Clear the info panel when the close button is clicked
+        }
+      });
+
+      // Create a panel to display the route information
+      var routeInfoPanel = ui.Panel({
+        layout: ui.Panel.Layout.flow('vertical'),
+        widgets: [
+          closeButton,
+          ui.Label({
+            value: formatted,
+            style: {
+              fontWeight: 'bold',
+              fontSize: '14px',
+              margin: '4px 0 4px 0'
+            }
+          }),
+          ui.Label({
+            value: '⚠️ Danger Index: ' + Number(danger).toFixed(2), // Display the danger index with two decimal places
+            style: {
+              margin: '0 0 4px 0'
+            }
+          })
+        ],
+        style: {
+          padding: '4px',
+          backgroundColor: 'rgba(255,255,255,0.95)', // Semi-transparent background
+          border: '1px solid #ccc', // Border around the panel
+          borderRadius: '6px'
+        }
+      });
+
+      infoPanel.add(routeInfoPanel); // Add the route info panel to the info panel on the map
+
+    } else {
+      // If no route was clicked, display temperature time series for the clicked point
+      print('🌡️ No route detected — showing temperature time series.');
+
+      var clickedPoint = ee.Geometry.Point(coords.lon, coords.lat);
+
+      // Create a time series chart for the daytime LST (Land Surface Temperature) data
+      var tsDay = ui.Chart.image.series({
+        imageCollection: modLSTday, // Daytime LST data
+        region: clickedPoint, // Region for the time series
+        reducer: ee.Reducer.mean(), // Mean temperature over time
+        scale: 1000, // Resolution of the data (1 km)
+        xProperty: 'system:time_start' // Use the time property for the x-axis
+      }).setOptions({
+        title: '📊 LST Day (°C) — Time Series',
+        vAxis: {title: 'Temperature (°C)'}, // Label for the y-axis
+        lineWidth: 2,
+        pointSize: 3
+      });
+
+      // Create a time series chart for the nighttime LST (Land Surface Temperature) data
+      var tsNight = ui.Chart.image.series({
+        imageCollection: modLSTnight, // Nighttime LST data
+        region: clickedPoint, // Region for the time series
+        reducer: ee.Reducer.mean(), // Mean temperature over time
+        scale: 1000, // Resolution of the data (1 km)
+        xProperty: 'system:time_start' // Use the time property for the x-axis
+      }).setOptions({
+        title: '🌙 LST Night (°C) — Time Series',
+        vAxis: {title: 'Temperature (°C)'}, // Label for the y-axis
+        lineWidth: 2,
+        pointSize: 3
+      });
+
+      // Create a close button to remove the temperature chart
+      var closeButton = ui.Button({
+        label: '✖',
+        style: {
+          backgroundColor: 'white', // Red background for the close button
+          color: 'black',
+          padding: '2px 6px',
+          fontWeight: 'bold',
+          border: 'none',
+          borderRadius: '4px',
+          margin: '0 0 6px 0'
+        },
+        onClick: function() {
+          infoPanel.clear(); // Clear the info panel when the close button is clicked
+        }
+      });
+
+      // Create a panel to display the temperature time series charts
+      var tempChartPanel = ui.Panel({
+        layout: ui.Panel.Layout.flow('vertical'),
+        widgets: [
+          closeButton,
+          tsDay, // Daytime temperature chart
+          tsNight // Nighttime temperature chart
+        ],
+        style: {
+          padding: '4px',
+          backgroundColor: 'rgba(255, 255, 255, 0.85)',
+          border: '1px solid #ccc',
+          borderRadius: '6px',
+          width: '300px',
+          height: 'auto',
+          position: 'top-left'
+        }
+      });
+
+      infoPanel.add(tempChartPanel); // Add the temperature chart panel to the info panel
+    }
+  });
+});
+```
+- Seting up an interactive UI for exploring snow cover and risk assessments in the Everest region. Including a status label is created to display messages about missing data, a date slider allows users to select a time range, automatically updating the map when changed, a dropdown selector enables route selection and triggers updates to both the map and danger chart and panels are initialized for displaying charts on snow cover and danger index trends.
+```js
+// Create a status label to display messages on the UI (e.g., when no data is available)
+var statusLabel = ui.Label({value: '', style: {color: 'red', padding: '4px 0'}});
+
+// Create a date slider widget for selecting a date range (for visualizing data over time)
+var dateSlider = ui.DateSlider({
+  start: '2023-01-01',
+  end: '2024-12-31',
+  period: 30,
+  style: {stretch: 'horizontal'},
+  onChange: function(range) {
+    updateMap(range); // Update the map when the date range is changed
+  }
+});
+
+// Create a dropdown selector for choosing a route
+var routeSelect = ui.Select({
+  placeholder: 'Select a route',
+  onChange: function(name) {
+    var range = dateSlider.getValue();
+    if (!range || range.length !== 2) return; // Only update if a valid date range is selected
+    updateMap(range); // Update the map with the selected date range
+    updateDangerChart(name); // Update the danger chart based on the selected route
+  }
+});
+
+// Panels for displaying the charts for snow cover and danger index of selected routes
+var snowChartPanel = ui.Panel();
+var dangerChartPanel = ui.Panel();
+```
+- The dedicated floating panel holds all UI widgets, including selectors, charts, and checkboxes.
+  
+- Optional Layers also being estabilshed, users can toggle various layers using checkboxes: Mean Temperature Layers, Slope > 20° layers, aspect (on Slope > 20°) layers, slope ≤ 20° layers.
+```js
+// Assemble the floating panel with all UI elements
+var floatingPanel = ui.Panel({
+  widgets: [
+    makeTitle('🗻 Everest Snow Cover Explorer'),
+    makeTitle('Select time range'),
+    statusLabel,
+    dateSlider,
+
+    makeTitle('Select route'),
+    routeSelect,
+
+    makeTitle('Regional snow cover trend'),
+    snowChartPanel,
+
+    makeTitle('Monthly danger index of selected route'),
+    dangerChartPanel,
+
+    makeTitle('Optional Layers'),
+    tempCheckbox,
+    slopeCheckbox,
+    aspectCheckbox,
+    lowSlopeCheckbox
+  ],
+  style: {
+    position: 'top-center', // Position the floating panel in the center of the screen
+    width: '500px',
+    maxHeight: '100%',
+    padding: '10px',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)', // Semi-transparent background
+    border: '1px solid #ccc',
+    borderRadius: '8px'
+  }
+});
+```
+- Each checkbox dynamically adds or removes layers based on user input.
+```js
+// Checkbox for toggling the visibility of temperature layers (day and night temperatures)
+var tempCheckbox = ui.Checkbox({
+  label: 'Show Mean Temperature Layers',
+  value: false, // Initially, the checkbox is unchecked
+  onChange: function(show) {
+    if (show) {
+      // Add the mean temperature layers to the map if the checkbox is checked
+      customMap.addLayer(meanDayTemp, {
+        min: -30, max: 30, opacity: 0.5,
+        palette: ['blue', 'limegreen', 'yellow', 'darkorange', 'red'] // Color palette for temperature
+      }, 'Mean Day Temperature');
+
+      customMap.addLayer(meanNightTemp, {
+        min: -30, max: 30, opacity: 0.5,
+        palette: ['blue', 'limegreen', 'yellow', 'darkorange', 'red'] // Color palette for temperature
+      }, 'Mean Night Temperature');
+    } else {
+      // Remove temperature layers from the map if the checkbox is unchecked
+      var layers = customMap.layers();
+      for (var i = layers.length() - 1; i >= 0; i--) {
+        var layer = layers.get(i);
+        var name = layer.getName();
+        var nameStr = (name && typeof name === 'string') ? name : '' + name;
+        if (nameStr.indexOf('Mean') === 0) {  // Remove layers starting with 'Mean'
+          customMap.remove(layer);
+        }
+      }
+    }
+  }
+});
+
+// Checkbox for toggling the visibility of slope layers greater than 20°
+var slopeCheckbox = ui.Checkbox({
+  label: 'Slope > 20°',
+  value: false,
+  onChange: function(show) {
+    if (show) {
+      customMap.addLayer(slopeMask, slopeVis, 'Slope > 20 degrees'); // Add slope layer to map
+    } else {
+      removeLayerByName('Slope > 20 degrees'); // Remove the slope layer from the map
+    }
+  }
+});
+
+// Checkbox for toggling the visibility of aspect layers on steep slopes (slope > 20°)
+var aspectCheckbox = ui.Checkbox({
+  label: 'Aspect (on Slope > 20°)',
+  value: false,
+  onChange: function(show) {
+    if (show) {
+      customMap.addLayer(aspectMasked, aspectVis, 'Aspect (Slope > 20 degrees)'); // Add aspect layer to map
+    } else {
+      removeLayerByName('Aspect (Slope > 20 degrees)'); // Remove the aspect layer from the map
+    }
+  }
+});
+
+// Checkbox for toggling the visibility of low slope layers (slope ≤ 20°)
+var lowSlopeCheckbox = ui.Checkbox({
+  label: 'Slope ≤ 20°',
+  value: false,
+  onChange: function(show) {
+    if (show) {
+      customMap.addLayer(lowSlopeMask, lowSlopeVis, 'Slope <= 20 degrees'); // Add low slope layer to map
+    } else {
+      removeLayerByName('Slope <= 20 degrees'); // Remove the low slope layer from the map
+    }
+  }
 });
 ```

@@ -8,7 +8,10 @@
 
 <meta name="author" content="Bowen Wu, Jiahao Tong">
 
-<title>5&nbsp; Methodology – CASA0025 Final Assessment -- Mount Everest Climber Services</title>
+<title>5&nbsp; Methodology – CASA0025
+ Final Assessment
+ --
+ Mount Everest Climber Services</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,6 +76,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -110,13 +142,19 @@ ul.task-list li input[type="checkbox"] {
       <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./CASA0025-Final-Assessment----Mount-Everest-Climber-Services.pdf">
+            <a class="dropdown-item sidebar-tools-main-item" href="./CASA0025
+-Final-Assessment
+---
+-Mount-Everest-Climber-Services.pdf">
               <i class="bi bi-file-pdf pe-1"></i>
             Download PDF
             </a>
           </li>
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./CASA0025-Final-Assessment----Mount-Everest-Climber-Services.epub">
+            <a class="dropdown-item sidebar-tools-main-item" href="./CASA0025
+-Final-Assessment
+---
+-Mount-Everest-Climber-Services.epub">
               <i class="bi bi-journal pe-1"></i>
             Download ePub
             </a>
@@ -244,8 +282,10 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#temperature-analysis" id="toc-temperature-analysis" class="nav-link active" data-scroll-target="#temperature-analysis"><span class="header-section-number">5.1</span> <strong>Temperature Analysis</strong></a></li>
   <li><a href="#terrain-analysis" id="toc-terrain-analysis" class="nav-link" data-scroll-target="#terrain-analysis"><span class="header-section-number">5.2</span> <strong>Terrain Analysis</strong></a></li>
-  <li><a href="#interactive-analysis" id="toc-interactive-analysis" class="nav-link" data-scroll-target="#interactive-analysis"><span class="header-section-number">5.3</span> <strong>Interactive Analysis</strong></a></li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">5.4</span> Reference</a></li>
+  <li><a href="#snow-cover-analysis" id="toc-snow-cover-analysis" class="nav-link" data-scroll-target="#snow-cover-analysis"><span class="header-section-number">5.3</span> <strong>Snow Cover Analysis</strong></a></li>
+  <li><a href="#danger-index-analysis" id="toc-danger-index-analysis" class="nav-link" data-scroll-target="#danger-index-analysis"><span class="header-section-number">5.4</span> <strong>Danger Index Analysis</strong></a></li>
+  <li><a href="#interactive-analysis" id="toc-interactive-analysis" class="nav-link" data-scroll-target="#interactive-analysis"><span class="header-section-number">5.5</span> <strong>Interactive Analysis</strong></a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">5.6</span> Reference</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/TommyTong21/casa0025groupwork/tree/main/edit/main/Methodology.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -281,24 +321,24 @@ ul.task-list li input[type="checkbox"] {
 <section id="temperature-analysis" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="temperature-analysis"><span class="header-section-number">5.1</span> <strong>Temperature Analysis</strong></h2>
 <ul>
-<li>Temperature Unit Conversion:
+<li><strong>Temperature Unit Conversion</strong>:
 <ul>
 <li>Raw MODIS LST data is in Kelvin (K)</li>
 <li>Conversion formula: Celsius = (Kelvin × 0.02) - 273.15</li>
 <li>Scale factor (0.02) accounts for MODIS data scaling</li>
 <li>273.15 converts from Kelvin to Celsius</li>
 </ul></li>
-<li>Time Series Analysis:
+<li><strong>Time Series Analysis</strong>:
 <ul>
-<li>Utilizes ee.Reducer.mean() for spatial aggregation</li>
+<li>Utilizes <code>ee.Reducer.mean()</code> for spatial aggregation</li>
 <li>Reducer computes mean temperature within specified region</li>
 <li>Handles missing data through reducer’s null handling</li>
-<li>Preserves temporal information using system:time_start</li>
+<li>Preserves temporal information using <code>system:time_start</code></li>
 </ul></li>
-<li>Statistical Analysis:
+<li><strong>Statistical Analysis</strong>:
 <ul>
-<li>Temporal aggregation using imageCollection.mean()</li>
-<li>Spatial statistics using ee.Reducer statistics</li>
+<li>Temporal aggregation using <code>imageCollection.mean()</code></li>
+<li>Spatial statistics using <code>ee.Reduce</code>r statistics</li>
 <li>Point-based analysis for specific locations</li>
 </ul></li>
 </ul>
@@ -306,16 +346,16 @@ ul.task-list li input[type="checkbox"] {
 <section id="terrain-analysis" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="terrain-analysis"><span class="header-section-number">5.2</span> <strong>Terrain Analysis</strong></h2>
 <ul>
-<li>Elevation Processing:
+<li><strong>Elevation Processing</strong>:
 <ul>
-<li>Digital Elevation Model (DEM) processing using ee.Terrain products</li>
-<li>Slope calculation using ee.Terrain.slope()</li>
-<li>Aspect calculation using ee.Terrain.aspect()</li>
+<li>Digital Elevation Model (DEM) processing using <code>ee.Terrain</code> products</li>
+<li>Slope calculation using <code>ee.Terrain.slope()</code></li>
+<li>Aspect calculation using <code>ee.Terrain.aspect()</code></li>
 </ul></li>
-<li>Route Analysis:
+<li><strong>Route Analysis</strong>:
 <ul>
-<li>Feature collection processing using ee.FeatureCollection</li>
-<li>Route geometry intersection using geometry.intersection()</li>
+<li>Feature collection processing using <code>ee.FeatureCollection</code></li>
+<li>Route geometry intersection using <code>geometry.intersection()</code></li>
 <li>Elevation Profile Generation:
 <ul>
 <li>100-point sampling along route geometry</li>
@@ -325,28 +365,69 @@ ul.task-list li input[type="checkbox"] {
 <li>Interactive visualization of elevation changes</li>
 </ul></li>
 </ul></li>
-<li>Terrain Classification:
+<li><strong>Terrain Classification</strong>:
 <ul>
-<li>Slope masking using updateMask() for steep areas (&gt;20 degrees)</li>
+<li>Slope masking using <code>updateMask()</code> for steep areas (&gt;20 degrees)</li>
 <li>Aspect classification using 8-direction color coding</li>
-<li>Terrain product generation using ee.Terrain.products()</li>
+<li>Terrain product generation using <code>ee.Terrain.products()</code></li>
 </ul></li>
 </ul>
 </section>
-<section id="interactive-analysis" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="interactive-analysis"><span class="header-section-number">5.3</span> <strong>Interactive Analysis</strong></h2>
+<section id="snow-cover-analysis" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="snow-cover-analysis"><span class="header-section-number">5.3</span> <strong>Snow Cover Analysis</strong></h2>
+<ul>
+<li><strong>Snow Detection</strong>:
+<ul>
+<li><p>Normalized Difference Snow Index (NDSI):</p></li>
+<li><p>NDSI is calculated using Sentinel-2 imagery, specifically using the green band (B3) and the shortwave infrared band (B11). Formula:<br>
+<span class="math display">\[ \text{NDSI} = \frac{\text{Band 3} - \text{Band 11}}{\text{Band 3} + \text{Band 11}} \]</span> , where values greater than 0.45 indicate snow.</p></li>
+<li><p>Snow Masking: Areas with NDSI &gt; 0.45 are classified as snow-covered, and the snow mask is applied to create a binary mask (snow vs.&nbsp;non-snow).</p></li>
+</ul></li>
+<li><strong>Snow Cover Classification</strong>:
+<ul>
+<li>Snow Percentage: The percentage of snow cover in each region is calculated using a reduceNeighborhood function, which computes the mean snow coverage in a defined neighborhood (kernel size of 10x10 pixels).</li>
+<li>Snow Class Categories: The snow cover is classified into four categories:
+<ul>
+<li>&lt; 25% snow (Class 1)</li>
+<li>25–50% snow (Class 2)</li>
+<li>50–75% snow (Class 3)</li>
+<li><blockquote class="blockquote">
+<p>75% snow (Class 4)</p>
+</blockquote></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="danger-index-analysis" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="danger-index-analysis"><span class="header-section-number">5.4</span> <strong>Danger Index Analysis</strong></h2>
+<ul>
+<li><p>The danger index is computed based on the snow class distribution, where each snow class is assigned a weight:</p>
+<ul>
+<li>Class 1 (&lt;25% snow): Weight = 1</li>
+<li>Class 2 (25–50% snow): Weight = 2</li>
+<li>Class 3 (50–75% snow): Weight = 3</li>
+<li>Class 4 (&gt;75% snow): Weight = 4 and the formula:<br>
+<span class="math display">\[ \text{Danger Index} = \frac{f_1 \times 1 + f_2 \times 2 + f_3 \times 3 + f_4 \times 4}{f_1 + f_2 + f_3 + f_4} \]</span></li>
+</ul></li>
+<li><p>The danger index is calculated for each route based on the frequency of each snow class within the route’s surrounding area (buffered by 50 meters):</p></li>
+<li><p>The frequency of each snow class is obtained by reducing the snow class image (produced from the NDSI calculation) using <code>ee.Reducer.frequencyHistogram()</code>.</p></li>
+<li><p>The weighted sum of snow class frequencies is divided by the total number of pixels to produce an average danger index.</p></li>
+</ul>
+</section>
+<section id="interactive-analysis" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="interactive-analysis"><span class="header-section-number">5.5</span> <strong>Interactive Analysis</strong></h2>
 <ul>
 <li>User Interface:
 <ul>
-<li>Custom UI panel implementation using ui.Panel</li>
-<li>Interactive point selection using Map.onClick()</li>
+<li>Custom UI panel implementation using <code>ui.Panel</code></li>
+<li>Interactive point selection using <code>Map.onClick()</code></li>
 <li>Route selection using ui.Select dropdown</li>
 </ul></li>
 <li>Dynamic Visualization:
 <ul>
-<li>Real-time chart updates using ui.Chart</li>
-<li>Layer management using Map.addLayer() and Map.remove()</li>
-<li>Legend updates using custom ui.Panel</li>
+<li>Real-time chart updates using <code>ui.Chart</code></li>
+<li>Layer management using <code>Map.addLayer()</code> and <code>Map.remove()</code></li>
+<li>Legend updates using custom <code>ui.Panel</code></li>
 </ul></li>
 <li>Data Interaction:
 <ul>
@@ -356,8 +437,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="reference" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="reference"><span class="header-section-number">5.4</span> Reference</h2>
+<section id="reference" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="reference"><span class="header-section-number">5.6</span> Reference</h2>
 
 
 </section>

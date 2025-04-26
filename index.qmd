@@ -14,7 +14,7 @@ Red routes indicate other viable but potentially riskier paths, some of which tr
 
 These visual insights help climbers and planners assess not just route direction and distance, but also the seasonal safety based on snow cover severity.
 
-![](https://raw.githubusercontent.com/TommyTong21/casa0025groupwork/main/images/route.png){width=80%}
+![](images/overview.png){width=100%}
 
 
 **Table of Contents**

@@ -6,9 +6,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="yourname">
+<meta name="author" content="Bowen Wu, JiahaO Tong">
 
-<title>8&nbsp; How it Works – CASA0025 Final Assessment -- Mount Everest Climber Services</title>
+<title>8&nbsp; How it Works – CASA0025
+ Final Assessment
+ --
+ Mount Everest Climber Services</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -143,13 +146,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./CASA0025-Final-Assessment----Mount-Everest-Climber-Services.pdf">
+            <a class="dropdown-item sidebar-tools-main-item" href="./CASA0025
+-Final-Assessment
+---
+-Mount-Everest-Climber-Services.pdf">
               <i class="bi bi-file-pdf pe-1"></i>
             Download PDF
             </a>
           </li>
           <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./CASA0025-Final-Assessment----Mount-Everest-Climber-Services.epub">
+            <a class="dropdown-item sidebar-tools-main-item" href="./CASA0025
+-Final-Assessment
+---
+-Mount-Everest-Climber-Services.epub">
               <i class="bi bi-journal pe-1"></i>
             Download ePub
             </a>
@@ -278,6 +287,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#data-initialization-and-setup" id="toc-data-initialization-and-setup" class="nav-link active" data-scroll-target="#data-initialization-and-setup"><span class="header-section-number">8.1</span> <strong>Data Initialization and Setup</strong></a></li>
   <li><a href="#temperature-analysis-pipeline" id="toc-temperature-analysis-pipeline" class="nav-link" data-scroll-target="#temperature-analysis-pipeline"><span class="header-section-number">8.2</span> <strong>Temperature Analysis Pipeline</strong></a></li>
   <li><a href="#terrain-analysis-pipeline" id="toc-terrain-analysis-pipeline" class="nav-link" data-scroll-target="#terrain-analysis-pipeline"><span class="header-section-number">8.3</span> <strong>Terrain Analysis Pipeline</strong></a></li>
+  <li><a href="#snow-cover-analysis-and-routes-danger-index-pipeline" id="toc-snow-cover-analysis-and-routes-danger-index-pipeline" class="nav-link" data-scroll-target="#snow-cover-analysis-and-routes-danger-index-pipeline"><span class="header-section-number">8.4</span> <strong>Snow Cover Analysis and Routes Danger Index Pipeline</strong></a></li>
+  <li><a href="#interface-building" id="toc-interface-building" class="nav-link" data-scroll-target="#interface-building"><span class="header-section-number">8.5</span> <strong>Interface building</strong></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/TommyTong21/casa0025groupwork/tree/main/edit/main/How_it_Works.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -296,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>yourname </p>
+             <p>Bowen Wu, JiahaO Tong </p>
           </div>
   </div>
     
@@ -312,82 +323,508 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The application is built using Google Earth Engine’s JavaScript API. Here are the key components and their implementation:</p>
 <section id="data-initialization-and-setup" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="data-initialization-and-setup"><span class="header-section-number">8.1</span> <strong>Data Initialization and Setup</strong></h2>
-<p>This section establishes the foundation for the analysis by setting up the study area and loading the required datasets. It includes: - Setting the map center and zoom level - Defining the area of interest (AOI) with a buffer - Initializing the time range for analysis - Loading the MODIS temperature dataset</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Basic settings</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">setCenter</span>(<span class="fl">86.9252</span><span class="op">,</span> <span class="fl">27.98833</span><span class="op">,</span> <span class="dv">11</span>)<span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> aoi <span class="op">=</span> ee<span class="op">.</span><span class="at">Geometry</span><span class="op">.</span><span class="fu">Point</span>(<span class="fl">86.9252</span><span class="op">,</span> <span class="fl">27.98833</span>)<span class="op">.</span><span class="fu">buffer</span>(<span class="dv">10000</span>)<span class="op">;</span></span>
+<ul>
+<li>Firstly, define the area of interest (AOI) around Summit coordinates. A <code>ui.Map()</code> widget is created, switched to the satellite basemap, and zoomed to the AOI.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Mount Everest point &amp; 15 km buffer</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> everestPoint  <span class="op">=</span> ee<span class="op">.</span><span class="at">Geometry</span><span class="op">.</span><span class="fu">Point</span>([<span class="fl">86.9250</span><span class="op">,</span> <span class="fl">27.9881</span>])<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> everestBuffer <span class="op">=</span> everestPoint<span class="op">.</span><span class="fu">buffer</span>(<span class="dv">15000</span>)<span class="op">;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Input source</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> modis <span class="op">=</span> ee<span class="op">.</span><span class="fu">ImageCollection</span>(<span class="st">'MODIS/MOD11A2'</span>)<span class="op">;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> start <span class="op">=</span> ee<span class="op">.</span><span class="fu">Date</span>(<span class="st">'2011-02-18'</span>)<span class="op">;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> end <span class="op">=</span> ee<span class="op">.</span><span class="fu">Date</span>(<span class="st">'2025-03-30'</span>)<span class="op">;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dateRange <span class="op">=</span> ee<span class="op">.</span><span class="fu">DateRange</span>(start<span class="op">,</span> end)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Map widget – satellite basemap, centred on the buffer</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> customMap <span class="op">=</span> ui<span class="op">.</span><span class="fu">Map</span>()<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>customMap<span class="op">.</span><span class="fu">setOptions</span>(<span class="st">"SATELLITE"</span>)<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>customMap<span class="op">.</span><span class="fu">centerObject</span>(everestBuffer<span class="op">,</span> <span class="dv">11</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Initialize the time range for analysis and Load the datasets.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Import a FeatureCollection that contains the routes (Everest expedition routes)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> routes <span class="op">=</span> ee<span class="op">.</span><span class="fu">FeatureCollection</span>(<span class="st">"projects/ee-wbwhaha/assets/Everest"</span>)<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Input source</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> modis <span class="op">=</span> ee<span class="op">.</span><span class="fu">ImageCollection</span>(<span class="st">'MODIS/MOD11A2'</span>)<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> start <span class="op">=</span> ee<span class="op">.</span><span class="fu">Date</span>(<span class="st">'2011-02-18'</span>)<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> end <span class="op">=</span> ee<span class="op">.</span><span class="fu">Date</span>(<span class="st">'2025-03-30'</span>)<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dateRange <span class="op">=</span> ee<span class="op">.</span><span class="fu">DateRange</span>(start<span class="op">,</span> end)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="temperature-analysis-pipeline" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="temperature-analysis-pipeline"><span class="header-section-number">8.2</span> <strong>Temperature Analysis Pipeline</strong></h2>
-<p>This section handles the temperature data processing and visualization. The process involves: - Filtering temperature data by date and region - Converting temperature values from Kelvin to Celsius - Creating time series visualizations - Implementing interactive temperature analysis</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Step 1: Temperature data filtering</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> modLSTday <span class="op">=</span> modis<span class="op">.</span><span class="fu">filterDate</span>(dateRange)<span class="op">.</span><span class="fu">select</span>(<span class="st">'LST_Day_1km'</span>)<span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> modLSTnight <span class="op">=</span> modis<span class="op">.</span><span class="fu">filterDate</span>(dateRange)<span class="op">.</span><span class="fu">select</span>(<span class="st">'LST_Night_1km'</span>)<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Step 2: Temperature conversion (Kelvin to Celsius)</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> modLSTday_c <span class="op">=</span> modLSTday<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(img) {</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> img<span class="op">.</span><span class="fu">multiply</span>(<span class="fl">0.02</span>)<span class="op">.</span><span class="fu">subtract</span>(<span class="fl">273.15</span>)<span class="op">;</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Step 3: Temperature time series visualization</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> tsDay <span class="op">=</span> ui<span class="op">.</span><span class="at">Chart</span><span class="op">.</span><span class="at">image</span><span class="op">.</span><span class="fu">series</span>({</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">imageCollection</span><span class="op">:</span> modLSTday_c<span class="op">,</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">region</span><span class="op">:</span> selectedPoint<span class="op">,</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reducer</span><span class="op">:</span> ee<span class="op">.</span><span class="at">Reducer</span><span class="op">.</span><span class="fu">mean</span>()<span class="op">,</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">scale</span><span class="op">:</span> <span class="dv">1000</span><span class="op">,</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xProperty</span><span class="op">:</span> <span class="st">'system:time_start'</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>})<span class="op">.</span><span class="fu">setOptions</span>({</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> <span class="st">'Average LST Day Time Series'</span><span class="op">,</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">vAxis</span><span class="op">:</span> {<span class="dt">title</span><span class="op">:</span> <span class="st">'LST (°C)'</span>}</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">// Step 4: Add temperature visualization layer</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(clippedLSTday_c<span class="op">,</span> {</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">min</span><span class="op">:</span> <span class="op">-</span><span class="dv">30</span><span class="op">,</span> <span class="dt">max</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">palette</span><span class="op">:</span> [<span class="st">'blue'</span><span class="op">,</span> <span class="st">'limegreen'</span><span class="op">,</span> <span class="st">'yellow'</span><span class="op">,</span> <span class="st">'darkorange'</span><span class="op">,</span> <span class="st">'red'</span>]</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span> <span class="st">'Mean Day Temperature'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This section handles the temperature data processing and visualization. The process involves:</p>
+<ul>
+<li>Filtering temperature data by date and region</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> modLSTday <span class="op">=</span> modis<span class="op">.</span><span class="fu">filterDate</span>(dateRange)<span class="op">.</span><span class="fu">select</span>(<span class="st">'LST_Day_1km'</span>)<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> modLSTnight <span class="op">=</span> modis<span class="op">.</span><span class="fu">filterDate</span>(dateRange)<span class="op">.</span><span class="fu">select</span>(<span class="st">'LST_Night_1km'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Converting temperature values from Kelvin to Celsius</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> modLSTday_c <span class="op">=</span> modLSTday<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(img) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> img<span class="op">.</span><span class="fu">multiply</span>(<span class="fl">0.02</span>)<span class="op">.</span><span class="fu">subtract</span>(<span class="fl">273.15</span>)<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Creating time series visualizations</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> tsDay <span class="op">=</span> ui<span class="op">.</span><span class="at">Chart</span><span class="op">.</span><span class="at">image</span><span class="op">.</span><span class="fu">series</span>({</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">imageCollection</span><span class="op">:</span> modLSTday_c<span class="op">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">region</span><span class="op">:</span> selectedPoint<span class="op">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reducer</span><span class="op">:</span> ee<span class="op">.</span><span class="at">Reducer</span><span class="op">.</span><span class="fu">mean</span>()<span class="op">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">scale</span><span class="op">:</span> <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xProperty</span><span class="op">:</span> <span class="st">'system:time_start'</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>})<span class="op">.</span><span class="fu">setOptions</span>({</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> <span class="st">'Average LST Day Time Series'</span><span class="op">,</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">vAxis</span><span class="op">:</span> {<span class="dt">title</span><span class="op">:</span> <span class="st">'LST (°C)'</span>}</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Implementing interactive temperature analysis</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(clippedLSTday_c<span class="op">,</span> {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">min</span><span class="op">:</span> <span class="op">-</span><span class="dv">30</span><span class="op">,</span> <span class="dt">max</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">palette</span><span class="op">:</span> [<span class="st">'blue'</span><span class="op">,</span> <span class="st">'limegreen'</span><span class="op">,</span> <span class="st">'yellow'</span><span class="op">,</span> <span class="st">'darkorange'</span><span class="op">,</span> <span class="st">'red'</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span> <span class="st">'Mean Day Temperature'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="terrain-analysis-pipeline" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="terrain-analysis-pipeline"><span class="header-section-number">8.3</span> <strong>Terrain Analysis Pipeline</strong></h2>
-<p>This section handles the terrain data processing and visualization. The process involves: - Generating terrain products (slope and aspect) - Processing route data and elevation profiles - Creating terrain visualizations - Implementing route selection and analysis</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Step 1: Terrain analysis</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> slope <span class="op">=</span> ee<span class="op">.</span><span class="at">Terrain</span><span class="op">.</span><span class="fu">slope</span>(dem)<span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> aspect <span class="op">=</span> ee<span class="op">.</span><span class="at">Terrain</span><span class="op">.</span><span class="fu">aspect</span>(dem)<span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> slopeMask <span class="op">=</span> slope<span class="op">.</span><span class="fu">updateMask</span>(slope<span class="op">.</span><span class="fu">gt</span>(<span class="dv">20</span>))<span class="op">;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Step 2: Route elevation profiling</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> calculateElevationProfile <span class="op">=</span> <span class="kw">function</span>(route) {</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> geometry <span class="op">=</span> route<span class="op">.</span><span class="fu">geometry</span>()<span class="op">;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> elevationProfile <span class="op">=</span> elevation<span class="op">.</span><span class="fu">sample</span>({</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">region</span><span class="op">:</span> geometry<span class="op">,</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">numPixels</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span>  <span class="co">// Number of sampling points</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">scale</span><span class="op">:</span> <span class="dv">30</span>        <span class="co">// Resolution in meters</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> route<span class="op">.</span><span class="fu">set</span>(<span class="st">'elevationProfile'</span><span class="op">,</span> elevationProfile)<span class="op">;</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">// Step 3: Add terrain visualization layers</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(slopeMask<span class="op">,</span> {</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">min</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span> <span class="dt">max</span><span class="op">:</span> <span class="dv">90</span><span class="op">,</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">palette</span><span class="op">:</span> [<span class="st">'lightgreen'</span><span class="op">,</span> <span class="st">'yellow'</span><span class="op">,</span> <span class="st">'orange'</span><span class="op">,</span> <span class="st">'red'</span>]</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span> <span class="st">'Steep Slopes'</span>)<span class="op">;</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">// Step 4: Implement route selection interface</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> routeSelect <span class="op">=</span> ui<span class="op">.</span><span class="fu">Select</span>({</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">items</span><span class="op">:</span> routeNames<span class="op">,</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">onChange</span><span class="op">:</span> <span class="kw">function</span>(name) {</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> selectedRoute <span class="op">=</span> routesWithElevation</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">eq</span>(<span class="st">'NAME'</span><span class="op">,</span> name))</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span><span class="fu">first</span>()<span class="op">;</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        <span class="fu">updateElevationChart</span>(selectedRoute)<span class="op">;</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This section handles the terrain data processing and visualization. The process involves:</p>
+<ul>
+<li>Generating terrain products (slope and aspect)</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> slope <span class="op">=</span> ee<span class="op">.</span><span class="at">Terrain</span><span class="op">.</span><span class="fu">slope</span>(dem)<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> aspect <span class="op">=</span> ee<span class="op">.</span><span class="at">Terrain</span><span class="op">.</span><span class="fu">aspect</span>(dem)<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> slopeMask <span class="op">=</span> slope<span class="op">.</span><span class="fu">updateMask</span>(slope<span class="op">.</span><span class="fu">gt</span>(<span class="dv">20</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Processing route data and elevation profiles</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> calculateElevationProfile <span class="op">=</span> <span class="kw">function</span>(route) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> geometry <span class="op">=</span> route<span class="op">.</span><span class="fu">geometry</span>()<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> elevationProfile <span class="op">=</span> elevation<span class="op">.</span><span class="fu">sample</span>({</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">region</span><span class="op">:</span> geometry<span class="op">,</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">numPixels</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span>  <span class="co">// Number of sampling points</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">scale</span><span class="op">:</span> <span class="dv">30</span>        <span class="co">// Resolution in meters</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> route<span class="op">.</span><span class="fu">set</span>(<span class="st">'elevationProfile'</span><span class="op">,</span> elevationProfile)<span class="op">;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Creating terrain visualizations</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(slopeMask<span class="op">,</span> {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">min</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span> <span class="dt">max</span><span class="op">:</span> <span class="dv">90</span><span class="op">,</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">palette</span><span class="op">:</span> [<span class="st">'lightgreen'</span><span class="op">,</span> <span class="st">'yellow'</span><span class="op">,</span> <span class="st">'orange'</span><span class="op">,</span> <span class="st">'red'</span>]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span> <span class="st">'Steep Slopes'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Implementing route selection and analysis</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> routeSelect <span class="op">=</span> ui<span class="op">.</span><span class="fu">Select</span>({</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">items</span><span class="op">:</span> routeNames<span class="op">,</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">onChange</span><span class="op">:</span> <span class="kw">function</span>(name) {</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> selectedRoute <span class="op">=</span> routesWithElevation</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">eq</span>(<span class="st">'NAME'</span><span class="op">,</span> name))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span><span class="fu">first</span>()<span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">updateElevationChart</span>(selectedRoute)<span class="op">;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="snow-cover-analysis-and-routes-danger-index-pipeline" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="snow-cover-analysis-and-routes-danger-index-pipeline"><span class="header-section-number">8.4</span> <strong>Snow Cover Analysis and Routes Danger Index Pipeline</strong></h2>
+<ul>
+<li>Filter out unwanted cloud-related artifacts in Sentinel-2 imagery using the Scene Classification Layer (SCL)</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Function to mask clouds in Sentinel-2 imagery based on the Scene Classification Layer (SCL)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">maskS2clouds</span>(image) {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> scl <span class="op">=</span> image<span class="op">.</span><span class="fu">select</span>(<span class="st">'SCL'</span>)<span class="op">;</span> <span class="co">// Select the Scene Classification Layer (SCL)</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> mask <span class="op">=</span> scl<span class="op">.</span><span class="fu">neq</span>(<span class="dv">3</span>)<span class="op">.</span><span class="fu">and</span>(scl<span class="op">.</span><span class="fu">neq</span>(<span class="dv">8</span>))<span class="op">.</span><span class="fu">and</span>(scl<span class="op">.</span><span class="fu">neq</span>(<span class="dv">9</span>))<span class="op">;</span> <span class="co">// Mask clouds, cirrus, and cloud shadows</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> image<span class="op">.</span><span class="fu">updateMask</span>(mask)<span class="op">;</span> <span class="co">// Apply the mask to the image</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Creating a composite image by applying a median operation to the <strong>Sentinel-2 dataset (s2)</strong> and clipping it to the everestBuffer region. This ensures that the analysis focuses only on the area of interest. Next, it calculates the Normalized Difference Snow Index (<strong>NDSI</strong>), which is derived from <strong>Sentinel-2</strong> bands <strong>B3 (Green)</strong> and <strong>B11 (Shortwave Infrared)</strong>. The NDSI helps differentiate snow-covered regions from other surface types. Using the NDSI, the code defines a snow mask by applying a threshold of 0.45. Any pixel with an NDSI value greater than 0.45 is classified as snow, marking it as part of the snowMask layer. To analyze the snow coverage in a localized manner, the script computes the snow fraction within a neighborhood using a mean reducer. It applies a square kernel of 10x10 pixels, which aggregates the fraction of snow pixels within this neighborhood. The snow fraction is then converted to a percentage (snowPercentage) by multiplying it by 100, making it easier to interpret the results. Finally, the script classifies snow coverage into four categories based on percentage ranges. The classified snow cover is clipped to the everestBuffer region to ensure the final output remains within the intended geographic boundary.</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> composite <span class="op">=</span> s2<span class="op">.</span><span class="fu">median</span>()<span class="op">.</span><span class="fu">clip</span>(everestBuffer)<span class="op">;</span> <span class="co">// Create a composite image (median over time range)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> ndsi <span class="op">=</span> composite<span class="op">.</span><span class="fu">normalizedDifference</span>([<span class="st">'B3'</span><span class="op">,</span> <span class="st">'B11'</span>])<span class="op">.</span><span class="fu">rename</span>(<span class="st">'NDSI'</span>)<span class="op">;</span> <span class="co">// Calculate the Normalized Difference Snow Index (NDSI)</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> snowMask <span class="op">=</span> ndsi<span class="op">.</span><span class="fu">gt</span>(<span class="fl">0.45</span>)<span class="op">.</span><span class="fu">rename</span>(<span class="st">'snowMask'</span>)<span class="op">;</span> <span class="co">// Define snow mask based on NDSI threshold (NDSI &gt; 0.45 indicates snow)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Calculate the snow fraction (percentage) within a neighborhood</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> snowFraction <span class="op">=</span> snowMask<span class="op">.</span><span class="fu">reduceNeighborhood</span>({</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">reducer</span><span class="op">:</span> ee<span class="op">.</span><span class="at">Reducer</span><span class="op">.</span><span class="fu">mean</span>()<span class="op">,</span> <span class="co">// Use the mean of pixels within the neighborhood</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">kernel</span><span class="op">:</span> ee<span class="op">.</span><span class="at">Kernel</span><span class="op">.</span><span class="fu">square</span>(<span class="dv">10</span>) <span class="co">// Define a 10x10 pixel square kernel for the neighborhood</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    })<span class="op">.</span><span class="fu">rename</span>(<span class="st">'snowFraction'</span>)<span class="op">;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert snow fraction to percentage</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> snowPercentage <span class="op">=</span> snowFraction<span class="op">.</span><span class="fu">multiply</span>(<span class="dv">100</span>)<span class="op">.</span><span class="fu">rename</span>(<span class="st">'snowPercentage'</span>)<span class="op">;</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Classify the snow cover based on the percentage</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> classImage <span class="op">=</span> snowPercentage<span class="op">.</span><span class="fu">expression</span>(</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"(b('snowPercentage') &lt; 25) ? 1"</span> <span class="op">+</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">" : (b('snowPercentage') &lt; 50) ? 2"</span> <span class="op">+</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>      <span class="st">" : (b('snowPercentage') &lt; 75) ? 3"</span> <span class="op">+</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>      <span class="st">" : 4"</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    )<span class="op">.</span><span class="fu">rename</span>(<span class="st">'snowClass'</span>)<span class="op">.</span><span class="fu">clip</span>(everestBuffer)<span class="op">;</span> <span class="co">// Classify into 4 categories based on the percentage</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>This function calculates a danger index for a given route based on snow coverage. It creates a buffer zone around the route and checks how much of it intersects with a predefined Everest buffer.</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Function to calculate the danger index for a route based on snow cover</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">calculateDanger</span>(route) {</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> buffer <span class="op">=</span> route<span class="op">.</span><span class="fu">geometry</span>()<span class="op">.</span><span class="fu">buffer</span>(<span class="dv">50</span>)<span class="op">.</span><span class="fu">intersection</span>(everestBuffer<span class="op">,</span> ee<span class="op">.</span><span class="fu">ErrorMargin</span>(<span class="dv">1</span>))<span class="op">;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> hist <span class="op">=</span> classImage<span class="op">.</span><span class="fu">reduceRegion</span>({</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reducer</span><span class="op">:</span> ee<span class="op">.</span><span class="at">Reducer</span><span class="op">.</span><span class="fu">frequencyHistogram</span>()<span class="op">,</span> <span class="co">// Calculate frequency of snow classes</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">geometry</span><span class="op">:</span> buffer<span class="op">,</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">scale</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">maxPixels</span><span class="op">:</span> <span class="fl">1e9</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    })<span class="op">.</span><span class="fu">get</span>(<span class="st">'snowClass'</span>)<span class="op">;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    hist <span class="op">=</span> ee<span class="op">.</span><span class="fu">Dictionary</span>(hist)<span class="op">;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> f1 <span class="op">=</span> ee<span class="op">.</span><span class="fu">Number</span>(hist<span class="op">.</span><span class="fu">get</span>(<span class="st">'1'</span><span class="op">,</span> <span class="dv">0</span>))<span class="op">;</span> <span class="co">// Snow class 1 (&lt; 25% snow)</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> f2 <span class="op">=</span> ee<span class="op">.</span><span class="fu">Number</span>(hist<span class="op">.</span><span class="fu">get</span>(<span class="st">'2'</span><span class="op">,</span> <span class="dv">0</span>))<span class="op">;</span> <span class="co">// Snow class 2 (25–50% snow)</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> f3 <span class="op">=</span> ee<span class="op">.</span><span class="fu">Number</span>(hist<span class="op">.</span><span class="fu">get</span>(<span class="st">'3'</span><span class="op">,</span> <span class="dv">0</span>))<span class="op">;</span> <span class="co">// Snow class 3 (50–75% snow)</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> f4 <span class="op">=</span> ee<span class="op">.</span><span class="fu">Number</span>(hist<span class="op">.</span><span class="fu">get</span>(<span class="st">'4'</span><span class="op">,</span> <span class="dv">0</span>))<span class="op">;</span> <span class="co">// Snow class 4 (&gt; 75% snow)</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> total <span class="op">=</span> f1<span class="op">.</span><span class="fu">add</span>(f2)<span class="op">.</span><span class="fu">add</span>(f3)<span class="op">.</span><span class="fu">add</span>(f4)<span class="op">;</span> <span class="co">// Total snow pixels</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Calculate danger index based on snow class frequency</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> danger <span class="op">=</span> ee<span class="op">.</span><span class="at">Algorithms</span><span class="op">.</span><span class="fu">If</span>(total<span class="op">.</span><span class="fu">eq</span>(<span class="dv">0</span>)<span class="op">,</span> <span class="dv">999</span><span class="op">,</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    f1<span class="op">.</span><span class="fu">multiply</span>(<span class="dv">1</span>)<span class="op">.</span><span class="fu">add</span>(f2<span class="op">.</span><span class="fu">multiply</span>(<span class="dv">2</span>))<span class="op">.</span><span class="fu">add</span>(f3<span class="op">.</span><span class="fu">multiply</span>(<span class="dv">3</span>))<span class="op">.</span><span class="fu">add</span>(f4<span class="op">.</span><span class="fu">multiply</span>(<span class="dv">4</span>))<span class="op">.</span><span class="fu">divide</span>(total))<span class="op">;</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> route<span class="op">.</span><span class="fu">set</span>(<span class="st">'dangerous_index'</span><span class="op">,</span> danger)<span class="op">;</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Calculate the danger index of each route and find the safest route.</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Calculate danger index for all routes and apply elevation profile</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    routesWithDanger <span class="op">=</span> mergedRoutes<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(route) {</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> withDanger <span class="op">=</span> <span class="fu">calculateDanger</span>(route)<span class="op">;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> withElevation <span class="op">=</span> <span class="fu">calculateElevationProfile</span>(withDanger)<span class="op">;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> withElevation<span class="op">;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Get the minimum danger index across all routes</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    minDangerIndex <span class="op">=</span> ee<span class="op">.</span><span class="fu">Number</span>(routesWithDanger<span class="op">.</span><span class="fu">aggregate_min</span>(<span class="st">'dangerous_index'</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Display the snow cover level of the buffered area and the danger level of all the routes.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a> <span class="co">// Format selected route name and style routes based on danger index</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> selectedName <span class="op">=</span> routeSelect<span class="op">.</span><span class="fu">getValue</span>()<span class="op">;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> selectedNameEE <span class="op">=</span> ee<span class="op">.</span><span class="fu">String</span>(selectedName <span class="op">||</span> <span class="st">'___'</span>)<span class="op">;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> styledRoutes <span class="op">=</span> routesWithDanger<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(f) {</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> name <span class="op">=</span> ee<span class="op">.</span><span class="fu">String</span>(f<span class="op">.</span><span class="fu">get</span>(<span class="st">'NAME'</span>))<span class="op">;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> index <span class="op">=</span> ee<span class="op">.</span><span class="fu">Number</span>(f<span class="op">.</span><span class="fu">get</span>(<span class="st">'dangerous_index'</span>))<span class="op">;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> isSafest <span class="op">=</span> index<span class="op">.</span><span class="fu">subtract</span>(minDangerIndex)<span class="op">.</span><span class="fu">abs</span>()<span class="op">.</span><span class="fu">lt</span>(tolerance)<span class="op">;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> isSelected <span class="op">=</span> name<span class="op">.</span><span class="fu">equals</span>(selectedNameEE)<span class="op">;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> color <span class="op">=</span> ee<span class="op">.</span><span class="at">Algorithms</span><span class="op">.</span><span class="fu">If</span>(isSelected<span class="op">,</span> <span class="st">'yellow'</span><span class="op">,</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>                ee<span class="op">.</span><span class="at">Algorithms</span><span class="op">.</span><span class="fu">If</span>(isSafest<span class="op">,</span> <span class="st">'green'</span><span class="op">,</span> <span class="st">'red'</span>))<span class="op">;</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> width <span class="op">=</span> ee<span class="op">.</span><span class="at">Algorithms</span><span class="op">.</span><span class="fu">If</span>(isSelected<span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">3</span>)<span class="op">;</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f<span class="op">.</span><span class="fu">set</span>({<span class="dt">styleColor</span><span class="op">:</span> {<span class="dt">color</span><span class="op">:</span> color<span class="op">,</span> <span class="dt">width</span><span class="op">:</span> width<span class="op">,</span> <span class="dt">fillColor</span><span class="op">:</span> <span class="st">'00000000'</span>}})<span class="op">;</span> <span class="co">// Set the style for the routes</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> vis <span class="op">=</span> styledRoutes<span class="op">.</span><span class="fu">style</span>({<span class="dt">styleProperty</span><span class="op">:</span> <span class="st">'styleColor'</span>})<span class="op">;</span> <span class="co">// Apply styling to routes</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co">// Clear existing map layers and add new layers</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>customMap<span class="op">.</span><span class="fu">layers</span>()<span class="op">.</span><span class="fu">reset</span>()<span class="op">;</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>customMap<span class="op">.</span><span class="fu">addLayer</span>(composite<span class="op">,</span> {<span class="dt">bands</span><span class="op">:</span> [<span class="st">'B4'</span><span class="op">,</span> <span class="st">'B3'</span><span class="op">,</span> <span class="st">'B2'</span>]<span class="op">,</span> <span class="dt">min</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">max</span><span class="op">:</span> <span class="dv">3000</span>}<span class="op">,</span> <span class="st">'Composite'</span>)<span class="op">;</span> <span class="co">// Add the composite image layer</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>customMap<span class="op">.</span><span class="fu">addLayer</span>(classImage<span class="op">,</span> {<span class="dt">min</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">max</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span> <span class="fl">0.8</span><span class="op">,</span> <span class="dt">palette</span><span class="op">:</span> [<span class="st">'#D3D3D3'</span><span class="op">,</span> <span class="st">'#CCCCFF'</span><span class="op">,</span> <span class="st">'#4169E1'</span><span class="op">,</span> <span class="st">'#E0FFFF'</span>]}<span class="op">,</span> <span class="st">'Snow Class'</span>)<span class="op">;</span> <span class="co">// Add the snow class layer</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>customMap<span class="op">.</span><span class="fu">addLayer</span>(vis<span class="op">,</span> {}<span class="op">,</span> <span class="st">'Routes'</span>)<span class="op">;</span> <span class="co">// Add the styled routes layer</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>uniqueNames<span class="op">.</span><span class="fu">evaluate</span>(<span class="kw">function</span>(names) {</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> formattedItems <span class="op">=</span> names<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(name) {</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>        <span class="dt">label</span><span class="op">:</span> <span class="fu">formatRouteName</span>(name)<span class="op">,</span> <span class="co">// Format route name with emoji and year</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>        <span class="dt">value</span><span class="op">:</span> name                   </span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>    routeSelect<span class="op">.</span><span class="fu">items</span>()<span class="op">.</span><span class="fu">reset</span>(formattedItems)<span class="op">;</span> <span class="co">// Reset the route selector with formatted route names</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>routeSelect<span class="op">.</span><span class="fu">getValue</span>() <span class="op">&amp;&amp;</span> formattedItems<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>    routeSelect<span class="op">.</span><span class="fu">setValue</span>(formattedItems[<span class="dv">0</span>]<span class="op">.</span><span class="at">value</span>)<span class="op">;</span> <span class="co">// Set the first route as the default selection</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="interface-building" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="interface-building"><span class="header-section-number">8.5</span> <strong>Interface building</strong></h2>
+<ul>
+<li><p>The code below first verifies whether the selected location corresponds to a known hazardous route or an arbitrary point. If a dangerous route is identified, it retrieves the route’s name and danger index, formats the name using a helper function, and presents the relevant details within an interactive UI panel. This panel enables users to swiftly assess the information and includes a close button for removing the displayed content when no longer required.</p></li>
+<li><p>In cases where no hazardous route is detected, the code shifts its approach. It generates a temperature time-series chart for the clicked point by utilizing Earth Engine functions to extract daytime and nighttime Land Surface Temperature (LST) data. These values are visualized in two separate graphs, which apply an averaging method over time to assist users in analyzing historical temperature trends for the selected location. The temperature data is displayed within a panel featuring a semi-transparent background, a border, and a close button, maintaining a clean and user-friendly interface.</p></li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Function to handle map clicks and display information about the clicked area</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>customMap<span class="op">.</span><span class="fu">onClick</span>(<span class="kw">function</span>(coords) {</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> point <span class="op">=</span> ee<span class="op">.</span><span class="at">Geometry</span><span class="op">.</span><span class="fu">Point</span>(coords<span class="op">.</span><span class="at">lon</span><span class="op">,</span> coords<span class="op">.</span><span class="at">lat</span>)<span class="op">.</span><span class="fu">buffer</span>(<span class="dv">300</span>)<span class="op">;</span> <span class="co">// Create a buffer around the clicked point (300 meters)</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">'🖱 Clicked coordinates:'</span><span class="op">,</span> point)<span class="op">;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>routesWithDanger) {</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">'⚠️ routesWithDanger is not loaded yet'</span>)<span class="op">;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Filter the routes to find the one that intersects with the clicked point</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> clicked <span class="op">=</span> routesWithDanger<span class="op">.</span><span class="fu">filterBounds</span>(point)<span class="op">.</span><span class="fu">first</span>()<span class="op">;</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  clicked<span class="op">.</span><span class="fu">evaluate</span>(<span class="kw">function</span>(feature) {</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    infoPanel<span class="op">.</span><span class="fu">clear</span>()<span class="op">;</span> <span class="co">// Clear the existing information from the info panel</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (feature) {</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>      <span class="co">// If a route was clicked, display its information</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="st">'✅ Clicked on route:'</span><span class="op">,</span> feature)<span class="op">;</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> rawName <span class="op">=</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">NAME</span><span class="op">;</span> <span class="co">// Get the route name</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> danger <span class="op">=</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">dangerous_index</span><span class="op">;</span> <span class="co">// Get the danger index of the route</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> formatted <span class="op">=</span> <span class="fu">formatRouteName</span>(rawName)<span class="op">;</span> <span class="co">// Format the route name with emoji and expedition year</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Create a close button to remove the information panel</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> closeButton <span class="op">=</span> ui<span class="op">.</span><span class="fu">Button</span>({</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>        <span class="dt">label</span><span class="op">:</span> <span class="st">'✖'</span><span class="op">,</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>        <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>          <span class="dt">backgroundColor</span><span class="op">:</span> <span class="st">'white'</span><span class="op">,</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>          <span class="dt">color</span><span class="op">:</span> <span class="st">'black'</span><span class="op">,</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>          <span class="dt">padding</span><span class="op">:</span> <span class="st">'2px 6px'</span><span class="op">,</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">'bold'</span><span class="op">,</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>          <span class="dt">border</span><span class="op">:</span> <span class="st">'none'</span><span class="op">,</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>          <span class="dt">borderRadius</span><span class="op">:</span> <span class="st">'4px'</span><span class="op">,</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>          <span class="dt">margin</span><span class="op">:</span> <span class="st">'0 0 6px 0'</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>        <span class="dt">onClick</span><span class="op">:</span> <span class="kw">function</span>() {</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>          infoPanel<span class="op">.</span><span class="fu">clear</span>()<span class="op">;</span> <span class="co">// Clear the info panel when the close button is clicked</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Create a panel to display the route information</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> routeInfoPanel <span class="op">=</span> ui<span class="op">.</span><span class="fu">Panel</span>({</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>        <span class="dt">layout</span><span class="op">:</span> ui<span class="op">.</span><span class="at">Panel</span><span class="op">.</span><span class="at">Layout</span><span class="op">.</span><span class="fu">flow</span>(<span class="st">'vertical'</span>)<span class="op">,</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>        <span class="dt">widgets</span><span class="op">:</span> [</span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>          closeButton<span class="op">,</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>          ui<span class="op">.</span><span class="fu">Label</span>({</span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>            <span class="dt">value</span><span class="op">:</span> formatted<span class="op">,</span></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>            <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>              <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">'bold'</span><span class="op">,</span></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>              <span class="dt">fontSize</span><span class="op">:</span> <span class="st">'14px'</span><span class="op">,</span></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>              <span class="dt">margin</span><span class="op">:</span> <span class="st">'4px 0 4px 0'</span></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>          })<span class="op">,</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>          ui<span class="op">.</span><span class="fu">Label</span>({</span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>            <span class="dt">value</span><span class="op">:</span> <span class="st">'⚠️ Danger Index: '</span> <span class="op">+</span> <span class="bu">Number</span>(danger)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="op">,</span> <span class="co">// Display the danger index with two decimal places</span></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>            <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>              <span class="dt">margin</span><span class="op">:</span> <span class="st">'0 0 4px 0'</span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>          })</span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>        ]<span class="op">,</span></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>        <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>          <span class="dt">padding</span><span class="op">:</span> <span class="st">'4px'</span><span class="op">,</span></span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>          <span class="dt">backgroundColor</span><span class="op">:</span> <span class="st">'rgba(255,255,255,0.95)'</span><span class="op">,</span> <span class="co">// Semi-transparent background</span></span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>          <span class="dt">border</span><span class="op">:</span> <span class="st">'1px solid #ccc'</span><span class="op">,</span> <span class="co">// Border around the panel</span></span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>          <span class="dt">borderRadius</span><span class="op">:</span> <span class="st">'6px'</span></span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a>      infoPanel<span class="op">.</span><span class="fu">add</span>(routeInfoPanel)<span class="op">;</span> <span class="co">// Add the route info panel to the info panel on the map</span></span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a>      <span class="co">// If no route was clicked, display temperature time series for the clicked point</span></span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="st">'🌡️ No route detected — showing temperature time series.'</span>)<span class="op">;</span></span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> clickedPoint <span class="op">=</span> ee<span class="op">.</span><span class="at">Geometry</span><span class="op">.</span><span class="fu">Point</span>(coords<span class="op">.</span><span class="at">lon</span><span class="op">,</span> coords<span class="op">.</span><span class="at">lat</span>)<span class="op">;</span></span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Create a time series chart for the daytime LST (Land Surface Temperature) data</span></span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> tsDay <span class="op">=</span> ui<span class="op">.</span><span class="at">Chart</span><span class="op">.</span><span class="at">image</span><span class="op">.</span><span class="fu">series</span>({</span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a>        <span class="dt">imageCollection</span><span class="op">:</span> modLSTday<span class="op">,</span> <span class="co">// Daytime LST data</span></span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a>        <span class="dt">region</span><span class="op">:</span> clickedPoint<span class="op">,</span> <span class="co">// Region for the time series</span></span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a>        <span class="dt">reducer</span><span class="op">:</span> ee<span class="op">.</span><span class="at">Reducer</span><span class="op">.</span><span class="fu">mean</span>()<span class="op">,</span> <span class="co">// Mean temperature over time</span></span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a>        <span class="dt">scale</span><span class="op">:</span> <span class="dv">1000</span><span class="op">,</span> <span class="co">// Resolution of the data (1 km)</span></span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a>        <span class="dt">xProperty</span><span class="op">:</span> <span class="st">'system:time_start'</span> <span class="co">// Use the time property for the x-axis</span></span>
+<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a>      })<span class="op">.</span><span class="fu">setOptions</span>({</span>
+<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a>        <span class="dt">title</span><span class="op">:</span> <span class="st">'📊 LST Day (°C) — Time Series'</span><span class="op">,</span></span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a>        <span class="dt">vAxis</span><span class="op">:</span> {<span class="dt">title</span><span class="op">:</span> <span class="st">'Temperature (°C)'</span>}<span class="op">,</span> <span class="co">// Label for the y-axis</span></span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a>        <span class="dt">lineWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a>        <span class="dt">pointSize</span><span class="op">:</span> <span class="dv">3</span></span>
+<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Create a time series chart for the nighttime LST (Land Surface Temperature) data</span></span>
+<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> tsNight <span class="op">=</span> ui<span class="op">.</span><span class="at">Chart</span><span class="op">.</span><span class="at">image</span><span class="op">.</span><span class="fu">series</span>({</span>
+<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a>        <span class="dt">imageCollection</span><span class="op">:</span> modLSTnight<span class="op">,</span> <span class="co">// Nighttime LST data</span></span>
+<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a>        <span class="dt">region</span><span class="op">:</span> clickedPoint<span class="op">,</span> <span class="co">// Region for the time series</span></span>
+<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a>        <span class="dt">reducer</span><span class="op">:</span> ee<span class="op">.</span><span class="at">Reducer</span><span class="op">.</span><span class="fu">mean</span>()<span class="op">,</span> <span class="co">// Mean temperature over time</span></span>
+<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a>        <span class="dt">scale</span><span class="op">:</span> <span class="dv">1000</span><span class="op">,</span> <span class="co">// Resolution of the data (1 km)</span></span>
+<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a>        <span class="dt">xProperty</span><span class="op">:</span> <span class="st">'system:time_start'</span> <span class="co">// Use the time property for the x-axis</span></span>
+<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>      })<span class="op">.</span><span class="fu">setOptions</span>({</span>
+<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a>        <span class="dt">title</span><span class="op">:</span> <span class="st">'🌙 LST Night (°C) — Time Series'</span><span class="op">,</span></span>
+<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a>        <span class="dt">vAxis</span><span class="op">:</span> {<span class="dt">title</span><span class="op">:</span> <span class="st">'Temperature (°C)'</span>}<span class="op">,</span> <span class="co">// Label for the y-axis</span></span>
+<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a>        <span class="dt">lineWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a>        <span class="dt">pointSize</span><span class="op">:</span> <span class="dv">3</span></span>
+<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Create a close button to remove the temperature chart</span></span>
+<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> closeButton <span class="op">=</span> ui<span class="op">.</span><span class="fu">Button</span>({</span>
+<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a>        <span class="dt">label</span><span class="op">:</span> <span class="st">'✖'</span><span class="op">,</span></span>
+<span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a>        <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb16-109"><a href="#cb16-109" aria-hidden="true" tabindex="-1"></a>          <span class="dt">backgroundColor</span><span class="op">:</span> <span class="st">'white'</span><span class="op">,</span> <span class="co">// Red background for the close button</span></span>
+<span id="cb16-110"><a href="#cb16-110" aria-hidden="true" tabindex="-1"></a>          <span class="dt">color</span><span class="op">:</span> <span class="st">'black'</span><span class="op">,</span></span>
+<span id="cb16-111"><a href="#cb16-111" aria-hidden="true" tabindex="-1"></a>          <span class="dt">padding</span><span class="op">:</span> <span class="st">'2px 6px'</span><span class="op">,</span></span>
+<span id="cb16-112"><a href="#cb16-112" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">'bold'</span><span class="op">,</span></span>
+<span id="cb16-113"><a href="#cb16-113" aria-hidden="true" tabindex="-1"></a>          <span class="dt">border</span><span class="op">:</span> <span class="st">'none'</span><span class="op">,</span></span>
+<span id="cb16-114"><a href="#cb16-114" aria-hidden="true" tabindex="-1"></a>          <span class="dt">borderRadius</span><span class="op">:</span> <span class="st">'4px'</span><span class="op">,</span></span>
+<span id="cb16-115"><a href="#cb16-115" aria-hidden="true" tabindex="-1"></a>          <span class="dt">margin</span><span class="op">:</span> <span class="st">'0 0 6px 0'</span></span>
+<span id="cb16-116"><a href="#cb16-116" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb16-117"><a href="#cb16-117" aria-hidden="true" tabindex="-1"></a>        <span class="dt">onClick</span><span class="op">:</span> <span class="kw">function</span>() {</span>
+<span id="cb16-118"><a href="#cb16-118" aria-hidden="true" tabindex="-1"></a>          infoPanel<span class="op">.</span><span class="fu">clear</span>()<span class="op">;</span> <span class="co">// Clear the info panel when the close button is clicked</span></span>
+<span id="cb16-119"><a href="#cb16-119" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb16-120"><a href="#cb16-120" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb16-121"><a href="#cb16-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-122"><a href="#cb16-122" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Create a panel to display the temperature time series charts</span></span>
+<span id="cb16-123"><a href="#cb16-123" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> tempChartPanel <span class="op">=</span> ui<span class="op">.</span><span class="fu">Panel</span>({</span>
+<span id="cb16-124"><a href="#cb16-124" aria-hidden="true" tabindex="-1"></a>        <span class="dt">layout</span><span class="op">:</span> ui<span class="op">.</span><span class="at">Panel</span><span class="op">.</span><span class="at">Layout</span><span class="op">.</span><span class="fu">flow</span>(<span class="st">'vertical'</span>)<span class="op">,</span></span>
+<span id="cb16-125"><a href="#cb16-125" aria-hidden="true" tabindex="-1"></a>        <span class="dt">widgets</span><span class="op">:</span> [</span>
+<span id="cb16-126"><a href="#cb16-126" aria-hidden="true" tabindex="-1"></a>          closeButton<span class="op">,</span></span>
+<span id="cb16-127"><a href="#cb16-127" aria-hidden="true" tabindex="-1"></a>          tsDay<span class="op">,</span> <span class="co">// Daytime temperature chart</span></span>
+<span id="cb16-128"><a href="#cb16-128" aria-hidden="true" tabindex="-1"></a>          tsNight <span class="co">// Nighttime temperature chart</span></span>
+<span id="cb16-129"><a href="#cb16-129" aria-hidden="true" tabindex="-1"></a>        ]<span class="op">,</span></span>
+<span id="cb16-130"><a href="#cb16-130" aria-hidden="true" tabindex="-1"></a>        <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb16-131"><a href="#cb16-131" aria-hidden="true" tabindex="-1"></a>          <span class="dt">padding</span><span class="op">:</span> <span class="st">'4px'</span><span class="op">,</span></span>
+<span id="cb16-132"><a href="#cb16-132" aria-hidden="true" tabindex="-1"></a>          <span class="dt">backgroundColor</span><span class="op">:</span> <span class="st">'rgba(255, 255, 255, 0.85)'</span><span class="op">,</span></span>
+<span id="cb16-133"><a href="#cb16-133" aria-hidden="true" tabindex="-1"></a>          <span class="dt">border</span><span class="op">:</span> <span class="st">'1px solid #ccc'</span><span class="op">,</span></span>
+<span id="cb16-134"><a href="#cb16-134" aria-hidden="true" tabindex="-1"></a>          <span class="dt">borderRadius</span><span class="op">:</span> <span class="st">'6px'</span><span class="op">,</span></span>
+<span id="cb16-135"><a href="#cb16-135" aria-hidden="true" tabindex="-1"></a>          <span class="dt">width</span><span class="op">:</span> <span class="st">'300px'</span><span class="op">,</span></span>
+<span id="cb16-136"><a href="#cb16-136" aria-hidden="true" tabindex="-1"></a>          <span class="dt">height</span><span class="op">:</span> <span class="st">'auto'</span><span class="op">,</span></span>
+<span id="cb16-137"><a href="#cb16-137" aria-hidden="true" tabindex="-1"></a>          <span class="dt">position</span><span class="op">:</span> <span class="st">'top-left'</span></span>
+<span id="cb16-138"><a href="#cb16-138" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb16-139"><a href="#cb16-139" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb16-140"><a href="#cb16-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-141"><a href="#cb16-141" aria-hidden="true" tabindex="-1"></a>      infoPanel<span class="op">.</span><span class="fu">add</span>(tempChartPanel)<span class="op">;</span> <span class="co">// Add the temperature chart panel to the info panel</span></span>
+<span id="cb16-142"><a href="#cb16-142" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb16-143"><a href="#cb16-143" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb16-144"><a href="#cb16-144" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Seting up an interactive UI for exploring snow cover and risk assessments in the Everest region. Including a status label is created to display messages about missing data, a date slider allows users to select a time range, automatically updating the map when changed, a dropdown selector enables route selection and triggers updates to both the map and danger chart and panels are initialized for displaying charts on snow cover and danger index trends.</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Create a status label to display messages on the UI (e.g., when no data is available)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> statusLabel <span class="op">=</span> ui<span class="op">.</span><span class="fu">Label</span>({<span class="dt">value</span><span class="op">:</span> <span class="st">''</span><span class="op">,</span> <span class="dt">style</span><span class="op">:</span> {<span class="dt">color</span><span class="op">:</span> <span class="st">'red'</span><span class="op">,</span> <span class="dt">padding</span><span class="op">:</span> <span class="st">'4px 0'</span>}})<span class="op">;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Create a date slider widget for selecting a date range (for visualizing data over time)</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dateSlider <span class="op">=</span> ui<span class="op">.</span><span class="fu">DateSlider</span>({</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">start</span><span class="op">:</span> <span class="st">'2023-01-01'</span><span class="op">,</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">end</span><span class="op">:</span> <span class="st">'2024-12-31'</span><span class="op">,</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">period</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">stretch</span><span class="op">:</span> <span class="st">'horizontal'</span>}<span class="op">,</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">onChange</span><span class="op">:</span> <span class="kw">function</span>(range) {</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">updateMap</span>(range)<span class="op">;</span> <span class="co">// Update the map when the date range is changed</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">// Create a dropdown selector for choosing a route</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> routeSelect <span class="op">=</span> ui<span class="op">.</span><span class="fu">Select</span>({</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">placeholder</span><span class="op">:</span> <span class="st">'Select a route'</span><span class="op">,</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">onChange</span><span class="op">:</span> <span class="kw">function</span>(name) {</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> range <span class="op">=</span> dateSlider<span class="op">.</span><span class="fu">getValue</span>()<span class="op">;</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>range <span class="op">||</span> range<span class="op">.</span><span class="at">length</span> <span class="op">!==</span> <span class="dv">2</span>) <span class="cf">return</span><span class="op">;</span> <span class="co">// Only update if a valid date range is selected</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">updateMap</span>(range)<span class="op">;</span> <span class="co">// Update the map with the selected date range</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">updateDangerChart</span>(name)<span class="op">;</span> <span class="co">// Update the danger chart based on the selected route</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">// Panels for displaying the charts for snow cover and danger index of selected routes</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> snowChartPanel <span class="op">=</span> ui<span class="op">.</span><span class="fu">Panel</span>()<span class="op">;</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dangerChartPanel <span class="op">=</span> ui<span class="op">.</span><span class="fu">Panel</span>()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>The dedicated floating panel holds all UI widgets, including selectors, charts, and checkboxes.</p></li>
+<li><p>Optional Layers also being estabilshed, users can toggle various layers using checkboxes: Mean Temperature Layers, Slope &gt; 20° layers, aspect (on Slope &gt; 20°) layers, slope ≤ 20° layers.</p></li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Assemble the floating panel with all UI elements</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> floatingPanel <span class="op">=</span> ui<span class="op">.</span><span class="fu">Panel</span>({</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">widgets</span><span class="op">:</span> [</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">makeTitle</span>(<span class="st">'🗻 Everest Snow Cover Explorer'</span>)<span class="op">,</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">makeTitle</span>(<span class="st">'Select time range'</span>)<span class="op">,</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    statusLabel<span class="op">,</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    dateSlider<span class="op">,</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">makeTitle</span>(<span class="st">'Select route'</span>)<span class="op">,</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    routeSelect<span class="op">,</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">makeTitle</span>(<span class="st">'Regional snow cover trend'</span>)<span class="op">,</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    snowChartPanel<span class="op">,</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">makeTitle</span>(<span class="st">'Monthly danger index of selected route'</span>)<span class="op">,</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    dangerChartPanel<span class="op">,</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">makeTitle</span>(<span class="st">'Optional Layers'</span>)<span class="op">,</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    tempCheckbox<span class="op">,</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    slopeCheckbox<span class="op">,</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    aspectCheckbox<span class="op">,</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    lowSlopeCheckbox</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">position</span><span class="op">:</span> <span class="st">'top-center'</span><span class="op">,</span> <span class="co">// Position the floating panel in the center of the screen</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> <span class="st">'500px'</span><span class="op">,</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">maxHeight</span><span class="op">:</span> <span class="st">'100%'</span><span class="op">,</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    <span class="dt">padding</span><span class="op">:</span> <span class="st">'10px'</span><span class="op">,</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">backgroundColor</span><span class="op">:</span> <span class="st">'rgba(255, 255, 255, 0.9)'</span><span class="op">,</span> <span class="co">// Semi-transparent background</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    <span class="dt">border</span><span class="op">:</span> <span class="st">'1px solid #ccc'</span><span class="op">,</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>    <span class="dt">borderRadius</span><span class="op">:</span> <span class="st">'8px'</span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Each checkbox dynamically adds or removes layers based on user input.</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Checkbox for toggling the visibility of temperature layers (day and night temperatures)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> tempCheckbox <span class="op">=</span> ui<span class="op">.</span><span class="fu">Checkbox</span>({</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">'Show Mean Temperature Layers'</span><span class="op">,</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span> <span class="co">// Initially, the checkbox is unchecked</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">onChange</span><span class="op">:</span> <span class="kw">function</span>(show) {</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (show) {</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Add the mean temperature layers to the map if the checkbox is checked</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>      customMap<span class="op">.</span><span class="fu">addLayer</span>(meanDayTemp<span class="op">,</span> {</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">min</span><span class="op">:</span> <span class="op">-</span><span class="dv">30</span><span class="op">,</span> <span class="dt">max</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">palette</span><span class="op">:</span> [<span class="st">'blue'</span><span class="op">,</span> <span class="st">'limegreen'</span><span class="op">,</span> <span class="st">'yellow'</span><span class="op">,</span> <span class="st">'darkorange'</span><span class="op">,</span> <span class="st">'red'</span>] <span class="co">// Color palette for temperature</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span> <span class="st">'Mean Day Temperature'</span>)<span class="op">;</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>      customMap<span class="op">.</span><span class="fu">addLayer</span>(meanNightTemp<span class="op">,</span> {</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">min</span><span class="op">:</span> <span class="op">-</span><span class="dv">30</span><span class="op">,</span> <span class="dt">max</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">palette</span><span class="op">:</span> [<span class="st">'blue'</span><span class="op">,</span> <span class="st">'limegreen'</span><span class="op">,</span> <span class="st">'yellow'</span><span class="op">,</span> <span class="st">'darkorange'</span><span class="op">,</span> <span class="st">'red'</span>] <span class="co">// Color palette for temperature</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span> <span class="st">'Mean Night Temperature'</span>)<span class="op">;</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Remove temperature layers from the map if the checkbox is unchecked</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> layers <span class="op">=</span> customMap<span class="op">.</span><span class="fu">layers</span>()<span class="op">;</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> layers<span class="op">.</span><span class="fu">length</span>() <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&gt;=</span> <span class="dv">0</span><span class="op">;</span> i<span class="op">--</span>) {</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> layer <span class="op">=</span> layers<span class="op">.</span><span class="fu">get</span>(i)<span class="op">;</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> name <span class="op">=</span> layer<span class="op">.</span><span class="fu">getName</span>()<span class="op">;</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> nameStr <span class="op">=</span> (name <span class="op">&amp;&amp;</span> <span class="kw">typeof</span> name <span class="op">===</span> <span class="st">'string'</span>) <span class="op">?</span> name <span class="op">:</span> <span class="st">''</span> <span class="op">+</span> name<span class="op">;</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (nameStr<span class="op">.</span><span class="fu">indexOf</span>(<span class="st">'Mean'</span>) <span class="op">===</span> <span class="dv">0</span>) {  <span class="co">// Remove layers starting with 'Mean'</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>          customMap<span class="op">.</span><span class="fu">remove</span>(layer)<span class="op">;</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="co">// Checkbox for toggling the visibility of slope layers greater than 20°</span></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> slopeCheckbox <span class="op">=</span> ui<span class="op">.</span><span class="fu">Checkbox</span>({</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">'Slope &gt; 20°'</span><span class="op">,</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>  <span class="dt">onChange</span><span class="op">:</span> <span class="kw">function</span>(show) {</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (show) {</span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>      customMap<span class="op">.</span><span class="fu">addLayer</span>(slopeMask<span class="op">,</span> slopeVis<span class="op">,</span> <span class="st">'Slope &gt; 20 degrees'</span>)<span class="op">;</span> <span class="co">// Add slope layer to map</span></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>      <span class="fu">removeLayerByName</span>(<span class="st">'Slope &gt; 20 degrees'</span>)<span class="op">;</span> <span class="co">// Remove the slope layer from the map</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a><span class="co">// Checkbox for toggling the visibility of aspect layers on steep slopes (slope &gt; 20°)</span></span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> aspectCheckbox <span class="op">=</span> ui<span class="op">.</span><span class="fu">Checkbox</span>({</span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">'Aspect (on Slope &gt; 20°)'</span><span class="op">,</span></span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>  <span class="dt">onChange</span><span class="op">:</span> <span class="kw">function</span>(show) {</span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (show) {</span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a>      customMap<span class="op">.</span><span class="fu">addLayer</span>(aspectMasked<span class="op">,</span> aspectVis<span class="op">,</span> <span class="st">'Aspect (Slope &gt; 20 degrees)'</span>)<span class="op">;</span> <span class="co">// Add aspect layer to map</span></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a>      <span class="fu">removeLayerByName</span>(<span class="st">'Aspect (Slope &gt; 20 degrees)'</span>)<span class="op">;</span> <span class="co">// Remove the aspect layer from the map</span></span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a><span class="co">// Checkbox for toggling the visibility of low slope layers (slope ≤ 20°)</span></span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> lowSlopeCheckbox <span class="op">=</span> ui<span class="op">.</span><span class="fu">Checkbox</span>({</span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">'Slope ≤ 20°'</span><span class="op">,</span></span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a>  <span class="dt">onChange</span><span class="op">:</span> <span class="kw">function</span>(show) {</span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (show) {</span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a>      customMap<span class="op">.</span><span class="fu">addLayer</span>(lowSlopeMask<span class="op">,</span> lowSlopeVis<span class="op">,</span> <span class="st">'Slope &lt;= 20 degrees'</span>)<span class="op">;</span> <span class="co">// Add low slope layer to map</span></span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a>      <span class="fu">removeLayerByName</span>(<span class="st">'Slope &lt;= 20 degrees'</span>)<span class="op">;</span> <span class="co">// Remove the low slope layer from the map</span></span>
+<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
