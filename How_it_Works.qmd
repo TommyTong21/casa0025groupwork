@@ -109,7 +109,7 @@ var routeSelect = ui.Select({
 ```
   
 ## **Snow Cover Analysis and Routes Danger Index Pipeline**
-This section handles the snow cover data processing and visualization.
+This section handles the snow cover data processing and visualization. The process involves:
   
 - Filter out unwanted cloud-related artifacts in Sentinel-2 imagery using the Scene Classification Layer (SCL)
 ```js
@@ -224,6 +224,37 @@ uniqueNames.evaluate(function(names) {
     routeSelect.setValue(formattedItems[0].value); // Set the first route as the default selection
     }
 });
+```
+- Draw a line graph of snow cover over time (by month)
+```js
+// Create a time series of snow cover for the selected date range (last 3 months)
+    var snowTimeSeries = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
+      .filterBounds(everestBuffer) // Only include images from the Everest buffer
+      .filterDate(start.advance(-3, 'month'), end) // Filter by last 3 months
+      .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20)) // Filter out cloudy images
+      .map(maskS2clouds) // Mask clouds in the images
+      .map(function(img) {
+        var snow = img.normalizedDifference(['B3', 'B11']).gt(0.45).rename('snow'); // Create snow mask
+        return snow.set('system:time_start', img.get('system:time_start')); // Add time information
+      });
+
+    // Generate a chart for snow cover over time (mean snow cover per month)
+    var chart = ui.Chart.image.series({
+      imageCollection: snowTimeSeries, // Image collection with snow data
+      region: everestBuffer, // Region to calculate mean snow cover
+      reducer: ee.Reducer.mean(), // Mean reducer to calculate snow cover percentage
+      scale: 30 // Scale in meters (for Sentinel-2 data)
+    }).setOptions({
+      title: 'Mean Snow Cover (%) Over Time', // Title of the chart
+      hAxis: {title: 'Date'}, // Label for the x-axis
+      vAxis: {title: 'Snow Cover'}, // Label for the y-axis
+      lineWidth: 2, // Line width for the chart
+      pointSize: 4 // Point size for the chart
+    });
+
+    // Update snow chart panel with the new chart
+    snowChartPanel.clear();
+    snowChartPanel.add(chart);
 ```
   
 ## **Interface building**
@@ -517,4 +548,56 @@ var lowSlopeCheckbox = ui.Checkbox({
     }
   }
 });
+```
+- In order to more clearly reflect the data in the figure, add a striking legend.
+```js
+// Function to add a legend to the map, showing snow cover categories and colors
+function addLegend() {
+  var legend = ui.Panel({
+    style: {
+      position: 'bottom-right', // Position the legend at the bottom-right corner
+      padding: '8px 15px',
+      backgroundColor: 'rgba(255,255,255,0.9)'
+    }
+  });
+
+  // Add a title for the snow cover legend
+  legend.add(ui.Label({
+    value: '🧊 Snow Class Legend',
+    style: {fontWeight: 'bold', margin: '0 0 6px 0'}
+  }));
+
+  // Define the snow cover categories with corresponding colors
+  var snowClasses = [
+    {label: '< 25% snow', color: '#D3D3D3'},
+    {label: '25–50%', color: '#CCCCFF'},
+    {label: '50–75%', color: '#4169E1'},
+    {label: '> 75%', color: '#E0FFFF'}
+  ];
+
+  // Add each snow class with its corresponding color to the legend
+  snowClasses.forEach(function(item) {
+    legend.add(ui.Panel([
+      ui.Label({
+        style: {
+          backgroundColor: item.color,
+          padding: '8px',
+          margin: '0 4px 0 0'
+        }
+      }),
+      ui.Label(item.label) // Label for the snow class
+    ], ui.Panel.Layout.Flow('horizontal')));
+  });
+
+  // Add a legend entry for the routes (safest, selected, and other routes)
+  legend.add(ui.Label('🟢 Safest Route\n🟡 Selected Route\n🔴 Other Routes', {
+    whiteSpace: 'pre',
+    margin: '8px 0 0 0',
+    fontSize: '12px'
+  }));
+
+  // Add the legend to the map
+  customMap.add(legend);
+}
+addLegend();
 ```
