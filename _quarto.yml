@@ -5,7 +5,7 @@ project:
 book:
   title: "CASA0025\n Final Assessment\n --\n Mount Everest Climber Services" 
   author: "Data Undercover Squad"
-  date: "10/04/2025" 
+  date: "26/04/2025" 
   chapters: 
     - index.qmd 
     - part: "A. Project Summary" #  Fill in the sections below to provide a brief summary of your project. Each section should have no more than 100 words. Do not edit any of the headings.
