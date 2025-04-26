@@ -225,7 +225,7 @@ uniqueNames.evaluate(function(names) {
     }
 });
 ```
-- Draw a line graph of snow cover over time (by month)
+- Draw a line graph of snow cover rate over time (by month)
 ```js
 // Create a time series of snow cover for the selected date range (last 3 months)
     var snowTimeSeries = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
@@ -245,7 +245,7 @@ uniqueNames.evaluate(function(names) {
       reducer: ee.Reducer.mean(), // Mean reducer to calculate snow cover percentage
       scale: 30 // Scale in meters (for Sentinel-2 data)
     }).setOptions({
-      title: 'Mean Snow Cover (%) Over Time', // Title of the chart
+      title: 'Mean Snow Cover Rate Over Time', // Title of the chart
       hAxis: {title: 'Date'}, // Label for the x-axis
       vAxis: {title: 'Snow Cover'}, // Label for the y-axis
       lineWidth: 2, // Line width for the chart
