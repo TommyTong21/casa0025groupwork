@@ -53,7 +53,7 @@ The analysis combines temperature and terrain data to understand the environment
    - **Snow Detection**:
      - Normalized Difference Snow Index (NDSI):
      - NDSI is calculated using Sentinel-2 imagery, specifically using the green band (B3) and the shortwave infrared band (B11).  
-     And the Formula:  
+     And the formula:  
      $$ \text{NDSI} = \frac{\text{Band 3} - \text{Band 11}}{\text{Band 3} + \text{Band 11}} $$  where values greater than 0.45 indicate snow.
 
      - Snow Masking: Areas with NDSI > 0.45 are classified as snow-covered, and the snow mask is applied to create a binary mask (snow vs. non-snow).
