@@ -225,7 +225,7 @@ uniqueNames.evaluate(function(names) {
     }
 });
 ```
-- Draw a line graph of snow cover rate over time (by month)
+- Draw a line graph of snow cover rate over time (by month).
 ```js
 // Create a time series of snow cover for the selected date range (last 3 months)
     var snowTimeSeries = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
