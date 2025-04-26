@@ -59,10 +59,10 @@ The analysis combines temperature and terrain data to understand the environment
    - **Snow Cover Classification**:
      - Snow Percentage: The percentage of snow cover in each region is calculated using a reduceNeighborhood function, which computes the mean snow coverage in a defined neighborhood (kernel size of 10x10 pixels).
      - Snow Class Categories: The snow cover is classified into four categories:
-       - < 25% snow (Class 1)
+       - 25% less snow (Class 1)
        - 25–50% snow (Class 2)
        - 50–75% snow (Class 3)
-       - > 75% snow (Class 4)
+       - 75% more snow (Class 4)
 
 ## **Danger Index Analysis**  
   
