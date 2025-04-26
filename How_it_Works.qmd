@@ -118,7 +118,9 @@ function maskS2clouds(image) {
   return image.updateMask(mask); // Apply the mask to the image
 }
 ```
-- Creating a composite image by applying a median operation to the **Sentinel-2 dataset (s2)** and clipping it to the everestBuffer region. This ensures that the analysis focuses only on the area of interest. Next, it calculates the Normalized Difference Snow Index (**NDSI**), which is derived from **Sentinel-2** bands **B3 (Green)** and **B11 (Shortwave Infrared)**. The NDSI helps differentiate snow-covered regions from other surface types. Using the NDSI, the code defines a snow mask by applying a threshold of 0.45. Any pixel with an NDSI value greater than 0.45 is classified as snow, marking it as part of the snowMask layer. To analyze the snow coverage in a localized manner, the script computes the snow fraction within a neighborhood using a mean reducer. It applies a square kernel of 10x10 pixels, which aggregates the fraction of snow pixels within this neighborhood. The snow fraction is then converted to a percentage (snowPercentage) by multiplying it by 100, making it easier to interpret the results. Finally, the script classifies snow coverage into four categories based on percentage ranges. The classified snow cover is clipped to the everestBuffer region to ensure the final output remains within the intended geographic boundary.
+- Creating a composite image by applying a median operation to the **Sentinel-2 dataset (s2)** and clipping it to the everestBuffer region. This ensures that the analysis focuses only on the area of interest. Next, it calculates the Normalized Difference Snow Index (**NDSI**), which is derived from **Sentinel-2** bands **B3 (Green)** and **B11 (Shortwave Infrared)**. The NDSI helps differentiate snow-covered regions from other surface types. Using the NDSI, the code defines a snow mask by applying a threshold of 0.45. Any pixel with an NDSI value greater than 0.45 is classified as snow, marking it as part of the snowMask layer. 
+  
+- To analyze the snow coverage in a localized manner, the script computes the snow fraction within a neighborhood using a mean reducer. It applies a square kernel of 10x10 pixels, which aggregates the fraction of snow pixels within this neighborhood. The snow fraction is then converted to a percentage (snowPercentage) by multiplying it by 100, making it easier to interpret the results. Finally, the script classifies snow coverage into four categories based on percentage ranges. The classified snow cover is clipped to the everestBuffer region to ensure the final output remains within the intended geographic boundary.
 ```js
 var composite = s2.median().clip(everestBuffer); // Create a composite image (median over time range)
 var ndsi = composite.normalizedDifference(['B3', 'B11']).rename('NDSI'); // Calculate the Normalized Difference Snow Index (NDSI)
@@ -179,7 +181,7 @@ function calculateDanger(route) {
     // Get the minimum danger index across all routes
     minDangerIndex = ee.Number(routesWithDanger.aggregate_min('dangerous_index'));
 ```
-Display the snow cover level of the buffered area and the danger level of all the routes.
+- Display the snow cover level of the buffered area and the danger level of all the routes.
 ```js
  // Format selected route name and style routes based on danger index
 var selectedName = routeSelect.getValue();
