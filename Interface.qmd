@@ -48,12 +48,10 @@ output: html_document
 
    - You can click on any location on the map:  
 
-     - 🔸 If you click on a route:
-       - A pop-up window will appear on the left displaying:
+     - 🔸 If you click on a route, a pop-up window will appear on the left displaying:
        - The route name and the danger index for the selected time range.  
          
-     - 🔹 If you click on another location on the map:
-       - Two charts will appear:
+     - 🔹 If you click on another location on the map, two charts will appear:
        - The daytime land surface temperature (LST) time series.
        - The nighttime land surface temperature time series.
 

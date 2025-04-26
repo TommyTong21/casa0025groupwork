@@ -3,16 +3,7 @@ title: Overview
 author: Data Undercover Squad
 output: html_document
 ---
-
-The Everest Climbing Planner currently displays around 10 unique climbing routes radiating from a central base camp location.
-
-The green route is identified as the safest, likely due to minimal overlap with high-snow areas.
-
-The yellow route, currently selected, appears moderately safe but still crosses several medium-snow zones.
-
-Red routes indicate other viable but potentially riskier paths, some of which traverse high-snow regions (>75% coverage).
-
-These visual insights help climbers and planners assess not just route direction and distance, but also the seasonal safety based on snow cover severity.
+This application provides an interactive, map-based platform to support safer and more informed decision-making for mountaineers and hikers in the Everest region. By integrating satellite-based snow cover analysis with terrain data, the tool enables users to evaluate the seasonal risk of climbing routes and plan accordingly.
 
 ![](images/overview.png){width=100%}
 

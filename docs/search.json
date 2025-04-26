@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "CASA0025 Final Assessment",
     "section": "",
-    "text": "The Everest Climbing Planner currently displays around 10 unique climbing routes radiating from a central base camp location.\nThe green route is identified as the safest, likely due to minimal overlap with high-snow areas.\nThe yellow route, currently selected, appears moderately safe but still crosses several medium-snow zones.\nRed routes indicate other viable but potentially riskier paths, some of which traverse high-snow regions (&gt;75% coverage).\nThese visual insights help climbers and planners assess not just route direction and distance, but also the seasonal safety based on snow cover severity.\n\nTable of Contents\n\nProject Summary\n\nA brief summary of your project.\n\nProblem Statement\nEnd User\nData\nMethodology\nInterface\n\n\nThe Application\n\nLink to the application.\n\nThe Application\n\n\nHow it Works\n\nHow the application works.\n\nHow it Works",
+    "text": "This application provides an interactive, map-based platform to support safer and more informed decision-making for mountaineers and hikers in the Everest region. By integrating satellite-based snow cover analysis with terrain data, the tool enables users to evaluate the seasonal risk of climbing routes and plan accordingly.\n\nTable of Contents\n\nProject Summary\n\nA brief summary of your project.\n\nProblem Statement\nEnd User\nData\nMethodology\nInterface\n\n\nThe Application\n\nLink to the application.\n\nThe Application\n\n\nHow it Works\n\nHow the application works.\n\nHow it Works",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
     ]
@@ -223,7 +223,7 @@
     "href": "Interface.html#click-on-the-map-for-details",
     "title": "6  Interface",
     "section": "6.5 🖱 Click on the Map for Details",
-    "text": "6.5 🖱 Click on the Map for Details\n\nYou can click on any location on the map:\n\n🔸 If you click on a route:\n\nA pop-up window will appear on the left displaying:\nThe route name and the danger index for the selected time range.\n\n🔹 If you click on another location on the map:\n\nTwo charts will appear:\nThe daytime land surface temperature (LST) time series.\nThe nighttime land surface temperature time series.",
+    "text": "6.5 🖱 Click on the Map for Details\n\nYou can click on any location on the map:\n\n🔸 If you click on a route, a pop-up window will appear on the left displaying:\n\nThe route name and the danger index for the selected time range.\n\n🔹 If you click on another location on the map, two charts will appear:\n\nThe daytime land surface temperature (LST) time series.\nThe nighttime land surface temperature time series.",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Interface</span>"
