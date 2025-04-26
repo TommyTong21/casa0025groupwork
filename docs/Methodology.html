@@ -315,7 +315,8 @@ window.Quarto = {
 <li><strong>Temperature Unit Conversion</strong>:
 <ul>
 <li>Raw MODIS LST data is in Kelvin (K)</li>
-<li>Conversion formula: Celsius = (Kelvin × 0.02) - 273.15</li>
+<li>Conversion formula:<br>
+<span class="math display">\[ Celsius = (Kelvin × 0.02) - 273.15 \]</span></li>
 <li>Scale factor (0.02) accounts for MODIS data scaling</li>
 <li>273.15 converts from Kelvin to Celsius</li>
 </ul></li>
@@ -370,8 +371,9 @@ window.Quarto = {
 <li><strong>Snow Detection</strong>:
 <ul>
 <li><p>Normalized Difference Snow Index (NDSI):</p></li>
-<li><p>NDSI is calculated using Sentinel-2 imagery, specifically using the green band (B3) and the shortwave infrared band (B11). Formula:<br>
-<span class="math display">\[ \text{NDSI} = \frac{\text{Band 3} - \text{Band 11}}{\text{Band 3} + \text{Band 11}} \]</span> , where values greater than 0.45 indicate snow.</p></li>
+<li><p>NDSI is calculated using Sentinel-2 imagery, specifically using the green band (B3) and the shortwave infrared band (B11).<br>
+And the Formula:<br>
+<span class="math display">\[ \text{NDSI} = \frac{\text{Band 3} - \text{Band 11}}{\text{Band 3} + \text{Band 11}} \]</span> where values greater than 0.45 indicate snow.</p></li>
 <li><p>Snow Masking: Areas with NDSI &gt; 0.45 are classified as snow-covered, and the snow mask is applied to create a binary mask (snow vs.&nbsp;non-snow).</p></li>
 </ul></li>
 <li><strong>Snow Cover Classification</strong>:

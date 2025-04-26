@@ -102,7 +102,7 @@
     "href": "Methodology.html#temperature-analysis",
     "title": "5  Methodology",
     "section": "",
-    "text": "Temperature Unit Conversion:\n\nRaw MODIS LST data is in Kelvin (K)\nConversion formula: Celsius = (Kelvin × 0.02) - 273.15\nScale factor (0.02) accounts for MODIS data scaling\n273.15 converts from Kelvin to Celsius\n\nTime Series Analysis:\n\nUtilizes ee.Reducer.mean() for spatial aggregation\nReducer computes mean temperature within specified region\nHandles missing data through reducer’s null handling\nPreserves temporal information using system:time_start\n\nStatistical Analysis:\n\nTemporal aggregation using imageCollection.mean()\nSpatial statistics using ee.Reducer statistics\nPoint-based analysis for specific locations",
+    "text": "Temperature Unit Conversion:\n\nRaw MODIS LST data is in Kelvin (K)\nConversion formula:\n\\[ Celsius = (Kelvin × 0.02) - 273.15 \\]\nScale factor (0.02) accounts for MODIS data scaling\n273.15 converts from Kelvin to Celsius\n\nTime Series Analysis:\n\nUtilizes ee.Reducer.mean() for spatial aggregation\nReducer computes mean temperature within specified region\nHandles missing data through reducer’s null handling\nPreserves temporal information using system:time_start\n\nStatistical Analysis:\n\nTemporal aggregation using imageCollection.mean()\nSpatial statistics using ee.Reducer statistics\nPoint-based analysis for specific locations",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
@@ -124,7 +124,7 @@
     "href": "Methodology.html#snow-cover-analysis",
     "title": "5  Methodology",
     "section": "5.3 Snow Cover Analysis",
-    "text": "5.3 Snow Cover Analysis\n\nSnow Detection:\n\nNormalized Difference Snow Index (NDSI):\nNDSI is calculated using Sentinel-2 imagery, specifically using the green band (B3) and the shortwave infrared band (B11). Formula:\n\\[ \\text{NDSI} = \\frac{\\text{Band 3} - \\text{Band 11}}{\\text{Band 3} + \\text{Band 11}} \\] , where values greater than 0.45 indicate snow.\nSnow Masking: Areas with NDSI &gt; 0.45 are classified as snow-covered, and the snow mask is applied to create a binary mask (snow vs. non-snow).\n\nSnow Cover Classification:\n\nSnow Percentage: The percentage of snow cover in each region is calculated using a reduceNeighborhood function, which computes the mean snow coverage in a defined neighborhood (kernel size of 10x10 pixels).\nSnow Class Categories: The snow cover is classified into four categories:\n\n25% less snow (Class 1)\n25–50% snow (Class 2)\n50–75% snow (Class 3)\n75% more snow (Class 4)",
+    "text": "5.3 Snow Cover Analysis\n\nSnow Detection:\n\nNormalized Difference Snow Index (NDSI):\nNDSI is calculated using Sentinel-2 imagery, specifically using the green band (B3) and the shortwave infrared band (B11).\nAnd the Formula:\n\\[ \\text{NDSI} = \\frac{\\text{Band 3} - \\text{Band 11}}{\\text{Band 3} + \\text{Band 11}} \\] where values greater than 0.45 indicate snow.\nSnow Masking: Areas with NDSI &gt; 0.45 are classified as snow-covered, and the snow mask is applied to create a binary mask (snow vs. non-snow).\n\nSnow Cover Classification:\n\nSnow Percentage: The percentage of snow cover in each region is calculated using a reduceNeighborhood function, which computes the mean snow coverage in a defined neighborhood (kernel size of 10x10 pixels).\nSnow Class Categories: The snow cover is classified into four categories:\n\n25% less snow (Class 1)\n25–50% snow (Class 2)\n50–75% snow (Class 3)\n75% more snow (Class 4)",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
@@ -245,7 +245,7 @@
     "href": "The_Application.html",
     "title": "7  Application",
     "section": "",
-    "text": "The full earth engine code is available here.",
+    "text": "The full earth engine code is available here.\nAnd the web repository link is also provided here",
     "crumbs": [
       "B. The Application",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Application</span>"
