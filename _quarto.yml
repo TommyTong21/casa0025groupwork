@@ -3,7 +3,7 @@ project:
   output-dir: docs 
 
 book:
-  title: "CASA0025\n Final Assessment\n --\n Mount Everest Climber Services" 
+  title: "CASA0025 Final Assessment: \n Mount Everest Climber Services" 
   author: "Data Undercover Squad"
   date: "26/04/2025" 
   chapters: 
