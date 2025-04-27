@@ -12,7 +12,7 @@ The analysis combines temperature and terrain data to understand the environment
      - Raw MODIS LST data is in Kelvin (K)
      - Conversion formula:  
      $$ Celsius = (Kelvin × 0.02) - 273.15 $$
-     - Scale factor (0.02) accounts for MODIS data scaling
+     - Scale factor (0.02) accounts for MODIS data scaling, more details can be found (here)[https://lpdaac.usgs.gov/documents/119/MOD11_ATBD.pdf]
      - 273.15 converts from Kelvin to Celsius  
        
    - **Time Series Analysis**:

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,12 +73,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dd08061cb7210c315e315379d94beb87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-dd08061cb7210c315e315379d94beb87.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-f23ba2909ee4adecfc556405604ddcf7.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f23ba2909ee4adecfc556405604ddcf7.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9fad9e87e3a8ffc1ededd72b0fe18a76.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-72b5a6872fc074520760a1f3379759c2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-9059a6d712ff3485b555562fd07d5289.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c70a664044f9a92e889756af4eddd57c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -365,7 +365,10 @@ window.Quarto = {
 <li>Daytime Land Surface Temperature (LST_Day_1km)</li>
 <li>Nighttime Land Surface Temperature (LST_Night_1km)</li>
 </ul></li>
-<li><p>Data processing: Raw values are converted to Celsius by multiplying by 0.02 and subtracting 273.15</p></li>
+<li><p>Data processing:</p>
+<ul>
+<li>For more LST algorithms details (here)[https://lpdaac.usgs.gov/documents/119/MOD11_ATBD.pdf]. <span class="math display">\[ \text{Temperature (°C)} = \text{Raw Value} \times 0.02 - 273.15 \]</span></li>
+</ul></li>
 </ul>
 </section>
 <section id="terrain-data" class="level2" data-number="4.3">
@@ -379,9 +382,16 @@ window.Quarto = {
 <li><p>Spatial resolution: 30m</p></li>
 <li><p>Variables:</p>
 <ul>
-<li>Slope (identifying steep areas &gt;20 degrees)</li>
-<li>Aspect (terrain orientation)</li>
-<li>Elevation profiles for climbing routes</li>
+<li>DEM (the elevation data)</li>
+<li>Slope (identifying steep areas &gt;20 degrees, calculated from DEM)</li>
+<li>Aspect (terrain orientation, calculated from DEM)</li>
+</ul></li>
+<li><p>Data processing:</p>
+<ul>
+<li>For each route, the system creates a line geometry</li>
+<li>Along this line, 100 equidistant points are sampled</li>
+<li>At each point, the elevation value is extracted from the DEM</li>
+<li>The resulting elevation values are stored as a feature property</li>
 </ul></li>
 </ul>
 </section>
@@ -639,6 +649,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -749,6 +761,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
