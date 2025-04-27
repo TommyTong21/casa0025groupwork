@@ -22,3 +22,7 @@ output: html_document
 5. **Bajracharya, S. R., et al. (2022). Revealing four decades of snow cover dynamics in the Hindu Kush Himalaya.**  
    *Scientific Reports*, 12, 17575.  
    [https://www.nature.com/articles/s41598-022-21901-5](https://www.nature.com/articles/s41598-022-21901-5)
+
+6. **Salomonson, V.V. and Appel, I., 2004. Estimating fractional snow cover from MODIS using the normalized difference snow index.**
+   *Remote sensing of environment*, 89(3), pp.351-360.
+   [https://www.sciencedirect.com/science/article/pii/S0034425703002864?casa_token=6sRUqSBmTp0AAAAA:LsXn1aRLTbxvRds3v4jnyNecC7fseH9PepDCkMj36ijiNqvQZqlqaEHa-EgAjEjOf_ZnyeduHA](https://www.sciencedirect.com/science/article/pii/S0034425703002864?casa_token=6sRUqSBmTp0AAAAA:LsXn1aRLTbxvRds3v4jnyNecC7fseH9PepDCkMj36ijiNqvQZqlqaEHa-EgAjEjOf_ZnyeduHA)

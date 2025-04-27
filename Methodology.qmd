@@ -51,7 +51,7 @@ The analysis combines temperature and terrain data to understand the environment
 ## **Snow Cover Analysis**  
   
    - **Snow Detection**:
-     - Normalized Difference Snow Index (NDSI):
+     - Normalized Difference Snow Index (NDSI) (Salomonson and Appel, 2004):
      - NDSI is calculated using Sentinel-2 imagery, specifically using the green band (B3) and the shortwave infrared band (B11).  
      And the formula:  
      $$ \text{NDSI} = \frac{\text{Band 3} - \text{Band 11}}{\text{Band 3} + \text{Band 11}} $$  where values greater than 0.45 indicate snow.
@@ -98,5 +98,3 @@ The analysis combines temperature and terrain data to understand the environment
      - Point-based temperature analysis
      - Route-based elevation profiling
      - Dynamic layer toggling
-
-## **Reference**

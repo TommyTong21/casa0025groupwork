@@ -124,7 +124,7 @@
     "href": "Methodology.html#snow-cover-analysis",
     "title": "5  Methodology",
     "section": "5.3 Snow Cover Analysis",
-    "text": "5.3 Snow Cover Analysis\n\nSnow Detection:\n\nNormalized Difference Snow Index (NDSI):\nNDSI is calculated using Sentinel-2 imagery, specifically using the green band (B3) and the shortwave infrared band (B11).\nAnd the formula:\n\\[ \\text{NDSI} = \\frac{\\text{Band 3} - \\text{Band 11}}{\\text{Band 3} + \\text{Band 11}} \\] where values greater than 0.45 indicate snow.\nSnow Masking: Areas with NDSI &gt; 0.45 are classified as snow-covered, and the snow mask is applied to create a binary mask (snow vs. non-snow).\n\nSnow Cover Classification:\n\nSnow Percentage: The percentage of snow cover in each region is calculated using a reduceNeighborhood function, which computes the mean snow coverage in a defined neighborhood (kernel size of 10x10 pixels).\nSnow Class Categories: The snow cover is classified into four categories:\n\n25% less snow (Class 1)\n25–50% snow (Class 2)\n50–75% snow (Class 3)\n75% more snow (Class 4)",
+    "text": "5.3 Snow Cover Analysis\n\nSnow Detection:\n\nNormalized Difference Snow Index (NDSI) (Salomonson and Appel, 2004):\nNDSI is calculated using Sentinel-2 imagery, specifically using the green band (B3) and the shortwave infrared band (B11).\nAnd the formula:\n\\[ \\text{NDSI} = \\frac{\\text{Band 3} - \\text{Band 11}}{\\text{Band 3} + \\text{Band 11}} \\] where values greater than 0.45 indicate snow.\nSnow Masking: Areas with NDSI &gt; 0.45 are classified as snow-covered, and the snow mask is applied to create a binary mask (snow vs. non-snow).\n\nSnow Cover Classification:\n\nSnow Percentage: The percentage of snow cover in each region is calculated using a reduceNeighborhood function, which computes the mean snow coverage in a defined neighborhood (kernel size of 10x10 pixels).\nSnow Class Categories: The snow cover is classified into four categories:\n\n25% less snow (Class 1)\n25–50% snow (Class 2)\n50–75% snow (Class 3)\n75% more snow (Class 4)",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
@@ -147,17 +147,6 @@
     "title": "5  Methodology",
     "section": "5.5 Interactive Analysis",
     "text": "5.5 Interactive Analysis\n\nUser Interface:\n\nCustom UI panel implementation using ui.Panel\nInteractive point selection using Map.onClick()\nRoute selection using ui.Select dropdown\n\nDynamic Visualization:\n\nReal-time chart updates using ui.Chart\nLayer management using Map.addLayer() and Map.remove()\nLegend updates using custom ui.Panel\n\nData Interaction:\n\nPoint-based temperature analysis\nRoute-based elevation profiling\nDynamic layer toggling",
-    "crumbs": [
-      "A. Project Summary",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
-    ]
-  },
-  {
-    "objectID": "Methodology.html#reference",
-    "href": "Methodology.html#reference",
-    "title": "5  Methodology",
-    "section": "5.6 Reference",
-    "text": "5.6 Reference",
     "crumbs": [
       "A. Project Summary",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Methodology</span>"
@@ -355,7 +344,7 @@
     "href": "References.html",
     "title": "9  References",
     "section": "",
-    "text": "Snow Coverage Mapping by Learning from Sentinel-2 Satellite Multispectral Images via Machine Learning Algorithms\nRemote Sensing, 2022.\nhttps://www.mdpi.com/2072-4292/14/3/782\nComparison of Three Different Random Forest Approaches to Retrieve Daily High-Resolution Snow Cover Maps from MODIS and Sentinel-2\nRemote Sensing, 2023.\nhttps://www.mdpi.com/2072-4292/15/2/343\nGhosh, T. (2024). Low snow levels in the Himalaya are putting lives at risk.\nNature.\nhttps://www.nature.com/articles/d41586-024-00123-0\nAlmagioni, C. D., et al. (2025). Snow Cover Variability and Trends over Karakoram, Western Himalaya and Kunlun Mountains During the MODIS Era (2001–2024).\nRemote Sensing, 17(5), 914.\nhttps://www.mdpi.com/2072-4292/17/5/914\nBajracharya, S. R., et al. (2022). Revealing four decades of snow cover dynamics in the Hindu Kush Himalaya.\nScientific Reports, 12, 17575.\nhttps://www.nature.com/articles/s41598-022-21901-5",
+    "text": "Snow Coverage Mapping by Learning from Sentinel-2 Satellite Multispectral Images via Machine Learning Algorithms\nRemote Sensing, 2022.\nhttps://www.mdpi.com/2072-4292/14/3/782\nComparison of Three Different Random Forest Approaches to Retrieve Daily High-Resolution Snow Cover Maps from MODIS and Sentinel-2\nRemote Sensing, 2023.\nhttps://www.mdpi.com/2072-4292/15/2/343\nGhosh, T. (2024). Low snow levels in the Himalaya are putting lives at risk.\nNature.\nhttps://www.nature.com/articles/d41586-024-00123-0\nAlmagioni, C. D., et al. (2025). Snow Cover Variability and Trends over Karakoram, Western Himalaya and Kunlun Mountains During the MODIS Era (2001–2024).\nRemote Sensing, 17(5), 914.\nhttps://www.mdpi.com/2072-4292/17/5/914\nBajracharya, S. R., et al. (2022). Revealing four decades of snow cover dynamics in the Hindu Kush Himalaya.\nScientific Reports, 12, 17575.\nhttps://www.nature.com/articles/s41598-022-21901-5\nSalomonson, V.V. and Appel, I., 2004. Estimating fractional snow cover from MODIS using the normalized difference snow index. Remote sensing of environment, 89(3), pp.351-360. https://www.sciencedirect.com/science/article/pii/S0034425703002864?casa_token=6sRUqSBmTp0AAAAA:LsXn1aRLTbxvRds3v4jnyNecC7fseH9PepDCkMj36ijiNqvQZqlqaEHa-EgAjEjOf_ZnyeduHA",
     "crumbs": [
       "D. References",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>References</span>"
