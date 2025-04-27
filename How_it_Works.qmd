@@ -66,7 +66,9 @@ Map.addLayer(clippedLSTday_c, {
     palette: ['blue', 'limegreen', 'yellow', 'darkorange', 'red']
 }, 'Mean Day Temperature');
 ```
-  
+
+After converting temperature data to Celsius, the challenge lies in effectively presenting this information to users. From a climber's perspective, two key temperature aspects are crucial: long-term temperature trends (which help set expectations) and day-night temperature variations. Given the microclimatic conditions in mountainous regions that can cause sudden temperature changes, and the flexibility required for campsite and route selection, we implemented an interactive map-click feature. This allows climbers to access location-specific temperature information, aiding in better expedition planning.
+
 ## **Terrain Analysis Pipeline**
 This section handles the terrain data processing and visualization. The process involves:
   
@@ -107,6 +109,8 @@ var routeSelect = ui.Select({
     }
 });
 ```
+
+Terrain analysis plays a crucial role in assessing climbing difficulty. By integrating elevation data with climbing routes, we provide climbers with an intuitive way to understand the challenges and altitude variations of different paths. The slope data visualization further enhances this understanding by highlighting steep sections. Additionally, the aspect data helps climbers identify ridges and valleys, which is particularly valuable for anticipating and preparing for the region's variable wind conditions.
   
 ## **Snow Cover Analysis and Routes Danger Index Pipeline**
 This section handles the snow cover data processing and visualization. The process involves:
@@ -259,7 +263,7 @@ uniqueNames.evaluate(function(names) {
   
 ## **Interface building**
 
-- The code below first verifies whether the selected location corresponds to a known hazardous route or an arbitrary point. If a dangerous route is identified, it retrieves the route’s name and danger index, formats the name using a helper function, and presents the relevant details within an interactive UI panel. This panel enables users to swiftly assess the information and includes a close button for removing the displayed content when no longer required.
+- The code below first verifies whether the selected location corresponds to a known hazardous route or an arbitrary point. If a dangerous route is identified, it retrieves the route's name and danger index, formats the name using a helper function, and presents the relevant details within an interactive UI panel. This panel enables users to swiftly assess the information and includes a close button for removing the displayed content when no longer required.
   
 - In cases where no hazardous route is detected, the code shifts its approach. It generates a temperature time-series chart for the clicked point by utilizing Earth Engine functions to extract daytime and nighttime Land Surface Temperature (LST) data. These values are visualized in two separate graphs, which apply an averaging method over time to assist users in analyzing historical temperature trends for the selected location. The temperature data is displayed within a panel featuring a semi-transparent background, a border, and a close button, maintaining a clean and user-friendly interface.
 ```js
