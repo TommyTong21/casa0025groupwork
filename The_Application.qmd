@@ -9,6 +9,6 @@ output: html_document
 
 :::
 
-The full earth engine code is available [here](https://code.earthengine.google.com/e61298ac1d009278da83a8503de0bdf5).
+The full earth engine code is available [here](https://code.earthengine.google.com/966a016ed360f80639225b7e6d29dee7).
 
 And the github repository link is also provided [here](https://github.com/TommyTong21/casa0025groupwork).
