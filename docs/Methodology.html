@@ -333,7 +333,7 @@ window.Quarto = {
 <li>Raw MODIS LST data is in Kelvin (K)</li>
 <li>Conversion formula:<br>
 <span class="math display">\[ Celsius = (Kelvin × 0.02) - 273.15 \]</span></li>
-<li>Scale factor (0.02) accounts for MODIS data scaling, more details can be found (here)[https://lpdaac.usgs.gov/documents/119/MOD11_ATBD.pdf]</li>
+<li>Scale factor (0.02) accounts for MODIS data scaling, more details can be found <a href="https://lpdaac.usgs.gov/documents/119/MOD11_ATBD.pdf">here</a></li>
 <li>273.15 converts from Kelvin to Celsius</li>
 </ul></li>
 <li><strong>Time Series Analysis</strong>:
@@ -387,10 +387,10 @@ window.Quarto = {
 <li><strong>Snow Detection</strong>:
 <ul>
 <li><p>Normalized Difference Snow Index (NDSI) (Salomonson and Appel, 2004):</p></li>
-<li><p>NDSI is calculated using Sentinel-2 imagery, specifically using the green band (B3) and the shortwave infrared band (B11).<br>
+<li><p>NDSI is calculated using Sentinel-2 imagery, specifically using the green band (<code>B3</code>) and the shortwave infrared band (<code>B11</code>).<br>
 And the formula:<br>
 <span class="math display">\[ \text{NDSI} = \frac{\text{Band 3} - \text{Band 11}}{\text{Band 3} + \text{Band 11}} \]</span> where values greater than 0.45 indicate snow.</p></li>
-<li><p>Snow Masking: Areas with NDSI &gt; 0.45 are classified as snow-covered, and the snow mask is applied to create a binary mask (snow vs.&nbsp;non-snow).</p></li>
+<li><p>Snow Masking: Areas with <code>NDSI &gt; 0.45</code> are classified as snow-covered, and the snow mask is applied to create a binary mask (snow vs.&nbsp;non-snow).</p></li>
 </ul></li>
 <li><strong>Snow Cover Classification</strong>:
 <ul>
@@ -408,7 +408,7 @@ And the formula:<br>
 <section id="danger-index-analysis" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="danger-index-analysis"><span class="header-section-number">5.4</span> <strong>Danger Index Analysis</strong></h2>
 <ul>
-<li><p>The danger index is computed based on the snow class distribution, where each snow class is assigned a weight:</p>
+<li>The danger index is computed based on the snow class distribution, where each snow class is assigned a weight:
 <ul>
 <li>Class 1 (&lt;25% snow): Weight = 1</li>
 <li>Class 2 (25–50% snow): Weight = 2</li>
@@ -417,9 +417,11 @@ And the formula:<br>
 and the formula:<br>
 <span class="math display">\[ \text{Danger Index} = \frac{f_1 \times 1 + f_2 \times 2 + f_3 \times 3 + f_4 \times 4}{f_1 + f_2 + f_3 + f_4} \]</span></li>
 </ul></li>
-<li><p>The danger index is calculated for each route based on the frequency of each snow class within the route’s surrounding area (buffered by 50 meters):</p></li>
-<li><p>The frequency of each snow class is obtained by reducing the snow class image (produced from the NDSI calculation) using <code>ee.Reducer.frequencyHistogram()</code>.</p></li>
-<li><p>The weighted sum of snow class frequencies is divided by the total number of pixels to produce an average danger index.</p></li>
+<li>The danger index is calculated for each route based on the frequency of each snow class within the route’s surrounding area (buffered by 50 meters)
+<ul>
+<li>The frequency of each snow class is obtained by reducing the snow class image (produced from the NDSI calculation) using <code>ee.Reducer.frequencyHistogram()</code>.</li>
+<li>The weighted sum of snow class frequencies is divided by the total number of pixels to produce an average danger index.</li>
+</ul></li>
 </ul>
 </section>
 <section id="interactive-analysis" class="level2" data-number="5.5">

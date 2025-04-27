@@ -12,7 +12,7 @@ The analysis combines temperature and terrain data to understand the environment
      - Raw MODIS LST data is in Kelvin (K)
      - Conversion formula:  
      $$ Celsius = (Kelvin × 0.02) - 273.15 $$
-     - Scale factor (0.02) accounts for MODIS data scaling, more details can be found (here)[https://lpdaac.usgs.gov/documents/119/MOD11_ATBD.pdf]
+     - Scale factor (0.02) accounts for MODIS data scaling, more details can be found [here](https://lpdaac.usgs.gov/documents/119/MOD11_ATBD.pdf)
      - 273.15 converts from Kelvin to Celsius  
        
    - **Time Series Analysis**:
@@ -52,11 +52,11 @@ The analysis combines temperature and terrain data to understand the environment
   
    - **Snow Detection**:
      - Normalized Difference Snow Index (NDSI) (Salomonson and Appel, 2004):
-     - NDSI is calculated using Sentinel-2 imagery, specifically using the green band (B3) and the shortwave infrared band (B11).  
+     - NDSI is calculated using Sentinel-2 imagery, specifically using the green band (`B3`) and the shortwave infrared band (`B11`).  
      And the formula:  
      $$ \text{NDSI} = \frac{\text{Band 3} - \text{Band 11}}{\text{Band 3} + \text{Band 11}} $$  where values greater than 0.45 indicate snow.
 
-     - Snow Masking: Areas with NDSI > 0.45 are classified as snow-covered, and the snow mask is applied to create a binary mask (snow vs. non-snow).
+     - Snow Masking: Areas with `NDSI > 0.45` are classified as snow-covered, and the snow mask is applied to create a binary mask (snow vs. non-snow).
 
    - **Snow Cover Classification**:
      - Snow Percentage: The percentage of snow cover in each region is calculated using a reduceNeighborhood function, which computes the mean snow coverage in a defined neighborhood (kernel size of 10x10 pixels).
@@ -76,11 +76,9 @@ The analysis combines temperature and terrain data to understand the environment
      and the formula:  
      $$ \text{Danger Index} = \frac{f_1 \times 1 + f_2 \times 2 + f_3 \times 3 + f_4 \times 4}{f_1 + f_2 + f_3 + f_4} $$  
        
-   - The danger index is calculated for each route based on the frequency of each snow class within the route’s surrounding area (buffered by 50 meters):
-  
-   - The frequency of each snow class is obtained by reducing the snow class image (produced from the NDSI calculation) using `ee.Reducer.frequencyHistogram()`.
-
-   - The weighted sum of snow class frequencies is divided by the total number of pixels to produce an average danger index.  
+   - The danger index is calculated for each route based on the frequency of each snow class within the route’s surrounding area (buffered by 50 meters)
+     - The frequency of each snow class is obtained by reducing the snow class image (produced from the NDSI calculation) using `ee.Reducer.frequencyHistogram()`.
+     - The weighted sum of snow class frequencies is divided by the total number of pixels to produce an average danger index.  
   
 ## **Interactive Analysis**  
   
