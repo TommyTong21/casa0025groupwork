@@ -22,6 +22,9 @@ book:
     - part: "C. How it Works" # Use this section to explain how your application works using code blocks and text explanations (no more than 500 words excluding code):
       chapters:
        - How_it_Works.qmd # How your application works using code blocks and text explanations
+    - part: "D. References"
+      chapters:
+       - References.qmd
   repo-url: https://github.com/TommyTong21/casa0025groupwork/tree/main
   
   repo-actions: [edit] 

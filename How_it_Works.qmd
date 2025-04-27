@@ -369,8 +369,7 @@ function updateDangerChart(routeName) {
 ```
   
 ## **Interface building**
-
-<<<<<<< HEAD
+  
 - Seting up an interactive UI for exploring snow cover and risk assessments in the Everest region. Including a status label is created to display messages about missing data, a date slider allows users to select a time range, automatically updating the map when changed, a dropdown selector enables route selection and triggers updates to both the map and danger chart.
 ```js
 // Create a status label to display messages on the UI (e.g., when no data is available)
@@ -595,9 +594,6 @@ function addLegend() {
 addLegend();
 ```
 - The code below first verifies whether the selected location corresponds to a known hazardous route or an arbitrary point. If a dangerous route is identified, it retrieves the route’s name and danger index, formats the name using a helper function, and presents the relevant details within an interactive UI panel. This panel enables users to swiftly assess the information and includes a close button for removing the displayed content when no longer required.
-=======
-- The code below first verifies whether the selected location corresponds to a known hazardous route or an arbitrary point. If a dangerous route is identified, it retrieves the route's name and danger index, formats the name using a helper function, and presents the relevant details within an interactive UI panel. This panel enables users to swiftly assess the information and includes a close button for removing the displayed content when no longer required.
->>>>>>> c36f36421831d05f0f115c1f2fa6add1537e53c2
   
 - In cases where no hazardous route is detected, the code shifts its approach. It generates a temperature time-series chart for the clicked point by utilizing Earth Engine functions to extract daytime and nighttime Land Surface Temperature (LST) data. These values are visualized in two separate graphs, which apply an averaging method over time to assist users in analyzing historical temperature trends for the selected location. The temperature data is displayed within a panel featuring a semi-transparent background, a border, and a close button, maintaining a clean and user-friendly interface.
 ```js
@@ -747,7 +743,7 @@ customMap.onClick(function(coords) {
 });
 ```
 
-# Conclusion
+## **Conclusion**
 
 This project developed an interactive geospatial tool using Google Earth Engine to assess seasonal snow cover and route-specific climbing risk in the Everest region. By integrating MODIS and Sentinel-2 satellite imagery, the application visualizes snow distribution, terrain characteristics, and a computed danger index for each known route.
 
@@ -758,33 +754,10 @@ Users can:
 
 These features improve risk-awareness and route planning for climbers and researchers.
 
-# Limitations
+## **Limitations**
 
 - Relies on optical satellite data; cloud cover may limit observation.
 - Danger index is simplified and may not fully represent avalanche risk.
 - Real-time integration is not yet available.
 - Lacks predictive modeling for snow trend forecasting.
 - No SAR data used to compensate for cloudy periods.
-
-
-# References
-
-1. **Snow Coverage Mapping by Learning from Sentinel-2 Satellite Multispectral Images via Machine Learning Algorithms**  
-   *Remote Sensing*, 2022.  
-   [https://www.mdpi.com/2072-4292/14/3/782](https://www.mdpi.com/2072-4292/14/3/782)
-
-2. **Comparison of Three Different Random Forest Approaches to Retrieve Daily High-Resolution Snow Cover Maps from MODIS and Sentinel-2**  
-   *Remote Sensing*, 2023.  
-   [https://www.mdpi.com/2072-4292/15/2/343](https://www.mdpi.com/2072-4292/15/2/343)
-
-3. **Ghosh, T. (2024). Low snow levels in the Himalaya are putting lives at risk.**  
-   *Nature*.  
-   [https://www.nature.com/articles/d41586-024-00123-0](https://www.nature.com/articles/d41586-024-00123-0)
-
-4. **Almagioni, C. D., et al. (2025). Snow Cover Variability and Trends over Karakoram, Western Himalaya and Kunlun Mountains During the MODIS Era (2001–2024).**  
-   *Remote Sensing*, 17(5), 914.  
-   [https://www.mdpi.com/2072-4292/17/5/914](https://www.mdpi.com/2072-4292/17/5/914)
-
-5. **Bajracharya, S. R., et al. (2022). Revealing four decades of snow cover dynamics in the Hindu Kush Himalaya.**  
-   *Scientific Reports*, 12, 17575.  
-   [https://www.nature.com/articles/s41598-022-21901-5](https://www.nature.com/articles/s41598-022-21901-5)
