@@ -23,3 +23,6 @@ B) **The Application**
 C) **How it Works**
     * How the application works.
         * [How it Works](How_it_Works.qmd)
+D) **References**
+    * Reference list.
+        * [References](References.qmd)
